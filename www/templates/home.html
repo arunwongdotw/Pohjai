@@ -1,0 +1,42 @@
+<!--View Information-->
+<!--View name : Fake Login-->
+<!--State name : app.fakeLogin-->
+<!--URL : #app/fakeLogin-->
+
+<ion-view hide-nav-bar="false">
+    <ion-nav-title>{{appLanguage.app_lang_home_title}}</ion-nav-title>
+    <!--left button on navigation bar-->
+    <!-- <ion-nav-buttons side="left">
+        <a ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons> -->
+    <!--end left button on navigation bar-->
+
+    <!--login content section-->
+    <ion-content id="social-login" class="bg-white">
+        <!--fake login form section-->
+        <form class="fakeLogin-form">
+            <div>
+                <img src="img/app_icon.png"/>
+            </div>
+            <div class="sub-header">{{appLanguage.app_lang_home_subheader}}</div>
+
+            <div id="fakeLogin">
+                <md-input-container md-no-float="">
+                    <input class="user-name" ng-model="home.username" placeholder="{{appLanguage.app_lang_home_username}}" style="width: 284px;">
+                </md-input-container>
+                <hr/>
+                <md-input-container md-no-float="">
+                    <input class="user-password" ng-model="home.password" type="password" placeholder="{{appLanguage.app_lang_home_password}}" style="width: 284px;">
+                </md-input-container>
+            </div>
+            <div>
+                <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnSignIn()">
+                    {{appLanguage.app_lang_home_signin_btn}}
+                </a>
+                <div class="footer">{{appLanguage.app_lang_home_footer}} <a href="#/menu1/signup">{{appLanguage.app_lang_home_footer_btn}}</a>
+            </div>
+        </form> <!--end fake login form section-->
+    </ion-content><!--end login content section-->
+</ion-view>

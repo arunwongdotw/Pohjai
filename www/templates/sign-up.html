@@ -1,0 +1,43 @@
+<!--View Information-->
+<!--View name : Fake Sign Up-->
+<!--State name : app.fakeSignUp-->
+<!--URL : #app/fakeSignUp-->
+
+<ion-view>
+    <ion-nav-title>{{appLanguage.app_lang_signup_title}}</ion-nav-title>
+    <!--social sign up section-->
+    <ion-content id="social-sign-up-content">
+        <div class="app-icon">
+            <img src="img/app_icon.png" class="md-card-image" id="sign-up-picture">
+            <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnSignUpPickPicture()">
+                {{appLanguage.app_lang_signup_upload_btn}}
+            </a>
+        </div>
+        <!--input section-->
+        <md-input-container md-no-float="">
+            <div>
+                <input class="user-name" ng-model="signup.username" placeholder="{{appLanguage.app_lang_signup_username}}" style="width: 284px;" minlength="6" maxlength="12">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+                <input type="password" ng-model="signup.password" class="user-name" placeholder="{{appLanguage.app_lang_signup_password}}" style="width: 284px;" minlength="6" maxlength="12">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+                <input type="password" ng-model="signup.confirmpassword" class="user-name" placeholder="{{appLanguage.app_lang_signup_confirm_password}}" style="width: 284px;" minlength="6" maxlength="12">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+                <input class="user-name" ng-model="signup.company" placeholder="{{appLanguage.app_lang_signup_company}}" style="width: 284px;">
+            </div>
+        </md-input-container>
+        <!--end input section-->
+        <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnSignUp()">
+            {{appLanguage.app_lang_signup_signup_btn}}
+        </a>
+
+    </ion-content><!--end social sign up section-->
+</ion-view>

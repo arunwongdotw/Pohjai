@@ -1,0 +1,83 @@
+<!--View Information-->
+<!--View name : Menu-->
+<!--Controller name : menuCtrl-->
+<!--Controller path : www/templates/menu/js/controllers.js-->
+<!--State name : app-->
+<!--URL : #app-->
+
+<ion-side-menus enable-menu-with-back-views="true">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-balanced  material-background-nav-bar">
+            <ion-nav-buttons side="left">
+                <a class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="toggleLeft()"></a>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <md-sidenav md-component-id="left" on-swipe-left="closeSideNav()" on-drag-left="closeSideNav()">
+        <!--menu section-->
+        <div class="material-background" id="toggle-menu-left-header">
+            <!--menu header section-->
+            <div class="menu-left-header">
+                <img class="user-img" src="img/profileAvatar.jpg">
+                <p>
+                    <span class="title">{{appLanguage.app_lang_menu1_title}}</span>
+                    <br/>
+                    <span class="sub-title">{{appLanguage.app_lang_menu1_subtitle}}</span>
+                </p>
+            </div><!--end menu header section-->
+        </div> <!--menu content section-->
+        <ion-content id="toggle-menu-left-content">
+            <!--If device is android application will present below code.-->
+            <!--It will disable animation to better performance on android.-->
+            <!--list section-->
+            <div ng-if="isAndroid" class="menu-list">
+                <!-- <md-subheader class="md-warn">Themes</md-subheader> -->
+                <div class="row menu-item"  ng-click="navigateTo('menu1.home')">
+                    <div class="col-33">
+                        <i class="fa fa fa-home"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>{{appLanguage.app_lang_menu1_home}}</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('menu1.signup')">
+                    <div class="col-33">
+                        <i class="fa fa-registered"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>{{appLanguage.app_lang_menu1_register}}</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('menu1.setting')">
+                    <div class="col-33">
+                        <i class="fa fa-cog"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>{{appLanguage.app_lang_menu1_setting}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!--If device is not Android application will present below code.-->
+            <!--It will show animation when selecting row.-->
+            <md-list ng-if="!isAndroid">
+                <!-- <md-subheader class="md-warn">Application Storage</md-subheader> -->
+                <md-list-item class="menu-list-item" ng-click="navigateTo('menu1.home')">
+                    <i class="fa fa fa-home"></i>
+                    <span>{{appLanguage.app_lang_menu1_home}}</span>
+                </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('menu1.signup')">
+                    <i class="fa fa-registered"></i>
+                    <span>{{appLanguage.app_lang_menu1_register}}</span>
+                </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('menu1.setting')">
+                    <i class="fa fa-cog"></i>
+                    <span>{{appLanguage.app_lang_menu1_setting}}</span>
+                </md-list-item>
+            </md-list>
+            <!--end list section-->
+        </ion-content><!--end menu content section-->
+        <!--end menu section-->
+    </md-sidenav>
+</ion-side-menus>

@@ -1,0 +1,53 @@
+<!--View Information-->
+<!--View name : Fake Sign Up-->
+<!--State name : app.fakeSignUp-->
+<!--URL : #app/fakeSignUp-->
+
+<ion-view>
+    <ion-nav-title>{{appLanguage.app_lang_create_question_set_title}}</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="btnBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+    <!--social sign up section-->
+    <ion-content id="social-sign-up-content">
+        <!--input section-->
+        <md-input-container md-no-float="" style="margin-top: 20px;">
+            <div>
+                <input class="user-name" ng-model="createQuestionSet.name" placeholder="{{appLanguage.app_lang_create_question_set_name}} *" style="width: 284px;">
+            </div>
+        </md-input-container>
+        <div class="row">
+            <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_create_question_set_number_btn}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueNoBtn" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;">
+            <md-option value="1" ng-click="setNoBtn(1)">4</md-option>
+            <md-option value="2" ng-click="setNoBtn(2)">5</md-option>
+        </md-select>
+        <div class="row">
+            <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_create_question_set_form}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueForm" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;">
+            <md-option value="1" ng-click="setForm(1)" ng-if="appLanguageID == 1">ประเมินแบบปุ่ม</md-option>
+            <md-option value="2" ng-click="setForm(2)" ng-if="appLanguageID == 1">ประเมินแบบฟอร์ม</md-option>
+
+            <md-option value="1" ng-click="setForm(1)" ng-if="appLanguageID == 2">Rate By Button</md-option>
+            <md-option value="2" ng-click="setForm(2)" ng-if="appLanguageID == 2">Rate By Form</md-option>
+        </md-select>
+        <div class="row">
+            <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_create_question_set_comment}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueComment" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;">
+            <md-option value="1" ng-click="setComment(1)" ng-if="appLanguageID == 1">มี</md-option>
+            <md-option value="2" ng-click="setComment(2)" ng-if="appLanguageID == 1">ไม่มี</md-option>
+
+            <md-option value="1" ng-click="setComment(1)" ng-if="appLanguageID == 2">Yes</md-option>
+            <md-option value="2" ng-click="setComment(2)" ng-if="appLanguageID == 2">No</md-option>
+        </md-select>
+        <!--end input section-->
+        <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnCreateQuestionSet()">
+            {{appLanguage.app_lang_create_question_set_create_btn}}
+        </a>
+    </ion-content><!--end social sign up section-->
+</ion-view>

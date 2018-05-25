@@ -1,0 +1,60 @@
+<!--View Information-->
+<!--View name : Try App No Back Button-->
+<!--State name : app.tryAppNoBackBtn-->
+<!--URL : #app/tryAppNoBackBtn-->
+
+<ion-view>
+    <ion-nav-title>{{appLanguage.app_lang_setting_title}}</ion-nav-title>
+    <ion-content id="try-app-content">
+        <div class="row">
+            <div class="col-50" style="margin-top: 20px; margin-left: 20px;">{{appLanguage.app_lang_setting_lang}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueLanguage" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;">
+            <md-option value="1" ng-click="setLanguage(1)">ภาษาไทย</md-option>
+            <md-option value="2" ng-click="setLanguage(2)">English</md-option>
+        </md-select>
+        <div class="row" ng-if="loginFlag == true">
+            <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_template}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueTemplate" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;" ng-if="loginFlag == true">
+            <md-option value="1" ng-click="setTemplate(1)" ng-if="appLanguageID == 1">ปุ่มระดับเดียวกัน</md-option>
+            <md-option value="2" ng-click="setTemplate(2)" ng-if="appLanguageID == 1">ปุ่มระดับต่ำไปสูง</md-option>
+            <md-option value="3" ng-click="setTemplate(3)" ng-if="appLanguageID == 1">ปุ่มระดับสูงไปต่ำ</md-option>
+            <md-option value="4" ng-click="setTemplate(4)" ng-if="appLanguageID == 1">ปุ่มระดับโค้ง</md-option>
+
+            <md-option value="1" ng-click="setTemplate(1)" ng-if="appLanguageID == 2">Equal</md-option>
+            <md-option value="2" ng-click="setTemplate(2)" ng-if="appLanguageID == 2">Low To High</md-option>
+            <md-option value="3" ng-click="setTemplate(3)" ng-if="appLanguageID == 2">High To Low</md-option>
+            <md-option value="4" ng-click="setTemplate(4)" ng-if="appLanguageID == 2">Curve</md-option>
+        </md-select>
+        <div class="row" ng-if="loginFlag == true">
+            <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_order}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueOrder" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;" ng-if="loginFlag == true">
+            <md-option value="1" ng-click="setOrder(1)" ng-if="appLanguageID == 1">จากน้อยไปมาก</md-option>
+            <md-option value="2" ng-click="setOrder(2)" ng-if="appLanguageID == 1">จากมากไปน้อย</md-option>
+
+            <md-option value="1" ng-click="setOrder(1)" ng-if="appLanguageID == 2">Ascending</md-option>
+            <md-option value="2" ng-click="setOrder(2)" ng-if="appLanguageID == 2">Descending</md-option>
+        </md-select>
+        <div class="row" ng-if="loginFlag == true">
+            <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_color}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueColor" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;" ng-if="loginFlag == true">
+            <md-option value="1" ng-click="setColor(1)" ng-if="appLanguageID == 1">สีน้ำเงิน</md-option>
+            <md-option value="2" ng-click="setColor(2)" ng-if="appLanguageID == 1">สีเหลือง</md-option>
+            <md-option value="3" ng-click="setColor(3)" ng-if="appLanguageID == 1">สีแดง</md-option>
+
+            <md-option value="1" ng-click="setColor(1)" ng-if="appLanguageID == 2">Blue</md-option>
+            <md-option value="2" ng-click="setColor(2)" ng-if="appLanguageID == 2">Yellow</md-option>
+            <md-option value="3" ng-click="setColor(3)" ng-if="appLanguageID == 2">Red</md-option>
+        </md-select><br><br>
+        <!-- <div class="row" ng-if="loginFlag == true">
+            <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_number_btn}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueNoBtn" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;" ng-if="loginFlag == true">
+            <md-option value="1" ng-click="setNoBtn(1)">4</md-option>
+            <md-option value="2" ng-click="setNoBtn(2)">5</md-option>
+        </md-select> -->
+    </ion-content>
+</ion-view>
