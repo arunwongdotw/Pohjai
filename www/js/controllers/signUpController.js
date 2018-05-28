@@ -134,6 +134,7 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
                           }
                         }
                       }).then(function() {
+                        window.localStorage.memberUsername = $scope.signup.username;
                         $state.go('menu2.question');
                       });
                     } else {
@@ -148,6 +149,7 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
                           }
                         }
                       }).then(function() {
+                        window.localStorage.memberUsername = $scope.signup.username;
                         $state.go('menu2.question');
                       });
                     }
