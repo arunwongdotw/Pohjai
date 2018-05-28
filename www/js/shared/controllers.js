@@ -20,6 +20,28 @@ appControllers.controller('DialogController', function ($scope, $mdDialog, displ
     };
 });// End Controller for Dialog box.
 
+appControllers.controller('inputDialogController', function ($scope, $mdDialog, displayOption, myService) {
+    $scope.input = {};
+    //This variable for display wording of dialog.
+    //object schema:
+    //displayOption: {
+    //        title: "Confirm to remove all data?",
+    //        content: "All data will remove from local storage.",
+    //        ok: "Confirm",
+    //        cancel: "Close"
+    //}
+    $scope.displayOption = displayOption;
+
+    $scope.cancel = function () {
+        $mdDialog.cancel(); //close dialog.
+    };
+
+    $scope.ok = function () {
+        myService.inputDialog = $scope.input;
+        $mdDialog.hide();//hide dialog.
+    };
+});
+
 //Controller for Toast.
 appControllers.controller('toastController', function ($scope, displayOption) {
 
@@ -31,4 +53,3 @@ appControllers.controller('toastController', function ($scope, displayOption) {
 
     $scope.displayOption = displayOption;
 });// End Controller for Toast.
-

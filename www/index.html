@@ -144,6 +144,28 @@
     </md-dialog>
 </script> <!-- end share template confirm-dialog section-->
 
+<script type="text/ng-template" id="input-dialog.html">
+    <md-dialog aria-label="confirm-dialog">
+        <form>
+            <md-dialog-content>
+                <div>
+                    <h2 class="md-title">{{displayOption.title}}</h2>
+                    <p>{{displayOption.content}}</p>
+                    <input type="password" class="user-password" placeholder="{{displayOption.inputplaceholder}}" ng-model="input.password"></input>
+                </div>
+            </md-dialog-content>
+            <div class="md-actions" layout="row">
+                <a class="md-primary-color dialog-action-btn" ng-click="cancel()">
+                    {{displayOption.cancel}}
+                </a>
+                <a class="md-primary-color dialog-action-btn" ng-click="ok()">
+                    {{displayOption.ok}}
+                </a>
+            </div>
+        </form>
+    </md-dialog>
+</script>
+
 <!-- Share template toast section-->
 <script type="text/ng-template" id="toast.html">
     <md-toast class="toast-form">

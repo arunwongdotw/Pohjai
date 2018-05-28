@@ -87,37 +87,89 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
   $scope.btnLogout = function() {
     if ($scope.appLanguageID == "1") {
       $mdDialog.show({
-        controller: 'DialogController',
-        templateUrl: 'confirm-dialog.html',
+        controller: 'inputDialogController',
+        templateUrl: 'input-dialog.html',
         locals: {
           displayOption: {
             title: "ออกจากระบบ ?",
             content: "คุณต้องการที่จะออกจากระบบ ?",
+            inputplaceholder: "กรุณากรอกรหัสผ่านเพื่อยืนยัน",
             ok: "ยืนยัน",
             cancel: "ยกเลิก"
           }
         }
       }).then(function() {
-        window.localStorage.memberUsername = "";
-        $state.go('menu1.home');
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/confirmLogout.php',
+          method: 'POST',
+          data: {
+            var_memberid: myService.memberDetailFromLogin.member_id,
+            var_password: myService.inputDialog.password
+          }
+        }).then(function(response) {
+          if (response.data.results == 'confirmLogout_success') {
+            window.localStorage.memberUsername = "";
+            $state.go('menu1.home');
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ยืนยันรหัสผ่านไม่ถูกต้อง !",
+                  content: "คุณกรอกยืนยันรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่",
+                  ok: "ตกลง"
+                }
+              }
+            });
+          }
+        }, function(error) {
+          console.log(error);
+        });
       }, function() {
         console.log('cancel');
       });
     } else {
       $mdDialog.show({
-        controller: 'DialogController',
-        templateUrl: 'confirm-dialog.html',
+        controller: 'inputDialogController',
+        templateUrl: 'input-dialog.html',
         locals: {
           displayOption: {
             title: "Logout ?",
             content: "Do you want to logout ?",
+            inputplaceholder: "Fill password for confirm",
             ok: "Confirm",
             cancel: "Cancel"
           }
         }
       }).then(function() {
-        window.localStorage.memberUsername = "";
-        $state.go('menu1.home');
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/confirmLogout.php',
+          method: 'POST',
+          data: {
+            var_memberid: myService.memberDetailFromLogin.member_id,
+            var_password: myService.inputDialog.password
+          }
+        }).then(function(response) {
+          if (response.data.results == 'confirmLogout_success') {
+            window.localStorage.memberUsername = "";
+            $state.go('menu1.home');
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Invalid Confirm Password !",
+                  content: "You fill invalid confirm password, please try again.",
+                  ok: "Confirm"
+                }
+              }
+            });
+          }
+        }, function(error) {
+          console.log(error);
+        });
       }, function() {
         console.log('cancel');
       });
