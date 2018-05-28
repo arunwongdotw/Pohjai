@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.ionicmaterialdesign392344" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>IonicMaterialDesign</name>
+<widget id="com.smartonline.porjai" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Porjai</name>
     <description>
-    An Ionic Framework and Cordova project.
+    Satisfaction Application.
   </description>
-    <author email="ionicmaterialdesign@gmail.com" href="http://ionicframework.com/">
-    Ionic Up Team
+    <author email="roj2007@gmail.com" href="http://www.smartonline.info">
+    Smart Online
   </author>
     <content src="index.html" />
     <allow-navigation href="tel:*" />
@@ -77,6 +77,8 @@
     </platform>
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-file-transfer" spec="~1.7.1" />
     <engine name="ios" spec="~4.1.1" />
     <engine name="android" spec="^7.0.0" />
+    <plugin name="cordova-plugin-camera" spec="~4.0.3" />
 </widget>
