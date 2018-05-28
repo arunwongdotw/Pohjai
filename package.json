@@ -32,7 +32,9 @@
     ],
     "plugins": {
       "cordova-plugin-contacts": {},
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-camera": {}
     }
   }
 }
