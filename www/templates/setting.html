@@ -7,6 +7,8 @@
         <md-select ng-model="mdSelectValueLanguage" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;">
             <md-option value="1" ng-click="setLanguage(1)">ภาษาไทย</md-option>
             <md-option value="2" ng-click="setLanguage(2)">English</md-option>
+            <md-option value="3" ng-click="setLanguage(3)">Chinese</md-option>
+            <md-option value="4" ng-click="setLanguage(4)">Korean</md-option>
         </md-select>
         <div class="row" ng-if="loginFlag == true">
             <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_template}}</div>
