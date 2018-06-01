@@ -1,5 +1,5 @@
 <ion-view id="online-course" hide-nav-bar="false">
-    <ion-nav-title>{{appLanguage.app_lang_question_title}}</ion-nav-title>
+    <ion-nav-title>{{appLanguage.app_lang_question_mangement_title}}</ion-nav-title>
     <ion-content id="online-course-content">
         <div class="course-list" style="margin-top: 0px;">
             <div class="course-item" ng-repeat="questionSet in questionSetArrayList">
@@ -18,7 +18,7 @@
                         <a href="" class="md-raised md-button md-default-theme angular-course-background" style="margin-top: 5px;" ng-click="btnCreateQuestion(questionSet)">
                             <i class="fas fa-plus"></i> {{appLanguage.app_lang_question_create_question}}
                         </a>
-                        <a href="" class="md-raised md-button md-default-theme angular-course-background" ng-click="btnEditQuestion(questionSet)">
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="margin-top: 5px;" ng-click="btnEditQuestion(questionSet)">
                             <i class="fas fa-edit"></i> {{appLanguage.app_lang_question_edit_question}}
                         </a>
                     </p>
