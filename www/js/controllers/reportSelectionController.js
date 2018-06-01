@@ -15,15 +15,12 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
   // ถ้าทดสอบกับ ionic serve ให้ปิด if
   // if อันนี้เอาไว้ get ภาษา
   if (typeof window.localStorage.appLanguageID == 'undefined') {
-    $scope.mdSelectValueLanguage = "1";
     $scope.appLanguageID = "1";
     getAppLanguage();
   } else if ((window.localStorage.appLanguageID != "") || (window.localStorage.appLanguageID != null)) {
-    $scope.mdSelectValueLanguage = window.localStorage.appLanguageID;
     $scope.appLanguageID = window.localStorage.appLanguageID;
     getAppLanguage();
   } else {
-    $scope.mdSelectValueLanguage = "1";
     $scope.appLanguageID = "1";
     getAppLanguage();
   }

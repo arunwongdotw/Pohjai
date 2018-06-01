@@ -3,21 +3,19 @@ appControllers.controller('createQuestionCtrl', function($scope, $timeout, $stat
   $scope.appLanguage = {};
   $scope.createQuestion = {};
   $scope.questionSetID = myService.questionSetDetail.question_set_id;
-  console.log('createQuestion started...');
+  
   // 2 บรรทัดด้านล่างใช้ทดสอบกับ ionic serve
   // $scope.appLanguageID = "1";
   // getAppLanguage();
 
   // ถ้าทดสอบกับ ionic serve ให้ปิด if
   if (typeof window.localStorage.appLanguageID == 'undefined') {
-    $scope.mdSelectValue = "1";
     $scope.appLanguageID = "1";
     getAppLanguage();
   } else if ((window.localStorage.appLanguageID != "") || (window.localStorage.appLanguageID != null)) {
     $scope.appLanguageID = window.localStorage.appLanguageID;
     getAppLanguage();
   } else {
-    $scope.mdSelectValue = "1";
     $scope.appLanguageID = "1";
     getAppLanguage();
   }

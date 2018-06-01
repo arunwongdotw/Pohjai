@@ -5,21 +5,20 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
   $scope.mdSelectValueNoBtn = 1;
   $scope.mdSelectValueForm = 1;
   $scope.mdSelectValueComment = 1;
-  $scope.memberID = myService.memberDetailFromLogin.member_id
+  $scope.memberID = myService.memberDetailFromLogin.member_id;
+
   // 2 บรรทัดด้านล่างใช้ทดสอบกับ ionic serve
   // $scope.appLanguageID = "1";
   // getAppLanguage();
 
   // ถ้าทดสอบกับ ionic serve ให้ปิด if
   if (typeof window.localStorage.appLanguageID == 'undefined') {
-    $scope.mdSelectValue = "1";
     $scope.appLanguageID = "1";
     getAppLanguage();
   } else if ((window.localStorage.appLanguageID != "") || (window.localStorage.appLanguageID != null)) {
     $scope.appLanguageID = window.localStorage.appLanguageID;
     getAppLanguage();
   } else {
-    $scope.mdSelectValue = "1";
     $scope.appLanguageID = "1";
     getAppLanguage();
   }
@@ -66,8 +65,6 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
   }
 
   $scope.btnCreateQuestionSet = function() {
-    console.log($scope.createQuestionSet.name);
-    console.log($scope.memberID);
     if (($scope.createQuestionSet.name != null) && ($scope.createQuestionSet.name != "")) {
       $http({
         url: myService.configAPI.webserviceURL + 'webservices/createQuestionSet.php',
