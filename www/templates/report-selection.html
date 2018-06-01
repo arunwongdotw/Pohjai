@@ -1,0 +1,39 @@
+<!--View Information-->
+<!--View name : Try App No Back Button-->
+<!--State name : app.tryAppNoBackBtn-->
+<!--URL : #app/tryAppNoBackBtn-->
+
+<ion-view>
+    <ion-nav-title>{{appLanguage.app_lang_report_selection_title}}</ion-nav-title>
+    <ion-content id="try-app-content">
+        <div class="row">
+            <div class="col-50" style="margin-top: 20px; margin-left: 20px;">{{appLanguage.app_lang_report_selection_chart}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueChart" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;">
+            <md-option value="1" ng-click="setChart(1)" ng-if="appLanguageID == 1">กราฟแท่ง</md-option>
+            <md-option value="2" ng-click="setChart(2)" ng-if="appLanguageID == 1">กราฟเส้น</md-option>
+            <md-option value="3" ng-click="setChart(3)" ng-if="appLanguageID == 1">กราฟวงกลม</md-option>
+
+            <md-option value="1" ng-click="setChart(1)" ng-if="appLanguageID == 2">Bar Chart</md-option>
+            <md-option value="2" ng-click="setChart(2)" ng-if="appLanguageID == 2">Line Chart</md-option>
+            <md-option value="3" ng-click="setChart(3)" ng-if="appLanguageID == 2">Doughnut Chart</md-option>
+        </md-select>
+        <md-input-container md-no-float="" style="margin-left: 20px;">
+            <p>{{appLanguage.app_lang_report_selection_start}}</p>
+            <div>
+                <input class="user-name" placeholder="{{appLanguage.app_lang_report_selection_start}} *" style="width: 300px;" ng-model="reportSelection.startdate" ng-click="openDatePickerStart()">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="" style="margin-left: 20px;">
+            <p>{{appLanguage.app_lang_report_selection_end}}</p>
+            <div>
+                <input class="user-name" placeholder="{{appLanguage.app_lang_report_selection_end}} *" style="width: 300px;" ng-model="reportSelection.enddate" ng-click="openDatePickerEnd()">
+            </div>
+        </md-input-container>
+        <center>
+        <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnChart()" style="margin-left: 20px;">
+            {{appLanguage.app_lang_report_selection_chart_btn}}
+        </a>
+      </center>
+    </ion-content>
+</ion-view>
