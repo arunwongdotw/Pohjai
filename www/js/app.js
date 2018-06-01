@@ -494,6 +494,50 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('menu2.questionmanagement', {
+                url: "/questionmanagement",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/question-management.html",
+                        controller: 'questionManagementCtrl'
+                    }
+                }
+            })
+            .state('menu2.editquestionset', {
+                url: "/editquestionset",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/edit-question-set.html",
+                        controller: 'editQuestionSetCtrl'
+                    }
+                }
+            })
+            .state('menu2.questionlist', {
+                url: "/questionlist",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/question-list.html",
+                        controller: 'questionListCtrl'
+                    }
+                }
+            })
+            .state('menu2.editquestion', {
+                url: "/editquestion",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/edit-question.html",
+                        controller: 'editQuestionCtrl'
+                    }
+                }
+            })
 
             .state('app.dashboard', {
                 url: "/dashboard",
