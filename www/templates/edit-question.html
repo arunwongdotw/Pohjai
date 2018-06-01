@@ -1,0 +1,18 @@
+<ion-view>
+    <ion-nav-title>{{appLanguage.app_lang_edit_question_title}}</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="btnBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content id="social-sign-up-content">
+        <md-input-container md-no-float="" style="margin-top: 20px;">
+            <div>
+                <input class="user-name" ng-model="editQuestion.name" placeholder="{{appLanguage.app_lang_create_question_name}} *" style="width: 284px;">
+            </div>
+        </md-input-container>
+        <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnEditQuestion()">
+            {{appLanguage.app_lang_edit_question_edit_btn}}
+        </a>
+    </ion-content>
+</ion-view>
