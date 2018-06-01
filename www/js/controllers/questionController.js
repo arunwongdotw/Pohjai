@@ -110,4 +110,9 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
         console.log(error);
       });
   }
+
+  $scope.btnReportSelection = function(questionSet) {
+    myService.questionSetDetail = questionSet;
+    $scope.navigateTo('menu2.reportselection');
+  }
 }); // End of dashboard controller.
