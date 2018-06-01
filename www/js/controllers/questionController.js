@@ -73,7 +73,45 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
   }; // End of navigateTo.
 
   $scope.btnCreateQuestionSet = function() {
-    $state.go('menu2.createquestionset');
+    $http({
+      url: myService.configAPI.webserviceURL + 'webservices/countQuestionSet.php',
+      method: 'POST',
+      data: {
+        var_memberid: $scope.memberID
+      }
+    }).then(function(response) {
+      if (response.data.results = 'countToMakeChartPerQuestion_lessThan10') {
+        $state.go('menu2.createquestionset');
+      } else {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ไม่สามารถสร้างชุดแบบประเมินได้ !",
+                content: "คุณได้สร้างชุดแบบประเมินเกิน 10 ชุดตามจำนวนที่กำหนด",
+                ok: "ตกลง"
+              }
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Cannot Create Question Set !",
+                content: "You created question set more than 10 set that defined.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
+      }
+    }, function(error) {
+      console.log(error);
+    });
   }
 
   $scope.btnCreateQuestion = function(questionSet) {
