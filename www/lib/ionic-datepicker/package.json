@@ -1,0 +1,47 @@
+{
+  "_from": "ionic-datepicker",
+  "_id": "ionic-datepicker@1.2.1",
+  "_inBundle": false,
+  "_integrity": "sha1-Ukxfb3hJGVLcZk2iqjS0FOIXXGU=",
+  "_location": "/ionic-datepicker",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "ionic-datepicker",
+    "name": "ionic-datepicker",
+    "escapedName": "ionic-datepicker",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ionic-datepicker/-/ionic-datepicker-1.2.1.tgz",
+  "_shasum": "524c5f6f78491952dc664da2aa34b414e2175c65",
+  "_spec": "ionic-datepicker",
+  "_where": "C:\\Users\\Sunnyngai\\Desktop\\PorJai",
+  "author": {
+    "name": "https://github.com/rajeshwarpatlolla, rajeshwar.patlolla@gmail.com"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "A date picker for ionic framework",
+  "devDependencies": {
+    "del": "*",
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-css2js": "*",
+    "gulp-minify-html": "*",
+    "gulp-ng-html2js": "*",
+    "gulp-uglify": "*"
+  },
+  "license": "MIT",
+  "main": "./dist/ionic-datepicker.bundle.min.js",
+  "name": "ionic-datepicker",
+  "scripts": {},
+  "version": "1.2.1"
+}
