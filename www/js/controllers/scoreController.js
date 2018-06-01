@@ -77,12 +77,96 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   }; // End of navigateTo.
 
   $scope.btnBack = function() {
-    navigator.app.backHistory();
+    if ($scope.appLanguageID == "1") {
+      $mdDialog.show({
+        controller: 'inputDialogController',
+        templateUrl: 'input-dialog.html',
+        locals: {
+          displayOption: {
+            title: "ย้อนกลับ ?",
+            content: "คุณต้องการที่จะย้อนกลับ ?",
+            inputplaceholder: "กรุณากรอกรหัสผ่านเพื่อยืนยัน",
+            ok: "ยืนยัน",
+            cancel: "ยกเลิก"
+          }
+        }
+      }).then(function() {
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
+          method: 'POST',
+          data: {
+            var_memberid: myService.memberDetailFromLogin.member_id,
+            var_password: myService.inputDialog.password
+          }
+        }).then(function(response) {
+          if (response.data.results == 'confirmPassword_success') {
+            navigator.app.backHistory();
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ยืนยันรหัสผ่านไม่ถูกต้อง !",
+                  content: "คุณกรอกยืนยันรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่",
+                  ok: "ตกลง"
+                }
+              }
+            });
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      }, function() {
+        console.log('cancel');
+      });
+    } else {
+      $mdDialog.show({
+        controller: 'inputDialogController',
+        templateUrl: 'input-dialog.html',
+        locals: {
+          displayOption: {
+            title: "Back ?",
+            content: "Do you want to back ?",
+            inputplaceholder: "Fill password for confirm",
+            ok: "Confirm",
+            cancel: "Cancel"
+          }
+        }
+      }).then(function() {
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
+          method: 'POST',
+          data: {
+            var_memberid: myService.memberDetailFromLogin.member_id,
+            var_password: myService.inputDialog.password
+          }
+        }).then(function(response) {
+          if (response.data.results == 'confirmPassword_success') {
+            navigator.app.backHistory();
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Invalid Confirm Password !",
+                  content: "You fill invalid confirm password, please try again.",
+                  ok: "Confirm"
+                }
+              }
+            });
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      }, function() {
+        console.log('cancel');
+      });
+    }
   };
 
   $scope.giveScore = function(questionID, score, index) {
-    // console.log(index);
-    // console.log($scope.allQuestionInSet.length);
     $http({
       url: myService.configAPI.webserviceURL + 'webservices/giveScore.php',
       method: 'POST',

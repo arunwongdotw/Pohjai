@@ -100,14 +100,14 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
         }
       }).then(function() {
         $http({
-          url: myService.configAPI.webserviceURL + 'webservices/confirmLogout.php',
+          url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
           method: 'POST',
           data: {
             var_memberid: myService.memberDetailFromLogin.member_id,
             var_password: myService.inputDialog.password
           }
         }).then(function(response) {
-          if (response.data.results == 'confirmLogout_success') {
+          if (response.data.results == 'confirmPassword_success') {
             window.localStorage.memberUsername = "";
             $state.go('menu1.home');
           } else {
@@ -144,14 +144,14 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
         }
       }).then(function() {
         $http({
-          url: myService.configAPI.webserviceURL + 'webservices/confirmLogout.php',
+          url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
           method: 'POST',
           data: {
             var_memberid: myService.memberDetailFromLogin.member_id,
             var_password: myService.inputDialog.password
           }
         }).then(function(response) {
-          if (response.data.results == 'confirmLogout_success') {
+          if (response.data.results == 'confirmPassword_success') {
             window.localStorage.memberUsername = "";
             $state.go('menu1.home');
           } else {
