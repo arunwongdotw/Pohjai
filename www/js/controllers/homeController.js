@@ -1,15 +1,7 @@
-// Controller of menu toggle.
-// Learn more about Sidenav directive of angular material
-// https://material.angularjs.org/latest/#/demo/material.components.sidenav
 appControllers.controller('homeCtrl', function($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state, $ionicPlatform, $mdDialog, $mdBottomSheet, $mdMenu, $mdSelect, $http, myService, $ionicNavBarDelegate) {
   $scope.appLanguage = {};
   $scope.home = {};
 
-  // 2 บรรทัดด้านล่างใช้ทดสอบกับ ionic serve
-  // $scope.appLanguageID = "1";
-  // getAppLanguage();
-
-  // ถ้าทดสอบกับ ionic serve ให้ปิด if
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
     getAppLanguage();

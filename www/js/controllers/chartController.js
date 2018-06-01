@@ -1,14 +1,8 @@
-// Controller of dashboard.
 appControllers.controller('chartCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog) {
   $scope.appLanguage = {};
   $scope.chartType = myService.chartType;
   $scope.data = [];
 
-  // 2 บรรทัดด้านล่างใช้ทดสอบกับ ionic serve
-  // $scope.appLanguageID = "1";
-  // getAppLanguage();
-
-  // ถ้าทดสอบกับ ionic serve ให้ปิด if
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
     getAppLanguage();

@@ -1,4 +1,3 @@
-// Controller of dashboard.
 appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog) {
   $scope.appLanguage = {};
   $scope.createQuestionSet = {};
@@ -7,11 +6,6 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
   $scope.mdSelectValueComment = 1;
   $scope.memberID = myService.memberDetailFromLogin.member_id;
 
-  // 2 บรรทัดด้านล่างใช้ทดสอบกับ ionic serve
-  // $scope.appLanguageID = "1";
-  // getAppLanguage();
-
-  // ถ้าทดสอบกับ ionic serve ให้ปิด if
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
     getAppLanguage();

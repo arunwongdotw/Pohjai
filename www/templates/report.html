@@ -1,14 +1,7 @@
-<!--View Information-->
-<!--View name : Online Course-->
-<!--State name : app.onlineCourse-->
-<!--URL : #app/onlineCourse-->
-
-<!--Online course section-->
 <ion-view id="online-course" hide-nav-bar="false">
     <ion-nav-title>{{appLanguage.app_lang_report_title}}</ion-nav-title>
     <ion-content id="online-course-content">
         <div class="course-list" style="margin-top: 0px;">
-            <!--content item section-->
             <div class="course-item" ng-repeat="questionSet in questionSetArrayList">
                 <div class="title angular-course-background">
                     {{appLanguage.app_lang_question_question_name}} : {{questionSet.question_set_name}}
@@ -21,7 +14,7 @@
                         </a>
                     </p>
                 </div>
-            </div> <!--end content item section-->
+            </div>
         </div>
     </ion-content>
-</ion-view><!--end online course section-->
+</ion-view>

@@ -1,21 +1,13 @@
-// Controller of dashboard.
 appControllers.controller('questionCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog) {
   $scope.appLanguage = {};
 
-  // 2 บรรทัดด้านล่างใช้ทดสอบกับ ionic serve
-  // $scope.appLanguageID = "1";
-  // getAppLanguage();
-
-  // ถ้าทดสอบกับ ionic serve ให้ปิด if
   if (typeof window.localStorage.appLanguageID == 'undefined') {
-    $scope.mdSelectValue = "1";
     $scope.appLanguageID = "1";
     getAppLanguage();
   } else if ((window.localStorage.appLanguageID != "") || (window.localStorage.appLanguageID != null)) {
     $scope.appLanguageID = window.localStorage.appLanguageID;
     getAppLanguage();
   } else {
-    $scope.mdSelectValue = "1";
     $scope.appLanguageID = "1";
     getAppLanguage();
   }
@@ -72,53 +64,6 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
     }, ($scope.isAnimated ? 300 : 0));
   }; // End of navigateTo.
 
-  $scope.btnCreateQuestionSet = function() {
-    $http({
-      url: myService.configAPI.webserviceURL + 'webservices/countQuestionSet.php',
-      method: 'POST',
-      data: {
-        var_memberid: $scope.memberID
-      }
-    }).then(function(response) {
-      if (response.data.results = 'countToMakeChartPerQuestion_lessThan10') {
-        $state.go('menu2.createquestionset');
-      } else {
-        if ($scope.appLanguageID == "1") {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "ไม่สามารถสร้างชุดแบบประเมินได้ !",
-                content: "คุณได้สร้างชุดแบบประเมินเกิน 10 ชุดตามจำนวนที่กำหนด",
-                ok: "ตกลง"
-              }
-            }
-          });
-        } else {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "Cannot Create Question Set !",
-                content: "You created question set more than 10 set that defined.",
-                ok: "Confirm"
-              }
-            }
-          });
-        }
-      }
-    }, function(error) {
-      console.log(error);
-    });
-  }
-
-  $scope.btnCreateQuestion = function(questionSet) {
-    myService.questionSetDetail = questionSet;
-    $state.go('menu2.createquestion');
-  }
-
   $scope.btnNavigateToScore = function(questionSet) {
     myService.questionSetDetail = questionSet;
     $http.get(myService.configAPI.webserviceURL + 'webservices/getQuestionInSet.php?questionSetID=' + myService.questionSetDetail.question_set_id)
@@ -135,9 +80,9 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
                   ok: "ตกลง"
                 }
               }
-            }).then(function(response){
+            }).then(function(response) {
               $state.go('menu2.createquestion');
-            }, function(error){
+            }, function(error) {
               console.log(error);
             });
           } else {
@@ -147,13 +92,13 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
               locals: {
                 displayOption: {
                   title: "Not Have Topic !",
-                  content: "Question set not have topic, please add topic.",
+                  content: "Form not have topic, please add topic.",
                   ok: "Confirm"
                 }
               }
-            }).then(function(response){
+            }).then(function(response) {
               $state.go('menu2.createquestion');
-            }, function(error){
+            }, function(error) {
               console.log(error);
             });
           }
@@ -164,115 +109,5 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
       }, function(error) {
         console.log(error);
       });
-  }
-
-  $scope.btnDelQuestionSet = function(questionSet) {
-    if ($scope.appLanguageID == "1") {
-      $mdDialog.show({
-        controller: 'DialogController',
-        templateUrl: 'confirm-dialog.html',
-        locals: {
-          displayOption: {
-            title: "ลบชุดแบบประเมินนี้ ?",
-            content: "คุณแน่ใจที่จะลบชุดแบบประเมินนี้",
-            ok: "ตกลง",
-            cancel: "ยกเลิก"
-          }
-        }
-      }).then(function() {
-        $http({
-          url: myService.configAPI.webserviceURL + 'webservices/deleteQuestionSet.php',
-          method: 'POST',
-          data: {
-            var_questionsetid: questionSet.question_set_id
-          }
-        }).then(function(response) {
-          if ($scope.appLanguageID == "1") {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "ลบชุดประเมินสำเร็จ !",
-                  content: "คุณลบชุดประเมินสำเร็จ",
-                  ok: "ตกลง"
-                }
-              }
-            }).then(function() {
-              $state.reload();
-            });
-          } else {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "Delete Form Successfully",
-                  content: "You deleted form successfully.",
-                  ok: "Confirm"
-                }
-              }
-            }).then(function() {
-              $state.reload();
-            });
-          }
-        }, function(error) {
-          console.log(error);
-        });
-      });
-    } else {
-      $mdDialog.show({
-        controller: 'DialogController',
-        templateUrl: 'confirm-dialog.html',
-        locals: {
-          displayOption: {
-            title: "Delete Form ?",
-            content: "Are you sure to delete this form ?",
-            ok: "Confirm",
-            cancel: "Cancel"
-          }
-        }
-      }).then(function() {
-        $http({
-          url: myService.configAPI.webserviceURL + 'webservices/deleteQuestionSet.php',
-          method: 'POST',
-          data: {
-            var_questionsetid: questionSet.question_set_id
-          }
-        }).then(function(response) {
-          if ($scope.appLanguageID == "1") {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "ลบชุดประเมินสำเร็จ !",
-                  content: "คุณลบชุดประเมินสำเร็จ",
-                  ok: "ตกลง"
-                }
-              }
-            }).then(function() {
-              $state.reload();
-            });
-          } else {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "Delete Form Successfully",
-                  content: "You deleted form successfully.",
-                  ok: "Confirm"
-                }
-              }
-            }).then(function() {
-              $state.reload();
-            });
-          }
-        }, function(error) {
-          console.log(error);
-        });
-      });
-    }
   }
 }); // End of dashboard controller.

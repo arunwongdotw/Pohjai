@@ -1,18 +1,8 @@
-// Controller of menu toggle.
-// Learn more about Sidenav directive of angular material
-// https://material.angularjs.org/latest/#/demo/material.components.sidenav
 appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state, $ionicPlatform, $mdDialog, $mdBottomSheet, $mdMenu, $mdSelect, $http, myService, $ionicNavBarDelegate) {
   $scope.appLanguage = {};
   $scope.currState = $state; // get ค่าชื่อ state
   $scope.memberID = myService.memberDetailFromLogin.member_id; // member_id ของ member ที่ Login
 
-  // 3 บรรทัดด้านล่างใช้ทดสอบกับ ionic serve
-  // $scope.appLanguageID = "1";
-  // $scope.mdSelectValue = $scope.appLanguageID = "1";
-  // getAppLanguage();
-
-  // ถ้าทดสอบกับ ionic serve ให้ปิด if
-  // if อันนี้เอาไว้ get ภาษา
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.mdSelectValueLanguage = "1";
     $scope.appLanguageID = "1";
@@ -142,21 +132,4 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
       console.log(error);
     });
   };
-
-  // $scope.setNoBtn = function(noBtnID) {
-  //   $http({
-  //     url: myService.configAPI.webserviceURL + 'webservices/updateNoBtn.php',
-  //     method: 'POST',
-  //     data: {
-  //       var_memberid: $scope.memberID,
-  //       var_nobtnid: noBtnID
-  //     }
-  //   }).then(function(response) {
-  //     $state.go('menu2.question', {}, {
-  //       reload: 'menu2.question'
-  //     });
-  //   }, function(error) {
-  //     console.log(error);
-  //   });
-  // };
 }); // End of menu toggle controller.

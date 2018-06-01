@@ -1,19 +1,9 @@
-// Controller of menu toggle.
-// Learn more about Sidenav directive of angular material
-// https://material.angularjs.org/latest/#/demo/material.components.sidenav
 appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state, $ionicPlatform, $mdDialog, $mdBottomSheet, $mdMenu, $mdSelect, $http, myService, $ionicNavBarDelegate, ionicDatePicker) {
   $scope.appLanguage = {};
   $scope.currState = $state; // get ค่าชื่อ state
   $scope.mdSelectValueChart = 1;
   $scope.reportSelection = {};
 
-  // 3 บรรทัดด้านล่างใช้ทดสอบกับ ionic serve
-  // $scope.appLanguageID = "1";
-  // $scope.mdSelectValue = $scope.appLanguageID = "1";
-  // getAppLanguage();
-
-  // ถ้าทดสอบกับ ionic serve ให้ปิด if
-  // if อันนี้เอาไว้ get ภาษา
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
     getAppLanguage();

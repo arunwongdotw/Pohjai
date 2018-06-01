@@ -1,15 +1,7 @@
-// Controller of menu toggle.
-// Learn more about Sidenav directive of angular material
-// https://material.angularjs.org/latest/#/demo/material.components.sidenav
 appControllers.controller('notLoginMenuCtrl', function($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state, $ionicPlatform, $mdDialog, $mdBottomSheet, $mdMenu, $mdSelect, $http, myService, $ionicNavBarDelegate) {
   $scope.toggleLeft = buildToggler('left');
   $scope.appLanguage = {};
 
-  // 2 บรรทัดด้านล่างใช้ทดสอบกับ ionic serve
-  // $scope.appLanguageID = "1";
-  // getAppLanguage();
-
-  // ถ้าทดสอบกับ ionic serve ให้ปิด $scope.on และ if
   $scope.$on('$ionicView.enter', function() {
     $scope.currState = $state;
     if ($state.current.name == "menu1.home") {

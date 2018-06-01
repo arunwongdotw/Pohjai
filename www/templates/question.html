@@ -1,14 +1,7 @@
-<!--View Information-->
-<!--View name : Online Course-->
-<!--State name : app.onlineCourse-->
-<!--URL : #app/onlineCourse-->
-
-<!--Online course section-->
 <ion-view id="online-course" hide-nav-bar="false">
     <ion-nav-title>{{appLanguage.app_lang_question_title}}</ion-nav-title>
     <ion-content id="online-course-content">
         <div class="course-list" style="margin-top: 0px;">
-            <!--content item section-->
             <div class="course-item" ng-repeat="questionSet in questionSetArrayList">
                 <div class="title angular-course-background">
                     {{appLanguage.app_lang_question_question_name}} : {{questionSet.question_set_name}}
@@ -19,20 +12,9 @@
                         <a href="" class="md-raised md-button md-default-theme angular-course-background" ng-click="btnNavigateToScore(questionSet)">
                             <i class="far fa-smile"></i> {{appLanguage.app_lang_question_create_score}}
                         </a>
-                        <a href="" class="md-raised md-button md-default-theme angular-course-background" ng-click="btnCreateQuestion(questionSet)">
-                            <i class="fas fa-plus"></i> {{appLanguage.app_lang_question_create_question}}
-                        </a>
-                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="margin-top: 5px;" ng-click="btnDelQuestionSet(questionSet)">
-                            <i class="fas fa-trash"></i> {{appLanguage.app_lang_question_delete_set}}
-                        </a>
                     </p>
                 </div>
-            </div> <!--end content item section-->
+            </div>
         </div>
     </ion-content>
-    <div class="footer-fab-bar">
-        <a class="md-button md-accent md-fab fab-footer" aria-label="Add" ng-click="btnCreateQuestionSet()">
-            <i class="icon ion-plus"></i>
-        </a>
-    </div>
-</ion-view><!--end online course section-->
+</ion-view>
