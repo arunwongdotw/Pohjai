@@ -80,7 +80,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
     navigator.app.backHistory();
   };
 
-  $scope.giveScore = function(questionID, score) {
+  $scope.giveScore = function(questionID, score, index) {
+    // console.log(index);
+    // console.log($scope.allQuestionInSet.length);
     $http({
       url: myService.configAPI.webserviceURL + 'webservices/giveScore.php',
       method: 'POST',
@@ -90,34 +92,74 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         var_type: 1
       }
     }).then(function(response) {
-      if ($scope.appLanguageID == "1") {
-        $mdDialog.show({
-          controller: 'DialogController',
-          templateUrl: 'confirm-dialog.html',
-          locals: {
-            displayOption: {
-              title: "ให้คะแนนหัวข้อสำเร็จ !",
-              content: "คุณได้ให้คะแนนหัวข้อแบบประเมินสำเร็จ",
-              ok: "ตกลง"
+      if ((index + 1) < $scope.allQuestionInSet.length) {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ให้คะแนนหัวข้อสำเร็จ !",
+                content: "คุณได้ให้คะแนนหัวข้อแบบประเมินสำเร็จ",
+                ok: "ตกลง"
+              }
             }
-          }
-        }).then(function() {
-          $ionicSlideBoxDelegate.next();
-        });
+          }).then(function() {
+            $ionicSlideBoxDelegate.next();
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Rating Successfully !",
+                content: "You rated topic successfully.",
+                ok: "Confirm"
+              }
+            }
+          }).then(function() {
+            $ionicSlideBoxDelegate.next();
+          });
+        }
       } else {
-        $mdDialog.show({
-          controller: 'DialogController',
-          templateUrl: 'confirm-dialog.html',
-          locals: {
-            displayOption: {
-              title: "Rating Successfully !",
-              content: "You rated topic successfully.",
-              ok: "Confirm"
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ให้คะแนนหัวข้อสำเร็จ !",
+                content: "คุณได้ให้คะแนนหัวข้อแบบประเมินสำเร็จ",
+                ok: "ตกลง"
+              }
             }
-          }
-        }).then(function() {
-          $ionicSlideBoxDelegate.next();
-        });
+          }).then(function() {
+            if ($scope.memberSetting.question_set_comment == 1) {
+              $ionicSlideBoxDelegate.next();
+            } else {
+              $state.go('menu2.scorecomplete');
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Rating Successfully !",
+                content: "You rated topic successfully.",
+                ok: "Confirm"
+              }
+            }
+          }).then(function() {
+            if ($scope.memberSetting.question_set_comment == 1) {
+              $ionicSlideBoxDelegate.next();
+            } else {
+              $state.go('menu2.scorecomplete');
+            }
+          });
+        }
       }
     }, function(error) {
       console.log(error);
@@ -145,6 +187,8 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 ok: "ตกลง"
               }
             }
+          }).then(function() {
+            $state.go('menu2.scorecomplete');
           });
         } else {
           $mdDialog.show({
@@ -157,6 +201,8 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 ok: "Confirm"
               }
             }
+          }).then(function() {
+            $state.go('menu2.scorecomplete');
           });
         }
       }, function(error) {
@@ -218,7 +264,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                     }
                   }
                 }).then(function() {
-                  $state.go('menu2.question');
+                  $state.go('menu2.scorecomplete');
                 });
               } else {
                 $mdDialog.show({
@@ -232,7 +278,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                     }
                   }
                 }).then(function() {
-                  $state.go('menu2.question');
+                  $state.go('menu2.scorecomplete');
                 });
               }
             });
@@ -278,7 +324,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 }
               }
             }).then(function() {
-              $state.go('menu2.question');
+              $state.go('menu2.scorecomplete');
             });
           } else {
             $mdDialog.show({
@@ -292,7 +338,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 }
               }
             }).then(function() {
-              $state.go('menu2.question');
+              $state.go('menu2.scorecomplete');
             });
           }
         }
