@@ -21,14 +21,14 @@
         <div class="row">
             <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_create_question_set_number_btn}}</div>
         </div>
-        <md-select ng-model="mdSelectValueNoBtn" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;">
+        <md-select ng-model="mdSelectValueNoBtn" aria-label="md-option" style="margin-left: 10px; padding: 10px 2px 26px;">
             <md-option value="1" ng-click="setNoBtn(1)">4</md-option>
             <md-option value="2" ng-click="setNoBtn(2)">5</md-option>
         </md-select>
         <div class="row">
             <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_create_question_set_form}}</div>
         </div>
-        <md-select ng-model="mdSelectValueForm" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;">
+        <md-select ng-model="mdSelectValueForm" aria-label="md-option" style="margin-left: 10px; padding: 10px 2px 26px;">
             <md-option value="1" ng-click="setForm(1)" ng-if="appLanguageID == 1">ประเมินแบบปุ่ม</md-option>
             <md-option value="2" ng-click="setForm(2)" ng-if="appLanguageID == 1">ประเมินแบบฟอร์ม</md-option>
 
@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_create_question_set_comment}}</div>
         </div>
-        <md-select ng-model="mdSelectValueComment" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;">
+        <md-select ng-model="mdSelectValueComment" aria-label="md-option" style="margin-left: 10px; padding: 10px 2px 26px;">
             <md-option value="1" ng-click="setComment(1)" ng-if="appLanguageID == 1">มี</md-option>
             <md-option value="2" ng-click="setComment(2)" ng-if="appLanguageID == 1">ไม่มี</md-option>
 
