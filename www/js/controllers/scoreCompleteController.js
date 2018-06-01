@@ -44,4 +44,14 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
       }
     }, ($scope.isAnimated ? 300 : 0));
   }; // End of navigateTo.
+
+  $scope.btnBack = function() {
+    $scope.navigateTo('menu2.score');
+  };
+
+  $scope.$on('$ionicView.enter', function() {
+    $timeout(function() {
+      $scope.navigateTo('menu2.score');
+    }, 5000);
+  });
 }); // End of dashboard controller.
