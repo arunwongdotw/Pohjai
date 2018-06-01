@@ -1,7 +1,7 @@
 {
-  "name": "ionicmaterialdesign",
-  "version": "1.1.1",
-  "description": "IonicMaterialDesign: An Ionic project",
+  "name": "Porjai",
+  "version": "1.0.0",
+  "description": "Satisfaction Application.",
   "dependencies": {
     "cordova-android": "^7.0.0",
     "cordova-ios": "~4.1.1",
@@ -13,7 +13,8 @@
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^3.1.0",
-    "hoek": "^5.0.3"
+    "hoek": "^5.0.3",
+    "ionic-datepicker": "^1.2.1"
   },
   "devDependencies": {
     "bower": "^1.3.3",

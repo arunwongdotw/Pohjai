@@ -48,7 +48,7 @@ window.globalVariable = {
 };// End Global variable
 
 
-angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial', 'ngMessages', 'ngCordova'])
+angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial', 'ngMessages', 'ngCordova', 'chart.js', 'ionic-datepicker'])
     .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet) {
 
         //Create database table of contracts by using sqlite database.
@@ -261,8 +261,25 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
     })
 
-    .config(function ($ionicConfigProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider, $mdColorPalette, $mdIconProvider) {
-
+    .config(function ($ionicConfigProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider, $mdColorPalette, $mdIconProvider, ionicDatePickerProvider) {
+      var datePickerObj = {
+          inputDate: new Date(),
+          titleLabel: 'Select a Date',
+          setLabel: 'Set',
+          todayLabel: 'Today',
+          closeLabel: 'Close',
+          mondayFirst: false,
+          weeksList: ["S", "M", "T", "W", "T", "F", "S"],
+          monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+          templateType: 'popup',
+          from: new Date(2012, 8, 1),
+          to: new Date(2018, 8, 1),
+          showTodayButton: true,
+          dateFormat: 'dd MMMM yyyy',
+          closeOnSelect: false,
+          disableWeekdays: []
+      };
+      ionicDatePickerProvider.configDatePicker(datePickerObj);
 
         // Use for change ionic spinner to android pattern.
         $ionicConfigProvider.spinner.icon("android");
@@ -430,6 +447,50 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     'menuContent': {
                         templateUrl: "templates/create-question.html",
                         controller: 'createQuestionCtrl'
+                    }
+                }
+            })
+            .state('menu2.report', {
+                url: "/report",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/report.html",
+                        controller: 'reportCtrl'
+                    }
+                }
+            })
+            .state('menu2.chart', {
+                url: "/chart",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/chart.html",
+                        controller: 'chartCtrl'
+                    }
+                }
+            })
+            .state('menu2.reportselection', {
+                url: "/reportselection",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/report-selection.html",
+                        controller: 'reportSelectionCtrl'
+                    }
+                }
+            })
+            .state('menu2.scorecomplete', {
+                url: "/scorecomplete",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/score-complete.html",
+                        controller: 'scoreCompleteCtrl'
                     }
                 }
             })
