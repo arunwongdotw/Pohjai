@@ -123,8 +123,44 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
     myService.questionSetDetail = questionSet;
     $http.get(myService.configAPI.webserviceURL + 'webservices/getQuestionInSet.php?questionSetID=' + myService.questionSetDetail.question_set_id)
       .then(function(response) {
-        myService.allQuestionInSet = response.data.results;
-        $state.go('menu2.score');
+        if (response.data.results == 'getQuestionInSet_is0') {
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ยังไม่มีหัวข้อ !",
+                  content: "ชุดแบบประเมินยังไม่มีหัวข้อ กรุณาเพิ่มหัวข้อ",
+                  ok: "ตกลง"
+                }
+              }
+            }).then(function(response){
+              $state.go('menu2.createquestion');
+            }, function(error){
+              console.log(error);
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Not Have Topic !",
+                  content: "Question set not have topic, please add topic.",
+                  ok: "Confirm"
+                }
+              }
+            }).then(function(response){
+              $state.go('menu2.createquestion');
+            }, function(error){
+              console.log(error);
+            });
+          }
+        } else {
+          myService.allQuestionInSet = response.data.results;
+          $state.go('menu2.score');
+        }
       }, function(error) {
         console.log(error);
       });
