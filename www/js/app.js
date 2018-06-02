@@ -538,6 +538,17 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
+            .state('menu2.stafflist', {
+                url: "/stafflist",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/staff-list.html",
+                        controller: 'staffListCtrl'
+                    }
+                }
+            })
 
             .state('app.dashboard', {
                 url: "/dashboard",
