@@ -82,7 +82,8 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
                     var_company: $scope.signup.company,
                     var_template: "1",
                     var_color: "1",
-                    var_numberBtn: "5"
+                    var_numberBtn: "5",
+                    var_numberStaff: "5"
                   }
                 }).then(function(response) {
                   if (response.data.results == 'duplicate_username') {
