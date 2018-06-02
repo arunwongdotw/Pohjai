@@ -60,8 +60,22 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
     }, ($scope.isAnimated ? 300 : 0));
   };
 
+  function getStaffList() {
+    $http.get(myService.configAPI.webserviceURL + 'webservices/getStaffList.php?questionSetID=' + myService.questionSetDetail.question_set_id)
+      .then(function(response) {
+        if (response.data.results == null) {
+          myService.staffList = "0";
+        } else {
+          myService.staffList = response.data.results;
+        }
+      }, function(error) {
+        console.log(error);
+      });
+  }
+
   $scope.btnNavigateToScore = function(questionSet) {
     myService.questionSetDetail = questionSet;
+    getStaffList();
     $http.get(myService.configAPI.webserviceURL + 'webservices/getQuestionInSet.php?questionSetID=' + myService.questionSetDetail.question_set_id)
       .then(function(response) {
         if (response.data.results == 'getQuestionInSet_is0') {
@@ -99,8 +113,13 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
             });
           }
         } else {
-          myService.allQuestionInSet = response.data.results;
-          $state.go('menu2.score');
+          if (myService.staffList == "0") {
+            myService.allQuestionInSet = response.data.results;
+            $state.go('menu2.score');
+          } else {
+            myService.allQuestionInSet = response.data.results;
+            $state.go('menu2.stafflist');
+          }
         }
       }, function(error) {
         console.log(error);

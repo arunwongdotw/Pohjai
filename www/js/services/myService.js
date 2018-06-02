@@ -14,4 +14,5 @@ angular.module('starter')
     this.countScorePerSet = {}; // object เก็บ score ทั้งหมดต่อ Set
     this.chartType = {}; // object เก็บประเภทของกราฟ
     this.questionDetail = {}; // object เก็บข้อมูล question
+    this.staffList = {};
   });
