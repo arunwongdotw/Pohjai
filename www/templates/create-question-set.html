@@ -38,6 +38,13 @@
             <md-option value="1" ng-click="setComment(1)" ng-if="appLanguageID == 2">Yes</md-option>
             <md-option value="2" ng-click="setComment(2)" ng-if="appLanguageID == 2">No</md-option>
         </md-select>
+        <div ng-repeat="i in getNumberStaff(numberStaff)">
+            <md-input-container md-no-float="">
+                <div>
+                    <input class="user-name" ng-model="staff.staffname[$index]" placeholder="{{appLanguage.app_lang_create_question_set_staff_name}} {{$index + 1}}" style="width: 284px;">
+                </div>
+            </md-input-container>
+        </div>
         <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnCreateQuestionSet()">
             {{appLanguage.app_lang_create_question_set_create_btn}}
         </a>

@@ -1,10 +1,12 @@
 appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog) {
   $scope.appLanguage = {};
   $scope.createQuestionSet = {};
+  $scope.staff = {};
   $scope.mdSelectValueNoBtn = 1;
   $scope.mdSelectValueForm = 1;
   $scope.mdSelectValueComment = 1;
   $scope.memberID = myService.memberDetailFromLogin.member_id;
+  $scope.numberStaff = myService.memberDetailFromLogin.member_no_staff;
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
@@ -54,6 +56,30 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
     $scope.mdSelectValueComment = commentID;
   }
 
+  $scope.getNumberStaff = function(noStaff) {
+    var numberStaff = [];
+    for (var i = 0; i < noStaff; i++) {
+      numberStaff.push(i);
+    }
+    return numberStaff;
+  }
+
+  function insertStaff(callback) {
+    for (var i = 0; i < Object.keys($scope.staff.staffname).length; i++) {
+      if ($scope.staff.staffname[i] != "") {
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/insertStaff.php',
+          method: 'POST',
+          data: {
+            var_questionsetid: $scope.questionSetID,
+            var_staffname: $scope.staff.staffname[i]
+          }
+        });
+      }
+    }
+    callback();
+  }
+
   $scope.btnCreateQuestionSet = function() {
     if (($scope.createQuestionSet.name != null) && ($scope.createQuestionSet.name != "")) {
       $http({
@@ -67,34 +93,68 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
           var_memberid: $scope.memberID
         }
       }).then(function(response) {
-        if ($scope.appLanguageID == "1") {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "สร้างชุดแบบประเมินสำเร็จ !",
-                content: "คุณสร้างชุดแบบประเมินความพึงพอใจสำเร็จ",
-                ok: "ตกลง"
+        $scope.questionSetID = response.data.results[0];
+        if (Object.keys($scope.staff).length === 0) {
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "สร้างชุดแบบประเมินสำเร็จ !",
+                  content: "คุณสร้างชุดแบบประเมินความพึงพอใจสำเร็จ",
+                  ok: "ตกลง"
+                }
               }
-            }
-          }).then(function() {
-            $state.go('menu2.question');
-          });
+            }).then(function() {
+              $state.go('menu2.questionmanagement');
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Create Successfully !",
+                  content: "You created set of satisfaction form successfully.",
+                  ok: "Confirm"
+                }
+              }
+            }).then(function() {
+              $state.go('menu2.questionmanagement');
+            });
+          }
         } else {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "Create Successfully !",
-                content: "You created set of satisfaction form successfully.",
-                ok: "Confirm"
+          insertStaff(function(status) {});
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "สร้างชุดแบบประเมินสำเร็จ !",
+                  content: "คุณสร้างชุดแบบประเมินความพึงพอใจสำเร็จ",
+                  ok: "ตกลง"
+                }
               }
-            }
-          }).then(function() {
-            $state.go('menu2.question');
-          });
+            }).then(function() {
+              $state.go('menu2.questionmanagement');
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Create Successfully !",
+                  content: "You created set of satisfaction form successfully.",
+                  ok: "Confirm"
+                }
+              }
+            }).then(function() {
+              $state.go('menu2.questionmanagement');
+            });
+          }
         }
       }, function(error) {
         console.log(error);
