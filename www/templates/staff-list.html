@@ -1,0 +1,24 @@
+<ion-view id="online-course" hide-nav-bar="false">
+    <ion-nav-title>{{appLanguage.app_lang_staff_list_title}}</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="btnBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content id="online-course-content">
+        <div class="course-list" style="margin-top: 0px;">
+            <div class="course-item" ng-repeat="staff in staffList">
+                <div class="title angular-course-background">
+                    {{appLanguage.app_lang_staff_list_name}} : {{staff.staff_name}}
+                </div>
+                <div class="content">
+                    <p style="margin-top: 10px;">
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" ng-click="btnNavigateToScore(staff)">
+                            <i class="far fa-smile"></i> {{appLanguage.app_lang_staff_list_create_score}}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
