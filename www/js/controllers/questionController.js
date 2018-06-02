@@ -60,13 +60,15 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
     }, ($scope.isAnimated ? 300 : 0));
   };
 
-  function getStaffList() {
+  function getStaffList(callback) {
     $http.get(myService.configAPI.webserviceURL + 'webservices/getStaffList.php?questionSetID=' + myService.questionSetDetail.question_set_id)
       .then(function(response) {
         if (response.data.results == null) {
           myService.staffList = "0";
+          callback();
         } else {
           myService.staffList = response.data.results;
+          callback();
         }
       }, function(error) {
         console.log(error);
@@ -75,7 +77,6 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
 
   $scope.btnNavigateToScore = function(questionSet) {
     myService.questionSetDetail = questionSet;
-    getStaffList();
     $http.get(myService.configAPI.webserviceURL + 'webservices/getQuestionInSet.php?questionSetID=' + myService.questionSetDetail.question_set_id)
       .then(function(response) {
         if (response.data.results == 'getQuestionInSet_is0') {
@@ -113,13 +114,16 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
             });
           }
         } else {
-          if (myService.staffList == "0") {
-            myService.allQuestionInSet = response.data.results;
-            $state.go('menu2.score');
-          } else {
-            myService.allQuestionInSet = response.data.results;
-            $state.go('menu2.stafflist');
-          }
+          getStaffList(function(status) {
+            if (myService.staffList == "0") {
+              myService.staffDetail = {};
+              myService.allQuestionInSet = response.data.results;
+              $state.go('menu2.score');
+            } else {
+              myService.allQuestionInSet = response.data.results;
+              $state.go('menu2.stafflist');
+            }
+          });
         }
       }, function(error) {
         console.log(error);
