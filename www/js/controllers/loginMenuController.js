@@ -41,20 +41,13 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
       console.log(error);
     });
 
-  // buildToggler is for create menu toggle.
-  // Parameter :
-  // navID = id of navigation bar.
   function buildToggler(navID) {
     var debounceFn = $mdUtil.debounce(function() {
       $mdSidenav(navID).toggle();
     }, 0);
     return debounceFn;
-  }; // End buildToggler.
+  };
 
-  // navigateTo is for navigate to other page
-  // by using targetPage to be the destination state.
-  // Parameter :
-  // stateNames = target state to go
   $scope.navigateTo = function(stateName) {
     $timeout(function() {
       $mdSidenav('left').close();
@@ -66,15 +59,11 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
         $state.go(stateName);
       }
     }, ($scope.isAndroid == false ? 300 : 0));
-  }; // End navigateTo.
+  };
 
-  //closeSideNav is for close side navigation
-  //It will use with event on-swipe-left="closeSideNav()" on-drag-left="closeSideNav()"
-  //When user swipe or drag md-sidenav to left side
   $scope.closeSideNav = function() {
     $mdSidenav('left').close();
   };
-  //End closeSideNav
 
   $scope.btnLogout = function() {
     if ($scope.appLanguageID == "1") {
@@ -167,4 +156,4 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
       });
     }
   };
-}); // End of menu toggle controller.
+});

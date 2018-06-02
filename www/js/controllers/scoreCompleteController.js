@@ -21,10 +21,6 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
       });
   }
 
-  // navigateTo is for navigate to other page
-  // by using targetPage to be the destination state.
-  // Parameter :
-  // stateNames = target state to go.
   $scope.navigateTo = function(stateName) {
     $timeout(function() {
       if ($ionicHistory.currentStateName() != stateName) {
@@ -35,7 +31,7 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
         $state.go(stateName);
       }
     }, ($scope.isAnimated ? 300 : 0));
-  }; // End of navigateTo.
+  };
 
   $scope.btnBack = function() {
     $scope.navigateTo('menu2.score');
@@ -46,4 +42,4 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
       $scope.navigateTo('menu2.score');
     }, 5000);
   });
-}); // End of dashboard controller.
+});

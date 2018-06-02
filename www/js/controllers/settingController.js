@@ -52,10 +52,6 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
       });
   }
 
-  // navigateTo is for navigate to other page
-  // by using targetPage to be the destination state.
-  // Parameter :
-  // stateNames = target state to go
   $scope.navigateTo = function(stateName) {
     $timeout(function() {
       $mdSidenav('left').close();
@@ -67,7 +63,7 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         $state.go(stateName);
       }
     }, ($scope.isAndroid == false ? 300 : 0));
-  }; // End navigateTo.
+  };
 
   $scope.setLanguage = function(appLanguageID) {
     window.localStorage.appLanguageID = appLanguageID;
@@ -132,4 +128,4 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
       console.log(error);
     });
   };
-}); // End of menu toggle controller.
+});

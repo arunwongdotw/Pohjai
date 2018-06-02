@@ -32,10 +32,6 @@ appControllers.controller('editQuestionSetCtrl', function($scope, $timeout, $sta
     $scope.mdSelectValueComment = myService.questionSetDetail.question_set_comment;
   }
 
-  // navigateTo is for navigate to other page
-  // by using targetPage to be the destination state.
-  // Parameter :
-  // stateNames = target state to go.
   $scope.navigateTo = function(stateName) {
     $timeout(function() {
       if ($ionicHistory.currentStateName() != stateName) {
@@ -46,7 +42,7 @@ appControllers.controller('editQuestionSetCtrl', function($scope, $timeout, $sta
         $state.go(stateName);
       }
     }, ($scope.isAnimated ? 300 : 0));
-  }; // End of navigateTo.
+  };
 
   $scope.btnBack = function() {
     navigator.app.backHistory();
@@ -137,4 +133,4 @@ appControllers.controller('editQuestionSetCtrl', function($scope, $timeout, $sta
       }
     }
   }
-}); // End of dashboard controller.
+});

@@ -48,10 +48,6 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
       });
   }
 
-  // navigateTo is for navigate to other page
-  // by using targetPage to be the destination state.
-  // Parameter :
-  // stateNames = target state to go.
   $scope.navigateTo = function(stateName) {
     $timeout(function() {
       if ($ionicHistory.currentStateName() != stateName) {
@@ -62,7 +58,7 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
         $state.go(stateName);
       }
     }, ($scope.isAnimated ? 300 : 0));
-  }; // End of navigateTo.
+  };
 
   $scope.btnNavigateToScore = function(questionSet) {
     myService.questionSetDetail = questionSet;
@@ -115,4 +111,4 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
     myService.questionSetDetail = questionSet;
     $scope.navigateTo('menu2.reportselection');
   }
-}); // End of dashboard controller.
+});

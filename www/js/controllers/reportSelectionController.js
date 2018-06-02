@@ -24,10 +24,6 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       });
   }
 
-  // navigateTo is for navigate to other page
-  // by using targetPage to be the destination state.
-  // Parameter :
-  // stateNames = target state to go
   $scope.navigateTo = function(stateName) {
     $timeout(function() {
       $mdSidenav('left').close();
@@ -39,7 +35,7 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
         $state.go(stateName);
       }
     }, ($scope.isAndroid == false ? 300 : 0));
-  }; // End navigateTo.
+  };
 
   var ipObj1 = {
     callback: function(val) { //Mandatory
@@ -203,4 +199,4 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       }
     }
   }
-}); // End of menu toggle controller.
+});

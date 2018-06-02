@@ -129,10 +129,6 @@ appControllers.controller('chartCtrl', function($scope, $timeout, $state, $state
     }
   }
 
-  // navigateTo is for navigate to other page
-  // by using targetPage to be the destination state.
-  // Parameter :
-  // stateNames = target state to go.
   $scope.navigateTo = function(stateName) {
     $timeout(function() {
       if ($ionicHistory.currentStateName() != stateName) {
@@ -143,5 +139,5 @@ appControllers.controller('chartCtrl', function($scope, $timeout, $state, $state
         $state.go(stateName);
       }
     }, ($scope.isAnimated ? 300 : 0));
-  }; // End of navigateTo.
-}); // End of dashboard controller.
+  };
+});

@@ -22,10 +22,6 @@ appControllers.controller('homeCtrl', function($scope, $timeout, $mdUtil, $mdSid
       });
   }
 
-  // navigateTo is for navigate to other page
-  // by using targetPage to be the destination state.
-  // Parameter :
-  // stateNames = target state to go
   $scope.navigateTo = function(stateName) {
     $timeout(function() {
       $mdSidenav('left').close();
@@ -37,15 +33,11 @@ appControllers.controller('homeCtrl', function($scope, $timeout, $mdUtil, $mdSid
         $state.go(stateName);
       }
     }, ($scope.isAndroid == false ? 300 : 0));
-  }; // End navigateTo.
+  };
 
-  //closeSideNav is for close side navigation
-  //It will use with event on-swipe-left="closeSideNav()" on-drag-left="closeSideNav()"
-  //When user swipe or drag md-sidenav to left side
   $scope.closeSideNav = function() {
     $mdSidenav('left').close();
   };
-  //End closeSideNav
 
   $scope.btnSignIn = function() {
     if (($scope.home.username != null) && ($scope.home.username != "")) {
@@ -208,4 +200,4 @@ appControllers.controller('homeCtrl', function($scope, $timeout, $mdUtil, $mdSid
       }
     }
   };
-}); // End of menu toggle controller.
+});

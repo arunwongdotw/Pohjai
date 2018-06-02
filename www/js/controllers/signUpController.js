@@ -21,10 +21,6 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
       });
   }
 
-  // navigateTo is for navigate to other page
-  // by using targetPage to be the destination state.
-  // Parameter :
-  // stateNames = target state to go.
   $scope.navigateTo = function(stateName) {
     $timeout(function() {
       if ($ionicHistory.currentStateName() != stateName) {
@@ -35,7 +31,7 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
         $state.go(stateName);
       }
     }, ($scope.isAnimated ? 300 : 0));
-  }; // End of navigateTo.
+  };
 
   $scope.btnSignUpPickPicture = function() {
     var options = {
@@ -314,4 +310,4 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
       }
     }
   };
-}); // End of dashboard controller.
+});

@@ -34,8 +34,6 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   }
 
   function getMemberSetting() {
-    // console.log($scope.memberID);
-    // console.log(myService.questionSetDetail.question_set_id);
     $http.get(myService.configAPI.webserviceURL + 'webservices/getMemberSettingCaseScore.php?memberID=' + $scope.memberID + '&questionSetID=' + myService.questionSetDetail.question_set_id)
       .then(function(response) {
         if (response.data.results != null) {
@@ -53,10 +51,6 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
       });
   }
 
-  // navigateTo is for navigate to other page
-  // by using targetPage to be the destination state.
-  // Parameter :
-  // stateNames = target state to go.
   $scope.navigateTo = function(stateName) {
     $timeout(function() {
       if ($ionicHistory.currentStateName() != stateName) {
@@ -67,7 +61,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         $state.go(stateName);
       }
     }, ($scope.isAnimated ? 300 : 0));
-  }; // End of navigateTo.
+  };
 
   $scope.btnBack = function() {
     if ($scope.appLanguageID == "1") {
@@ -606,4 +600,4 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
       }
     }
   }
-}); // End of dashboard controller.
+});
