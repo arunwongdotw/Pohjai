@@ -4,6 +4,12 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   $scope.comment = {};
   $scope.score = {};
   $scope.allQuestionInSet = myService.allQuestionInSet;
+  $scope.staffDetail = myService.staffDetail;
+  console.log($scope.staffDetail);
+
+  // if (Object.keys($scope.staffDetail).length === 0) {
+  //   console.log('test');
+  // }
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
@@ -154,156 +160,314 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   };
 
   $scope.giveScore = function(questionID, score, index) {
-    $http({
-      url: myService.configAPI.webserviceURL + 'webservices/giveScore.php',
-      method: 'POST',
-      data: {
-        var_questionid: questionID,
-        var_score: score,
-        var_type: 1
-      }
-    }).then(function(response) {
-      if ((index + 1) < $scope.allQuestionInSet.length) {
-        if ($scope.appLanguageID == "1") {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "ให้คะแนนหัวข้อสำเร็จ !",
-                content: "คุณได้ให้คะแนนหัวข้อแบบประเมินสำเร็จ",
-                ok: "ตกลง"
-              }
-            }
-          }).then(function() {
-            $ionicSlideBoxDelegate.next();
-          });
-        } else {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "Rating Successfully !",
-                content: "You rated topic successfully.",
-                ok: "Confirm"
-              }
-            }
-          }).then(function() {
-            $ionicSlideBoxDelegate.next();
-          });
-        }
-      } else {
-        if ($scope.appLanguageID == "1") {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "ให้คะแนนหัวข้อสำเร็จ !",
-                content: "คุณได้ให้คะแนนหัวข้อแบบประเมินสำเร็จ",
-                ok: "ตกลง"
-              }
-            }
-          }).then(function() {
-            if ($scope.memberSetting.question_set_comment == 1) {
-              $ionicSlideBoxDelegate.next();
-            } else {
-              $state.go('menu2.scorecomplete');
-            }
-          });
-        } else {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "Rating Successfully !",
-                content: "You rated topic successfully.",
-                ok: "Confirm"
-              }
-            }
-          }).then(function() {
-            if ($scope.memberSetting.question_set_comment == 1) {
-              $ionicSlideBoxDelegate.next();
-            } else {
-              $state.go('menu2.scorecomplete');
-            }
-          });
-        }
-      }
-    }, function(error) {
-      console.log(error);
-    });
-  };
-
-  $scope.btnComment = function() {
-    if (($scope.comment.commentDetail != null) && ($scope.comment.commentDetail != "")) {
+    if (Object.keys($scope.staffDetail).length === 0) {
       $http({
-        url: myService.configAPI.webserviceURL + 'webservices/giveComment.php',
+        url: myService.configAPI.webserviceURL + 'webservices/giveScore.php',
         method: 'POST',
         data: {
-          var_questionsetid: myService.questionSetDetail.question_set_id,
-          var_commentdetail: $scope.comment.commentDetail
+          var_questionid: questionID,
+          var_score: score,
+          var_type: 1
         }
       }).then(function(response) {
-        if ($scope.appLanguageID == "1") {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "ให้ข้อเสนอแนะเพิ่มเติมสำเร็จ !",
-                content: "คุณได้ให้ข้อเสนอแนะเพิ่มเติมสำเร็จ",
-                ok: "ตกลง"
+        console.log(response);
+        if ((index + 1) < $scope.allQuestionInSet.length) {
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ให้คะแนนหัวข้อสำเร็จ !",
+                  content: "คุณได้ให้คะแนนหัวข้อแบบประเมินสำเร็จ",
+                  ok: "ตกลง"
+                }
               }
-            }
-          }).then(function() {
-            $state.go('menu2.scorecomplete');
-          });
+            }).then(function() {
+              $ionicSlideBoxDelegate.next();
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Rating Successfully !",
+                  content: "You rated topic successfully.",
+                  ok: "Confirm"
+                }
+              }
+            }).then(function() {
+              $ionicSlideBoxDelegate.next();
+            });
+          }
         } else {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "Comment Successfully !",
-                content: "You given your comment successfully.",
-                ok: "Confirm"
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ให้คะแนนหัวข้อสำเร็จ !",
+                  content: "คุณได้ให้คะแนนหัวข้อแบบประเมินสำเร็จ",
+                  ok: "ตกลง"
+                }
               }
-            }
-          }).then(function() {
-            $state.go('menu2.scorecomplete');
-          });
+            }).then(function() {
+              if ($scope.memberSetting.question_set_comment == 1) {
+                $ionicSlideBoxDelegate.next();
+              } else {
+                $state.go('menu2.scorecomplete');
+              }
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Rating Successfully !",
+                  content: "You rated topic successfully.",
+                  ok: "Confirm"
+                }
+              }
+            }).then(function() {
+              if ($scope.memberSetting.question_set_comment == 1) {
+                $ionicSlideBoxDelegate.next();
+              } else {
+                $state.go('menu2.scorecomplete');
+              }
+            });
+          }
         }
       }, function(error) {
         console.log(error);
       });
     } else {
-      if ($scope.appLanguageID == "1") {
-        $mdDialog.show({
-          controller: 'DialogController',
-          templateUrl: 'confirm-dialog.html',
-          locals: {
-            displayOption: {
-              title: "รายละเอียดข้อเสนอแนะไม่ถูกต้อง !",
-              content: "กรุณากรอกรายละเอียดข้อเสนอแนะตามรูปแบบที่กำหนด",
-              ok: "ตกลง"
-            }
+      $http({
+        url: myService.configAPI.webserviceURL + 'webservices/giveScoreInCaseStaff.php',
+        method: 'POST',
+        data: {
+          var_questionid: questionID,
+          var_score: score,
+          var_type: 1,
+          var_staffid: $scope.staffDetail.staff_id
+        }
+      }).then(function(response) {
+        if ((index + 1) < $scope.allQuestionInSet.length) {
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ให้คะแนนหัวข้อสำเร็จ !",
+                  content: "คุณได้ให้คะแนนหัวข้อแบบประเมินสำเร็จ",
+                  ok: "ตกลง"
+                }
+              }
+            }).then(function() {
+              $ionicSlideBoxDelegate.next();
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Rating Successfully !",
+                  content: "You rated topic successfully.",
+                  ok: "Confirm"
+                }
+              }
+            }).then(function() {
+              $ionicSlideBoxDelegate.next();
+            });
           }
+        } else {
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ให้คะแนนหัวข้อสำเร็จ !",
+                  content: "คุณได้ให้คะแนนหัวข้อแบบประเมินสำเร็จ",
+                  ok: "ตกลง"
+                }
+              }
+            }).then(function() {
+              if ($scope.memberSetting.question_set_comment == 1) {
+                $ionicSlideBoxDelegate.next();
+              } else {
+                $state.go('menu2.scorecomplete');
+              }
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Rating Successfully !",
+                  content: "You rated topic successfully.",
+                  ok: "Confirm"
+                }
+              }
+            }).then(function() {
+              if ($scope.memberSetting.question_set_comment == 1) {
+                $ionicSlideBoxDelegate.next();
+              } else {
+                $state.go('menu2.scorecomplete');
+              }
+            });
+          }
+        }
+      }, function(error) {
+        console.log(error);
+      });
+    }
+  };
+
+  $scope.btnComment = function() {
+    if (Object.keys($scope.staffDetail).length === 0) {
+      if (($scope.comment.commentDetail != null) && ($scope.comment.commentDetail != "")) {
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/giveComment.php',
+          method: 'POST',
+          data: {
+            var_questionsetid: myService.questionSetDetail.question_set_id,
+            var_commentdetail: $scope.comment.commentDetail
+          }
+        }).then(function(response) {
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ให้ข้อเสนอแนะเพิ่มเติมสำเร็จ !",
+                  content: "คุณได้ให้ข้อเสนอแนะเพิ่มเติมสำเร็จ",
+                  ok: "ตกลง"
+                }
+              }
+            }).then(function() {
+              $state.go('menu2.scorecomplete');
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Comment Successfully !",
+                  content: "You given your comment successfully.",
+                  ok: "Confirm"
+                }
+              }
+            }).then(function() {
+              $state.go('menu2.scorecomplete');
+            });
+          }
+        }, function(error) {
+          console.log(error);
         });
       } else {
-        $mdDialog.show({
-          controller: 'DialogController',
-          templateUrl: 'confirm-dialog.html',
-          locals: {
-            displayOption: {
-              title: "Invalid Comment Detail !",
-              content: "Please fill comment detail in the form provided.",
-              ok: "Confirm"
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "รายละเอียดข้อเสนอแนะไม่ถูกต้อง !",
+                content: "กรุณากรอกรายละเอียดข้อเสนอแนะตามรูปแบบที่กำหนด",
+                ok: "ตกลง"
+              }
             }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Invalid Comment Detail !",
+                content: "Please fill comment detail in the form provided.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
+      }
+    } else {
+      if (($scope.comment.commentDetail != null) && ($scope.comment.commentDetail != "")) {
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/giveCommentInCaseStaff.php',
+          method: 'POST',
+          data: {
+            var_questionsetid: myService.questionSetDetail.question_set_id,
+            var_commentdetail: $scope.comment.commentDetail,
+            var_staffid: $scope.staffDetail.staff_id
           }
+        }).then(function(response) {
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ให้ข้อเสนอแนะเพิ่มเติมสำเร็จ !",
+                  content: "คุณได้ให้ข้อเสนอแนะเพิ่มเติมสำเร็จ",
+                  ok: "ตกลง"
+                }
+              }
+            }).then(function() {
+              $state.go('menu2.scorecomplete');
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Comment Successfully !",
+                  content: "You given your comment successfully.",
+                  ok: "Confirm"
+                }
+              }
+            }).then(function() {
+              $state.go('menu2.scorecomplete');
+            });
+          }
+        }, function(error) {
+          console.log(error);
         });
+      } else {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "รายละเอียดข้อเสนอแนะไม่ถูกต้อง !",
+                content: "กรุณากรอกรายละเอียดข้อเสนอแนะตามรูปแบบที่กำหนด",
+                ok: "ตกลง"
+              }
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Invalid Comment Detail !",
+                content: "Please fill comment detail in the form provided.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
       }
     }
   };
@@ -315,44 +479,86 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           if (($scope.comment.commentDetail != null) && ($scope.comment.commentDetail != "")) {
             getRating(function(status) {});
             addScoreToDB(function(status) {});
-            $http({
-              url: myService.configAPI.webserviceURL + 'webservices/giveComment.php',
-              method: 'POST',
-              data: {
-                var_questionsetid: myService.questionSetDetail.question_set_id,
-                var_commentdetail: $scope.comment.commentDetail
-              }
-            }).then(function(response) {
-              if ($scope.appLanguageID == "1") {
-                $mdDialog.show({
-                  controller: 'DialogController',
-                  templateUrl: 'confirm-dialog.html',
-                  locals: {
-                    displayOption: {
-                      title: "ทำแบบประเมินสำเร็จ !",
-                      content: "คุณได้ทำแบบประเมินสำเร็จ",
-                      ok: "ตกลง"
+            if (Object.keys($scope.staffDetail).length === 0) {
+              $http({
+                url: myService.configAPI.webserviceURL + 'webservices/giveComment.php',
+                method: 'POST',
+                data: {
+                  var_questionsetid: myService.questionSetDetail.question_set_id,
+                  var_commentdetail: $scope.comment.commentDetail
+                }
+              }).then(function(response) {
+                if ($scope.appLanguageID == "1") {
+                  $mdDialog.show({
+                    controller: 'DialogController',
+                    templateUrl: 'confirm-dialog.html',
+                    locals: {
+                      displayOption: {
+                        title: "ทำแบบประเมินสำเร็จ !",
+                        content: "คุณได้ทำแบบประเมินสำเร็จ",
+                        ok: "ตกลง"
+                      }
                     }
-                  }
-                }).then(function() {
-                  $state.go('menu2.scorecomplete');
-                });
-              } else {
-                $mdDialog.show({
-                  controller: 'DialogController',
-                  templateUrl: 'confirm-dialog.html',
-                  locals: {
-                    displayOption: {
-                      title: "Rating Form Successfully !",
-                      content: "You rated form successfully.",
-                      ok: "Confirm"
+                  }).then(function() {
+                    $state.go('menu2.scorecomplete');
+                  });
+                } else {
+                  $mdDialog.show({
+                    controller: 'DialogController',
+                    templateUrl: 'confirm-dialog.html',
+                    locals: {
+                      displayOption: {
+                        title: "Rating Form Successfully !",
+                        content: "You rated form successfully.",
+                        ok: "Confirm"
+                      }
                     }
-                  }
-                }).then(function() {
-                  $state.go('menu2.scorecomplete');
-                });
-              }
-            });
+                  }).then(function() {
+                    $state.go('menu2.scorecomplete');
+                  });
+                }
+              });
+            } else {
+              $http({
+                url: myService.configAPI.webserviceURL + 'webservices/giveCommentInCaseStaff.php',
+                method: 'POST',
+                data: {
+                  var_questionsetid: myService.questionSetDetail.question_set_id,
+                  var_commentdetail: $scope.comment.commentDetail,
+                  var_staffid: $scope.staffDetail.staff_id
+                }
+              }).then(function(response) {
+                if ($scope.appLanguageID == "1") {
+                  $mdDialog.show({
+                    controller: 'DialogController',
+                    templateUrl: 'confirm-dialog.html',
+                    locals: {
+                      displayOption: {
+                        title: "ทำแบบประเมินสำเร็จ !",
+                        content: "คุณได้ทำแบบประเมินสำเร็จ",
+                        ok: "ตกลง"
+                      }
+                    }
+                  }).then(function() {
+                    $state.go('menu2.scorecomplete');
+                  });
+                } else {
+                  $mdDialog.show({
+                    controller: 'DialogController',
+                    templateUrl: 'confirm-dialog.html',
+                    locals: {
+                      displayOption: {
+                        title: "Rating Form Successfully !",
+                        content: "You rated form successfully.",
+                        ok: "Confirm"
+                      }
+                    }
+                  }).then(function() {
+                    $state.go('menu2.scorecomplete');
+                  });
+                }
+              });
+            }
           } else {
             if ($scope.appLanguageID == "1") {
               $mdDialog.show({
@@ -468,18 +674,37 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   }
 
   function addScoreToDB(callback) {
-    for (var i = 0; i < $scope.allQuestionInSet.length; i++) {
-      for (var j = 0; j < $scope.scoreArray.length; j++) {
-        if ($scope.allQuestionInSet[i].question_id == $scope.scoreArray[j].question_id) {
-          $http({
-            url: myService.configAPI.webserviceURL + 'webservices/giveScoreInForm.php',
-            method: 'POST',
-            data: {
-              var_score: $scope.scoreArray[j].rating,
-              var_type: 2,
-              var_questionsetid: $scope.allQuestionInSet[i].question_id,
-            }
-          });
+    if (Object.keys($scope.staffDetail).length === 0) {
+      for (var i = 0; i < $scope.allQuestionInSet.length; i++) {
+        for (var j = 0; j < $scope.scoreArray.length; j++) {
+          if ($scope.allQuestionInSet[i].question_id == $scope.scoreArray[j].question_id) {
+            $http({
+              url: myService.configAPI.webserviceURL + 'webservices/giveScoreInForm.php',
+              method: 'POST',
+              data: {
+                var_score: $scope.scoreArray[j].rating,
+                var_type: 2,
+                var_questionsetid: $scope.allQuestionInSet[i].question_id
+              }
+            });
+          }
+        }
+      }
+    } else {
+      for (var i = 0; i < $scope.allQuestionInSet.length; i++) {
+        for (var j = 0; j < $scope.scoreArray.length; j++) {
+          if ($scope.allQuestionInSet[i].question_id == $scope.scoreArray[j].question_id) {
+            $http({
+              url: myService.configAPI.webserviceURL + 'webservices/giveScoreInFormInCaseStaff.php',
+              method: 'POST',
+              data: {
+                var_score: $scope.scoreArray[j].rating,
+                var_type: 2,
+                var_questionsetid: $scope.allQuestionInSet[i].question_id,
+                var_staffid: $scope.staffDetail.staff_id
+              }
+            });
+          }
         }
       }
     }
