@@ -121,7 +121,7 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
               $state.go('menu2.score');
             } else {
               myService.allQuestionInSet = response.data.results;
-              $state.go('menu2.stafflist');
+              $state.go('menu2.stafflistscore');
             }
           });
         }
@@ -133,5 +133,28 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
   $scope.btnReportSelection = function(questionSet) {
     myService.questionSetDetail = questionSet;
     $scope.navigateTo('menu2.reportselection');
+  }
+
+  $scope.btnComment = function(questionSet) {
+    myService.questionSetDetail = questionSet;
+    getStaffList(function(status) {
+      if (myService.staffList == "0") {
+        myService.staffDetail = {};
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/getComment.php',
+          method: 'POST',
+          data: {
+            var_questionsetid: myService.questionSetDetail.question_set_id
+          }
+        }).then(function(response) {
+          myService.allCommentInSetAndStaff = response.data.results;
+          $state.go('menu2.commentlist');
+        }, function(error) {
+          console.log(error);
+        });
+      } else {
+        $state.go('menu2.stafflistcomment');
+      }
+    });
   }
 });
