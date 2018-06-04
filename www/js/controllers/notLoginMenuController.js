@@ -112,40 +112,87 @@ appControllers.controller('notLoginMenuCtrl', function($scope, $timeout, $mdUtil
       // Check for the current state that not have previous state.
       // It will show $mdDialog to ask for Confirmation to close the application.
 
-      if ($ionicHistory.backView() == null) {
+      // if ($ionicHistory.backView() == null) {
+      //
+      //   //Check is popup dialog is not open.
+      //   if (jQuery('[id^=dialog]').length == 0) {
+      //
+      //     // mdDialog for show $mdDialog to ask for
+      //     // Confirmation to close the application.
+      //
+      //     $mdDialog.show({
+      //       controller: 'DialogController',
+      //       templateUrl: 'confirm-dialog.html',
+      //       targetEvent: null,
+      //       locals: {
+      //         displayOption: {
+      //           title: "Confirmation",
+      //           content: "Do you want to close the application?",
+      //           ok: "Confirm",
+      //           cancel: "Cancel"
+      //         }
+      //       }
+      //     }).then(function() {
+      //       //If user tap Confirm at the popup dialog.
+      //       //Application will close.
+      //       ionic.Platform.exitApp();
+      //     }, function() {
+      //       // For cancel button actions.
+      //     }); //End mdDialog
+      //   }
+      // } else {
+      //   //Go to the view of lasted state.
+      //   $ionicHistory.goBack();
+      // }
 
-        //Check is popup dialog is not open.
+      if ($state.current.name == 'menu1.home') {
         if (jQuery('[id^=dialog]').length == 0) {
-
-          // mdDialog for show $mdDialog to ask for
-          // Confirmation to close the application.
-
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            targetEvent: null,
-            locals: {
-              displayOption: {
-                title: "Confirmation",
-                content: "Do you want to close the application?",
-                ok: "Confirm",
-                cancel: "Cancel"
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              targetEvent: null,
+              locals: {
+                displayOption: {
+                  title: "การยืนยัน",
+                  content: "คุณแน่ใจที่จะออกจากแอปพลิเคชัน ?",
+                  ok: "ยืนยัน",
+                  cancel: "ยกเลิก"
+                }
               }
-            }
-          }).then(function() {
-            //If user tap Confirm at the popup dialog.
-            //Application will close.
-            ionic.Platform.exitApp();
-          }, function() {
-            // For cancel button actions.
-          }); //End mdDialog
+            }).then(function() {
+              //If user tap Confirm at the popup dialog.
+              //Application will close.
+              ionic.Platform.exitApp();
+            }, function() {
+              // For cancel button actions.
+            }); //End mdDialog
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              targetEvent: null,
+              locals: {
+                displayOption: {
+                  title: "Confirmation",
+                  content: "Do you want to close the application?",
+                  ok: "Confirm",
+                  cancel: "Cancel"
+                }
+              }
+            }).then(function() {
+              //If user tap Confirm at the popup dialog.
+              //Application will close.
+              ionic.Platform.exitApp();
+            }, function() {
+              // For cancel button actions.
+            }); //End mdDialog
+          }
         }
       } else {
-        //Go to the view of lasted state.
         $ionicHistory.goBack();
       }
     }
-
   }, 100);
   //End of $ionicPlatform.registerBackButtonAction
 

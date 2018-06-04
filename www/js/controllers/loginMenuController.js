@@ -156,4 +156,240 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
       });
     }
   };
+
+  function back() {
+    if ($scope.appLanguageID == "1") {
+      $mdDialog.show({
+        controller: 'inputDialogController',
+        templateUrl: 'input-dialog.html',
+        locals: {
+          displayOption: {
+            title: "ย้อนกลับ ?",
+            content: "คุณต้องการที่จะย้อนกลับ ?",
+            inputplaceholder: "กรุณากรอกรหัสผ่านเพื่อยืนยัน",
+            ok: "ยืนยัน",
+            cancel: "ยกเลิก"
+          }
+        }
+      }).then(function() {
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
+          method: 'POST',
+          data: {
+            var_memberid: myService.memberDetailFromLogin.member_id,
+            var_password: myService.inputDialog.password
+          }
+        }).then(function(response) {
+          if (response.data.results == 'confirmPassword_success') {
+            // navigator.app.backHistory();
+            $ionicHistory.goBack();
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ยืนยันรหัสผ่านไม่ถูกต้อง !",
+                  content: "คุณกรอกยืนยันรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่",
+                  ok: "ตกลง"
+                }
+              }
+            });
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      }, function() {
+        console.log('cancel');
+      });
+    } else {
+      $mdDialog.show({
+        controller: 'inputDialogController',
+        templateUrl: 'input-dialog.html',
+        locals: {
+          displayOption: {
+            title: "Back ?",
+            content: "Do you want to back ?",
+            inputplaceholder: "Fill password for confirm",
+            ok: "Confirm",
+            cancel: "Cancel"
+          }
+        }
+      }).then(function() {
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
+          method: 'POST',
+          data: {
+            var_memberid: myService.memberDetailFromLogin.member_id,
+            var_password: myService.inputDialog.password
+          }
+        }).then(function(response) {
+          if (response.data.results == 'confirmPassword_success') {
+            // navigator.app.backHistory();
+            $ionicHistory.goBack();
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Invalid Confirm Password !",
+                  content: "You fill invalid confirm password, please try again.",
+                  ok: "Confirm"
+                }
+              }
+            });
+          }
+        }, function(error) {
+          console.log(error);
+        });
+      }, function() {
+        console.log('cancel');
+      });
+    }
+  };
+
+  //  $ionicPlatform.registerBackButtonAction(callback, priority, [actionId])
+  //
+  //     Register a hardware back button action. Only one action will execute
+  //  when the back button is clicked, so this method decides which of
+  //  the registered back button actions has the highest priority.
+  //
+  //     For example, if an actionsheet is showing, the back button should
+  //  close the actionsheet, but it should not also go back a page view
+  //  or close a modal which may be open.
+  //
+  //  The priorities for the existing back button hooks are as follows:
+  //  Return to previous view = 100
+  //  Close side menu         = 150
+  //  Dismiss modal           = 200
+  //  Close action sheet      = 300
+  //  Dismiss popup           = 400
+  //  Dismiss loading overlay = 500
+  //
+  //  Your back button action will override each of the above actions
+  //  whose priority is less than the priority you provide. For example,
+  //  an action assigned a priority of 101 will override the ‘return to
+  //  previous view’ action, but not any of the other actions.
+  //
+  //  Learn more at : http://ionicframework.com/docs/api/service/$ionicPlatform/#registerBackButtonAction
+
+  $ionicPlatform.registerBackButtonAction(function() {
+
+    if ($mdSidenav("left").isOpen()) {
+      //If side navigation is open it will close and then return
+      $mdSidenav('left').close();
+    } else if (jQuery('md-bottom-sheet').length > 0) {
+      //If bottom sheet is open it will close and then return
+      $mdBottomSheet.cancel();
+    } else if (jQuery('[id^=dialog]').length > 0) {
+      //If popup dialog is open it will close and then return
+      $mdDialog.cancel();
+    } else if (jQuery('md-menu-content').length > 0) {
+      //If md-menu is open it will close and then return
+      $mdMenu.hide();
+    } else if (jQuery('md-select-menu').length > 0) {
+      //If md-select is open it will close and then return
+      $mdSelect.hide();
+    } else {
+
+      // If control :
+      // side navigation,
+      // bottom sheet,
+      // popup dialog,
+      // md-menu,
+      // md-select
+      // is not opening, It will show $mdDialog to ask for
+      // Confirmation to close the application or go to the view of lasted state.
+
+      // Check for the current state that not have previous state.
+      // It will show $mdDialog to ask for Confirmation to close the application.
+
+      // if ($ionicHistory.backView() == null) {
+      //
+      //   //Check is popup dialog is not open.
+      //   if (jQuery('[id^=dialog]').length == 0) {
+      //
+      //     // mdDialog for show $mdDialog to ask for
+      //     // Confirmation to close the application.
+      //
+      //     $mdDialog.show({
+      //       controller: 'DialogController',
+      //       templateUrl: 'confirm-dialog.html',
+      //       targetEvent: null,
+      //       locals: {
+      //         displayOption: {
+      //           title: "Confirmation",
+      //           content: "Do you want to close the application?",
+      //           ok: "Confirm",
+      //           cancel: "Cancel"
+      //         }
+      //       }
+      //     }).then(function() {
+      //       //If user tap Confirm at the popup dialog.
+      //       //Application will close.
+      //       ionic.Platform.exitApp();
+      //     }, function() {
+      //       // For cancel button actions.
+      //     }); //End mdDialog
+      //   }
+      // } else {
+      //   //Go to the view of lasted state.
+      //   $ionicHistory.goBack();
+      // }
+
+      if ($state.current.name == 'menu2.question') {
+        if (jQuery('[id^=dialog]').length == 0) {
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              targetEvent: null,
+              locals: {
+                displayOption: {
+                  title: "การยืนยัน",
+                  content: "คุณแน่ใจที่จะออกจากแอปพลิเคชัน ?",
+                  ok: "ยืนยัน",
+                  cancel: "ยกเลิก"
+                }
+              }
+            }).then(function() {
+              //If user tap Confirm at the popup dialog.
+              //Application will close.
+              ionic.Platform.exitApp();
+            }, function() {
+              // For cancel button actions.
+            }); //End mdDialog
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              targetEvent: null,
+              locals: {
+                displayOption: {
+                  title: "Confirmation",
+                  content: "Do you want to close the application?",
+                  ok: "Confirm",
+                  cancel: "Cancel"
+                }
+              }
+            }).then(function() {
+              //If user tap Confirm at the popup dialog.
+              //Application will close.
+              ionic.Platform.exitApp();
+            }, function() {
+              // For cancel button actions.
+            }); //End mdDialog
+          }
+        }
+      } else {
+        if ($state.current.name == 'menu2.score') {
+          back();
+        } else {
+          $ionicHistory.goBack();
+        }
+      }
+    }
+  }, 100);
+  //End of $ionicPlatform.registerBackButtonAction
 });
