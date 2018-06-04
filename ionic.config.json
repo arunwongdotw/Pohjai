@@ -16,6 +16,8 @@
       "version": "12.41.296.5"
     }
   ],
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic1"
 }
