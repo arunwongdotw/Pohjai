@@ -1,0 +1,20 @@
+<ion-view id="online-course" hide-nav-bar="false">
+    <ion-nav-title>{{appLanguage.app_lang_comment_list_title}}</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="btnBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content id="online-course-content">
+        <div class="course-list" style="margin-top: 0px;">
+            <div class="course-item" ng-repeat="comment in commentList">
+                <div class="title angular-course-background">
+                    {{appLanguage.app_lang_comment_list_comment}} : {{comment.comment_detail}}
+                </div>
+                <div class="content">
+                    <p style="margin-top: 10px;">{{appLanguage.app_lang_comment_list_comment_datetime}} : {{comment.comment_datetime}}</p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

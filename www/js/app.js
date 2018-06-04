@@ -538,14 +538,36 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                     }
                 }
             })
-            .state('menu2.stafflist', {
-                url: "/stafflist",
+            .state('menu2.stafflistscore', {
+                url: "/stafflistscore",
                 cache: false,
                 reload: true,
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/staff-list.html",
-                        controller: 'staffListCtrl'
+                        templateUrl: "templates/staff-list-score.html",
+                        controller: 'staffListScoreCtrl'
+                    }
+                }
+            })
+            .state('menu2.stafflistcomment', {
+                url: "/stafflistcomment",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/staff-list-comment.html",
+                        controller: 'staffListCommentCtrl'
+                    }
+                }
+            })
+            .state('menu2.commentlist', {
+                url: "/commentlist",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/comment-list.html",
+                        controller: 'commentListCtrl'
                     }
                 }
             })
