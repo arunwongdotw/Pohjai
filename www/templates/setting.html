@@ -23,6 +23,16 @@
             <md-option value="2" ng-click="setTemplate(2)" ng-if="appLanguageID == 2">Low To High</md-option>
             <md-option value="3" ng-click="setTemplate(3)" ng-if="appLanguageID == 2">High To Low</md-option>
             <md-option value="4" ng-click="setTemplate(4)" ng-if="appLanguageID == 2">Curve</md-option>
+
+            <md-option value="1" ng-click="setTemplate(1)" ng-if="appLanguageID == 3">等于</md-option>
+            <md-option value="2" ng-click="setTemplate(2)" ng-if="appLanguageID == 3">从低到高</md-option>
+            <md-option value="3" ng-click="setTemplate(3)" ng-if="appLanguageID == 3">从高到低</md-option>
+            <md-option value="4" ng-click="setTemplate(4)" ng-if="appLanguageID == 3">曲线</md-option>
+
+            <md-option value="1" ng-click="setTemplate(1)" ng-if="appLanguageID == 4">같은</md-option>
+            <md-option value="2" ng-click="setTemplate(2)" ng-if="appLanguageID == 4">낮음부터 높음</md-option>
+            <md-option value="3" ng-click="setTemplate(3)" ng-if="appLanguageID == 4">높음에서 낮음</md-option>
+            <md-option value="4" ng-click="setTemplate(4)" ng-if="appLanguageID == 4">곡선</md-option>
         </md-select>
         <div class="row" ng-if="loginFlag == true">
             <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_order}}</div>
@@ -33,18 +43,32 @@
 
             <md-option value="1" ng-click="setOrder(1)" ng-if="appLanguageID == 2">Ascending</md-option>
             <md-option value="2" ng-click="setOrder(2)" ng-if="appLanguageID == 2">Descending</md-option>
+
+            <md-option value="1" ng-click="setOrder(1)" ng-if="appLanguageID == 3">上升</md-option>
+            <md-option value="2" ng-click="setOrder(2)" ng-if="appLanguageID == 3">降序</md-option>
+
+            <md-option value="1" ng-click="setOrder(1)" ng-if="appLanguageID == 4">오름차순</md-option>
+            <md-option value="2" ng-click="setOrder(2)" ng-if="appLanguageID == 4">내림차순</md-option>
         </md-select>
         <div class="row" ng-if="loginFlag == true">
             <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_color}}</div>
         </div>
         <md-select ng-model="mdSelectValueColor" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;" ng-if="loginFlag == true">
-            <md-option value="1" ng-click="setColor(1)" ng-if="appLanguageID == 1">สีน้ำเงิน</md-option>
-            <md-option value="2" ng-click="setColor(2)" ng-if="appLanguageID == 1">สีเหลือง</md-option>
-            <md-option value="3" ng-click="setColor(3)" ng-if="appLanguageID == 1">สีแดง</md-option>
+            <md-option value="1" ng-click="setColor(1)" ng-if="appLanguageID == 1">รูปแบบ 1</md-option>
+            <md-option value="2" ng-click="setColor(2)" ng-if="appLanguageID == 1">รูปแบบ 2</md-option>
+            <md-option value="3" ng-click="setColor(3)" ng-if="appLanguageID == 1">รูปแบบ 3</md-option>
 
-            <md-option value="1" ng-click="setColor(1)" ng-if="appLanguageID == 2">Blue</md-option>
-            <md-option value="2" ng-click="setColor(2)" ng-if="appLanguageID == 2">Yellow</md-option>
-            <md-option value="3" ng-click="setColor(3)" ng-if="appLanguageID == 2">Red</md-option>
+            <md-option value="1" ng-click="setColor(1)" ng-if="appLanguageID == 2">Style 1</md-option>
+            <md-option value="2" ng-click="setColor(2)" ng-if="appLanguageID == 2">Style 2</md-option>
+            <md-option value="3" ng-click="setColor(3)" ng-if="appLanguageID == 2">Style 3</md-option>
+
+            <md-option value="1" ng-click="setColor(1)" ng-if="appLanguageID == 3">样式 1</md-option>
+            <md-option value="2" ng-click="setColor(2)" ng-if="appLanguageID == 3">样式 2</md-option>
+            <md-option value="3" ng-click="setColor(3)" ng-if="appLanguageID == 3">样式 3</md-option>
+
+            <md-option value="1" ng-click="setColor(1)" ng-if="appLanguageID == 4">스타일 1</md-option>
+            <md-option value="2" ng-click="setColor(2)" ng-if="appLanguageID == 4">스타일 2</md-option>
+            <md-option value="3" ng-click="setColor(3)" ng-if="appLanguageID == 4">스타일 3</md-option>
         </md-select><br><br>
     </ion-content>
 </ion-view>

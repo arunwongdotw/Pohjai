@@ -5,11 +5,6 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   $scope.score = {};
   $scope.allQuestionInSet = myService.allQuestionInSet;
   $scope.staffDetail = myService.staffDetail;
-  console.log($scope.staffDetail);
-
-  // if (Object.keys($scope.staffDetail).length === 0) {
-  //   console.log('test');
-  // }
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
