@@ -49,7 +49,43 @@ window.globalVariable = {
 
 
 angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial', 'ngMessages', 'ngCordova', 'chart.js', 'ionic-datepicker'])
-    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet) {
+    .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet, $ionicPopup) {
+        $ionicPlatform.ready(function() {
+          if (window.Connection) {
+            if (navigator.connection.type == Connection.NONE) {
+              // if (window.localStorage.appLanguageID == 1) {
+                $mdDialog.show({
+                  controller: 'DialogController',
+                  templateUrl: 'confirm-dialog.html',
+                  locals: {
+                    displayOption: {
+                      title: "ไม่มีการเชื่อมต่ออินเทอร์เน็ต !",
+                      content: "โทรศัพท์ของคุณยังไม่ได้เชื่อมต่ออินเทอร์เน็ต กรุณาเชื่อมต่ออินเทอร์เน็ตก่อนใช้งาน",
+                      ok: "ตกลง"
+                    }
+                  }
+                }).then(function() {
+                  ionic.Platform.exitApp();
+                });
+              // } else {
+              //   $mdDialog.show({
+              //     controller: 'DialogController',
+              //     templateUrl: 'confirm-dialog.html',
+              //     locals: {
+              //       displayOption: {
+              //         title: "No Internet Connection !",
+              //         content: "Your device is not connected internet, please connect internet before.",
+              //         ok: "ตกลง",
+              //         cancel: "ยกเลิก"
+              //       }
+              //     }
+              //   }).then(function() {
+              //     ionic.Platform.exitApp();
+              //   });
+              // }
+            }
+          }
+        });
 
         //Create database table of contracts by using sqlite database.
         //Table schema :
