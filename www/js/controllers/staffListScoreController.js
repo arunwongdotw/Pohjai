@@ -1,4 +1,4 @@
-appControllers.controller('staffListCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog) {
+appControllers.controller('staffListScoreCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog) {
   $scope.appLanguage = {};
   $scope.staffList = myService.staffList;
 
