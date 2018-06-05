@@ -8,16 +8,11 @@
     <ion-content id="try-app-content">
         <div style="text-align: center; margin-top: 20px; margin-left: 20px; margin-right: 20px;">
             {{appLanguage.app_lang_score_complete_detail}}
-        </div><br>
-        <div style="text-align: center; margin-top: 20px; margin-left: 20px; margin-right: 20px;">
-            <p style="font-weight: bold; font-size: 20px;">เงินกู้ด่วน ทันใจดอกเบี้ยต่ำ</p>
-            <p style="font-weight: bold;">เพียงแต่ท่านมีรถหรือโฉนดที่ดิน เท่านั้นำ</p>
-            <p style="font-weight: bold;">สนใจติดต่อ 081-xxxxxxxxำ</p>
-        </div><br>
-        <div style="text-align: center; margin-top: 20px; margin-left: 20px; margin-right: 20px;">
-            <p style="font-weight: bold; font-size: 20px;">โปรโมชั่นพิเศษสุด ต้อนรับวันแม่</p>
-            <p style="font-weight: bold;">เพียงซื้อสินค้าครบ 1,000 บ. แถมฟรี xxxx</p>
-            <p style="font-weight: bold;">ที่ ร้าน abcs  โทร 081-888-xxxx</p>
-        </div><br>
+        </div>
+        <div style="text-align: center; margin-top: 20px; margin-left: 20px; margin-right: 20px; border: 3px solid red;" ng-repeat="ads in adsArray">
+            <p style="margin-top: 10px; font-weight: bold; font-size: 20px;">{{ads.advertise_text_1}}</p>
+            <p style="font-weight: bold; font-size: 18px;">{{ads.advertise_text_2}}</p>
+            <p style="font-weight: bold; font-size: 18px;">{{ads.advertise_text_3}}</p>
+        </div>
     </ion-content>
 </ion-view>
