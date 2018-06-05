@@ -14,6 +14,11 @@
             <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_template}}</div>
         </div>
         <md-select ng-model="mdSelectValueTemplate" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;" ng-if="loginFlag == true">
+            <!-- <md-option value="1" ng-click="setTemplate(1)">{{appLanguage.app_lang_setting_template_equal}}</md-option>
+            <md-option value="2" ng-click="setTemplate(2)">{{appLanguage.app_lang_setting_template_low}}</md-option>
+            <md-option value="3" ng-click="setTemplate(3)">{{appLanguage.app_lang_setting_template_high}}</md-option>
+            <md-option value="4" ng-click="setTemplate(4)">{{appLanguage.app_lang_setting_template_curve}}</md-option> -->
+
             <md-option value="1" ng-click="setTemplate(1)" ng-if="appLanguageID == 1">ปุ่มระดับเดียวกัน</md-option>
             <md-option value="2" ng-click="setTemplate(2)" ng-if="appLanguageID == 1">ปุ่มระดับต่ำไปสูง</md-option>
             <md-option value="3" ng-click="setTemplate(3)" ng-if="appLanguageID == 1">ปุ่มระดับสูงไปต่ำ</md-option>

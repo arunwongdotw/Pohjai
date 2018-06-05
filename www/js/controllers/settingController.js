@@ -21,7 +21,7 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
     $scope.loginFlag = false;
   } else {
     $scope.loginFlag = true;
-    getMemberSetting();
+    getMemberSetting(function(status) {});
   }
 
   function getAppLanguage() {
@@ -33,7 +33,7 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
       });
   }
 
-  function getMemberSetting() {
+  function getMemberSetting(callback) {
     $http.get(myService.configAPI.webserviceURL + 'webservices/getMemberSetting.php?memberID=' + $scope.memberID)
       .then(function(response) {
         if (response.data.results != null) {
@@ -41,11 +41,13 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
           $scope.mdSelectValueOrder = response.data.results[0].member_setting_order;
           $scope.mdSelectValueColor = response.data.results[0].member_setting_color;
           $scope.mdSelectValueNoBtn = response.data.results[0].member_setting_number_btn;
+          callback();
         } else {
           $scope.mdSelectValueTemplate = "1";
           $scope.mdSelectValueOrder = "1";
           $scope.mdSelectValueColor = "1";
           $scope.mdSelectValueNoBtn = "1";
+          callback();
         }
       }, function(error) {
         console.log(error);
