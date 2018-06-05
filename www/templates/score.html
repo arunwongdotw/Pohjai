@@ -15,31 +15,19 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 1 && memberSetting.member_setting_order == 1 && memberSetting.question_set_number_btn == 1">
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                 </div>
 
@@ -47,38 +35,23 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 1 && memberSetting.member_setting_order == 1 && memberSetting.question_set_number_btn == 2">
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_1.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 1, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่มาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_1}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                 </div>
 
@@ -86,31 +59,19 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 1 && memberSetting.member_setting_order == 2 && memberSetting.question_set_number_btn == 1">
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                 </div>
 
@@ -118,38 +79,23 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 1 && memberSetting.member_setting_order == 2 && memberSetting.question_set_number_btn == 2">
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_1.png" align="middle" style="width: 75%; margin-top: 15%; margin-left: 10%;" ng-click="giveScore(question.question_id, 1, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่มาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_1}}</p>
                     </div>
                 </div>
 
@@ -157,31 +103,19 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 2 && memberSetting.member_setting_order == 1 && memberSetting.question_set_number_btn == 1">
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 20%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 10%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                 </div>
 
@@ -189,38 +123,23 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 2 && memberSetting.member_setting_order == 1 && memberSetting.question_set_number_btn == 2">
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_1.png" align="middle" style="width: 75%; margin-top: 40%; margin-left: 10%;" ng-click="giveScore(question.question_id, 1, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่มาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_1}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 20%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 10%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                 </div>
 
@@ -228,31 +147,19 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 2 && memberSetting.member_setting_order == 2 && memberSetting.question_set_number_btn == 1">
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 20%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 10%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                 </div>
 
@@ -260,38 +167,23 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 2 && memberSetting.member_setting_order == 2 && memberSetting.question_set_number_btn == 2">
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 40%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 20%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 10%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_1.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 1, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่มาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_1}}</p>
                     </div>
                 </div>
 
@@ -299,31 +191,19 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 3 && memberSetting.member_setting_order == 1 && memberSetting.question_set_number_btn == 1">
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 10%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 20%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                 </div>
 
@@ -331,38 +211,23 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 3 && memberSetting.member_setting_order == 1 && memberSetting.question_set_number_btn == 2">
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_1.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 1, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่มาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_1}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 10%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 20%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 40%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                 </div>
 
@@ -370,31 +235,19 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 3 && memberSetting.member_setting_order == 2 && memberSetting.question_set_number_btn == 1">
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 10%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 20%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                 </div>
 
@@ -402,38 +255,23 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 3 && memberSetting.member_setting_order == 2 && memberSetting.question_set_number_btn == 2">
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 10%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 20%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_1.png" align="middle" style="width: 75%; margin-top: 40%; margin-left: 10%;" ng-click="giveScore(question.question_id, 1, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่มาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_1}}</p>
                     </div>
                 </div>
 
@@ -441,31 +279,19 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 4 && memberSetting.member_setting_order == 1 && memberSetting.question_set_number_btn == 1">
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                 </div>
 
@@ -473,38 +299,23 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 4 && memberSetting.member_setting_order == 1 && memberSetting.question_set_number_btn == 2">
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_1.png" align="middle" style="width: 75%; margin-top: 60%; margin-left: 10%;" ng-click="giveScore(question.question_id, 1, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่มาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_1}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 60%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                 </div>
 
@@ -512,31 +323,19 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 4 && memberSetting.member_setting_order == 2 && memberSetting.question_set_number_btn == 1">
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-25">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                 </div>
 
@@ -544,38 +343,23 @@
                 <div class="row" ng-if="memberSetting.member_setting_template == 4 && memberSetting.member_setting_order == 2 && memberSetting.question_set_number_btn == 2">
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_5.png" align="middle" style="width: 75%; margin-top: 60%; margin-left: 10%;" ng-click="giveScore(question.question_id, 5, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดีมาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 좋아</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_5}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_4.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 4, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">ดี</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Good</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">好</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">좋은</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_4}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_3.png" align="middle" style="width: 75%; margin-top: 0%; margin-left: 10%;" ng-click="giveScore(question.question_id, 3, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">พอใช้</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Average</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">平均</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">평균</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_3}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_2.png" align="middle" style="width: 75%; margin-top: 30%; margin-left: 10%;" ng-click="giveScore(question.question_id, 2, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_2}}</p>
                     </div>
                     <div class="col-20">
                         <img src="img/porjai_c{{memberSetting.member_setting_color}}_1.png" align="middle" style="width: 75%; margin-top: 60%; margin-left: 10%;" ng-click="giveScore(question.question_id, 1, $index)"></img>
-                        <p style="text-align: center;" ng-if="appLanguageID == 1">แย่มาก</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 2">Very Bad</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 3">很壞</p>
-                        <p style="text-align: center;" ng-if="appLanguageID == 4">아주 나쁜</p>
+                        <p style="text-align: center;">{{appLanguage.app_lang_rating_button_1}}</p>
                     </div>
                 </div>
             </ion-slide>
@@ -602,11 +386,11 @@
             <table id="checkboxes" style="border: 1px solid black; margin-top: 20px; margin-left: 20px;" ng-if="memberSetting.question_set_number_btn == 1">
                 <thead>
                     <tr style="border: 1px solid black;">
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">หัวข้อ</th>
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">แย่</th>
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">พอใช้</th>
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">ดี</th>
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">ดีมาก</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_topic}}</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_button_2}}</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_button_3}}</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_button_4}}</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_button_5}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -630,12 +414,12 @@
             <table id="checkboxes" style="border: 1px solid black; margin-top: 20px; margin-left: 20px; margin-right: 20px;" ng-if="memberSetting.question_set_number_btn == 2">
                 <thead>
                     <tr style="border: 1px solid black;">
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">หัวข้อ</th>
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">แย่มาก</th>
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">แย่</th>
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">พอใช้</th>
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">ดี</th>
-                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">ดีมาก</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_topic}}</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_button_1}}</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_button_2}}</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_button_3}}</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_button_4}}</th>
+                        <th style="border: 1px solid black; padding-left: 10px; padding-right: 10px;">{{appLanguage.app_lang_rating_button_5}}</th>
                     </tr>
                 </thead>
                 <tbody>
