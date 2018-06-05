@@ -26,7 +26,7 @@
                 {{question.question_name}}
             </div>
             <div class="item item-text-wrap">
-                <canvas id="doughnut" class="chart chart-pie" chart-data="data[$index]" chart-labels="labels" chart-series="series" chart-options="options"
+                <canvas id="pie" class="chart chart-pie" chart-data="data[$index]" chart-labels="labels" chart-series="series" chart-options="options"
                 chart-legend="true" chart-click="onClick"></canvas>
             </div>
         </div>
@@ -36,7 +36,27 @@
                 {{appLanguage.app_lang_chart_pie_set}}
             </div>
             <div class="item item-text-wrap">
-                <canvas id="doughnut" class="chart chart-pie" chart-data="setData" chart-labels="labels" chart-series="series" chart-options="options"
+                <canvas id="pie" class="chart chart-pie" chart-data="setData" chart-labels="labels" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+
+        <div class="card" ng-repeat="question in questionArrayList" ng-if="chartType == 2">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{question.question_name}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="line" class="chart chart-line" chart-data="data[$index]" chart-labels="labels" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+
+        <div class="card" ng-if="chartType == 2">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_chart_pie_set}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="line" class="chart chart-line" chart-data="setData" chart-labels="labels" chart-series="series" chart-options="options"
                 chart-legend="true" chart-click="onClick"></canvas>
             </div>
         </div>

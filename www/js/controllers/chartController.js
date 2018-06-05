@@ -32,7 +32,7 @@ appControllers.controller('chartCtrl', function($scope, $timeout, $state, $state
     });
 
   // $scope.options = { legend: { display: true } };
-
+  
   function makeLabelsForChart() {
     if (myService.questionSetDetail.question_set_number_btn == 1) {
       if ($scope.appLanguageID == "1") {
