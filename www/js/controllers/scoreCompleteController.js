@@ -50,7 +50,7 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
     });
     $timeout(function() {
       $scope.navigateTo('menu2.score');
-    }, 10000);
+    }, 30000);
   });
 
   function getAllAds(callback) {
