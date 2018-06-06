@@ -53,7 +53,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
         $ionicPlatform.ready(function() {
           if (window.Connection) {
             if (navigator.connection.type == Connection.NONE) {
-              // if (window.localStorage.appLanguageID == 1) {
+              if (typeof window.localStorage.appLanguageID == 'undefined') {
                 $mdDialog.show({
                   controller: 'DialogController',
                   templateUrl: 'confirm-dialog.html',
@@ -67,22 +67,36 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                 }).then(function() {
                   ionic.Platform.exitApp();
                 });
-              // } else {
-              //   $mdDialog.show({
-              //     controller: 'DialogController',
-              //     templateUrl: 'confirm-dialog.html',
-              //     locals: {
-              //       displayOption: {
-              //         title: "No Internet Connection !",
-              //         content: "Your device is not connected internet, please connect internet before.",
-              //         ok: "ตกลง",
-              //         cancel: "ยกเลิก"
-              //       }
-              //     }
-              //   }).then(function() {
-              //     ionic.Platform.exitApp();
-              //   });
-              // }
+              } else if (window.localStorage.appLanguageID == 1) {
+                $mdDialog.show({
+                  controller: 'DialogController',
+                  templateUrl: 'confirm-dialog.html',
+                  locals: {
+                    displayOption: {
+                      title: "ไม่มีการเชื่อมต่ออินเทอร์เน็ต !",
+                      content: "โทรศัพท์ของคุณยังไม่ได้เชื่อมต่ออินเทอร์เน็ต กรุณาเชื่อมต่ออินเทอร์เน็ตก่อนใช้งาน",
+                      ok: "ตกลง"
+                    }
+                  }
+                }).then(function() {
+                  ionic.Platform.exitApp();
+                });
+              } else {
+                $mdDialog.show({
+                  controller: 'DialogController',
+                  templateUrl: 'confirm-dialog.html',
+                  locals: {
+                    displayOption: {
+                      title: "No Internet Connection !",
+                      content: "Your device is not connected internet, please connect internet before.",
+                      ok: "ตกลง",
+                      cancel: "ยกเลิก"
+                    }
+                  }
+                }).then(function() {
+                  ionic.Platform.exitApp();
+                });
+              }
             }
           }
         });
@@ -356,10 +370,23 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
          */
         //Learn more about material color patten: https://www.materialpalette.com/
         //Learn more about material theme: https://material.angularjs.org/latest/#/Theming/01_introduction
-        $mdThemingProvider
-            .theme('default')
-            .primaryPalette('pink')
-            .accentPalette('red');
+
+        if (typeof window.localStorage.appColor == 'undefined') {
+          $mdThemingProvider
+              .theme('default')
+              .primaryPalette('pink')
+              .accentPalette('red');
+        } else if ((window.localStorage.appColor == "") || (window.localStorage.appColor == null)) {
+          $mdThemingProvider
+              .theme('default')
+              .primaryPalette('pink')
+              .accentPalette('red');
+        } else {
+          $mdThemingProvider
+              .theme('default')
+              .primaryPalette(window.localStorage.appColor)
+              .accentPalette('red');
+        }
 
         appPrimaryColor = $mdColorPalette[$mdThemingProvider._THEMES.default.colors.primary.name]["500"]; //Use for get base color of theme.
 
