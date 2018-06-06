@@ -245,19 +245,6 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
     }
   };
 
-  $scope.navigateTo = function(stateName) {
-    $timeout(function() {
-      $mdSidenav('left').close();
-      if ($ionicHistory.currentStateName() != stateName) {
-        $ionicHistory.nextViewOptions({
-          disableAnimate: true,
-          disableBack: true
-        });
-        $state.go(stateName);
-      }
-    }, ($scope.isAndroid == false ? 300 : 0));
-  };
-
   $scope.setSecondColor = function(colorCode) {
     if ($scope.appLanguageID == "1") {
       $mdDialog.show({
@@ -265,8 +252,8 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         templateUrl: 'confirm-dialog.html',
         locals: {
           displayOption: {
-            title: "เปลี่ยนสีแอปพลิเคชันสำเร็จ !",
-            content: "คุณเปลี่ยนสีแอปพลิเคชันสำเร็จ กรุณาเปิดแอปพลิเคชันใหม่",
+            title: "เปลี่ยนสีรองแอปพลิเคชันสำเร็จ !",
+            content: "คุณเปลี่ยนสีรองแอปพลิเคชันสำเร็จ กรุณาเปิดแอปพลิเคชันใหม่",
             ok: "ตกลง"
           }
         }
@@ -280,8 +267,8 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         templateUrl: 'confirm-dialog.html',
         locals: {
           displayOption: {
-            title: "Changed Color Successfully",
-            content: "You chaged color successfully, please restart application.",
+            title: "Changed Second Color Successfully",
+            content: "You chaged second color successfully, please restart application.",
             ok: "Confirm"
           }
         }
