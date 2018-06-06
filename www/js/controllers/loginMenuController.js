@@ -337,7 +337,6 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
       //   //Go to the view of lasted state.
       //   $ionicHistory.goBack();
       // }
-
       if ($state.current.name == 'menu2.question') {
         if (jQuery('[id^=dialog]').length == 0) {
           if ($scope.appLanguageID == "1") {
@@ -385,6 +384,8 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
       } else {
         if ($state.current.name == 'menu2.score') {
           back();
+        } else if ($state.current.name == 'menu2.reportselection') {
+          $state.go('menu2.question');
         } else {
           $ionicHistory.goBack();
         }
