@@ -2,6 +2,7 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
   $scope.appLanguage = {};
   $scope.currState = $state; // get ค่าชื่อ state
   $scope.memberID = myService.memberDetailFromLogin.member_id; // member_id ของ member ที่ Login
+  $scope.mdSelectValueAppColor = "1";
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.mdSelectValueLanguage = "1";
@@ -16,6 +17,14 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
     $scope.appLanguageID = "1";
     getAppLanguage();
   }
+
+  // if (typeof window.localStorage.appColor == 'undefined') {
+  //   $scope.mdSelectValueAppColor = "1";
+  // } else if ((window.localStorage.appColor != "") || (window.localStorage.appColor != null)) {
+  //   $scope.mdSelectValueAppColor = window.localStorage.appColor;
+  // } else {
+  //   $scope.mdSelectValueAppColor = "1";
+  // }
 
   if ($state.current.name == "menu1.setting") {
     $scope.loginFlag = false;
@@ -65,6 +74,40 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         $state.go(stateName);
       }
     }, ($scope.isAndroid == false ? 300 : 0));
+  };
+
+  $scope.setAppColor = function(colorName) {
+    if ($scope.appLanguageID == "1") {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เปลี่ยนสีแอปพลิเคชันสำเร็จ !",
+            content: "คุณเปลี่ยนสีแอปพลิเคชันสำเร็จ กรุณาเปิดแอปพลิเคชันใหม่",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function() {
+        window.localStorage.appColor = colorName;
+        ionic.Platform.exitApp();
+      });
+    } else {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "Changed Color Successfully",
+            content: "You chaged color successfully, please restart application.",
+            ok: "Confirm"
+          }
+        }
+      }).then(function() {
+        window.localStorage.appColor = colorName;
+        ionic.Platform.exitApp();
+      });
+    }
   };
 
   $scope.setLanguage = function(appLanguageID) {

@@ -10,6 +10,50 @@
             <md-option value="3" ng-click="setLanguage(3)">Chinese</md-option>
             <md-option value="4" ng-click="setLanguage(4)">Korean</md-option>
         </md-select>
+        <div class="row">
+            <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_app_color}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueAppColor" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;">
+            <!-- <md-option value="1" ng-click="setAppColor('red')" ng-if="appLanguageID == 2">Red</md-option>
+            <md-option value="2" ng-click="setAppColor('pink')" ng-if="appLanguageID == 2">Pink</md-option>
+            <md-option value="3" ng-click="setAppColor('purple')" ng-if="appLanguageID == 2">Purple</md-option>
+            <md-option value="4" ng-click="setAppColor('deep-purple')" ng-if="appLanguageID == 2">Deep Purple</md-option>
+            <md-option value="5" ng-click="setAppColor('indigo')" ng-if="appLanguageID == 2">Indiago</md-option>
+            <md-option value="6" ng-click="setAppColor('blue')" ng-if="appLanguageID == 2">Blue</md-option>
+            <md-option value="7" ng-click="setAppColor('light-blue')" ng-if="appLanguageID == 2">Light Blue</md-option>
+            <md-option value="8" ng-click="setAppColor('cyan')" ng-if="appLanguageID == 2">Cyan</md-option>
+            <md-option value="9" ng-click="setAppColor('teal')" ng-if="appLanguageID == 2">Teal</md-option>
+            <md-option value="10" ng-click="setAppColor('green')" ng-if="appLanguageID == 2">Green</md-option>
+            <md-option value="11" ng-click="setAppColor('light-green')" ng-if="appLanguageID == 2">Light Green</md-option>
+            <md-option value="12" ng-click="setAppColor('lime')" ng-if="appLanguageID == 2">Lime</md-option>
+            <md-option value="13" ng-click="setAppColor('yellow')" ng-if="appLanguageID == 2">Yellow</md-option>
+            <md-option value="14" ng-click="setAppColor('amber')" ng-if="appLanguageID == 2">Amber</md-option>
+            <md-option value="15" ng-click="setAppColor('orange')" ng-if="appLanguageID == 2">Orange</md-option>
+            <md-option value="16" ng-click="setAppColor('deep-orange')" ng-if="appLanguageID == 2">Deep Orange</md-option>
+            <md-option value="17" ng-click="setAppColor('brown')" ng-if="appLanguageID == 2">Brown</md-option>
+            <md-option value="18" ng-click="setAppColor('grey')" ng-if="appLanguageID == 2">Grey</md-option>
+            <md-option value="19" ng-click="setAppColor('blue-grey')" ng-if="appLanguageID == 2">Blue Grey</md-option> -->
+
+            <md-option value="1" ng-click="setAppColor('red')">Red</md-option>
+            <md-option value="2" ng-click="setAppColor('pink')">Pink</md-option>
+            <md-option value="3" ng-click="setAppColor('purple')">Purple</md-option>
+            <md-option value="4" ng-click="setAppColor('deep-purple')">Deep Purple</md-option>
+            <md-option value="5" ng-click="setAppColor('indigo')">Indiago</md-option>
+            <md-option value="6" ng-click="setAppColor('blue')">Blue</md-option>
+            <md-option value="7" ng-click="setAppColor('light-blue')">Light Blue</md-option>
+            <md-option value="8" ng-click="setAppColor('cyan')">Cyan</md-option>
+            <md-option value="9" ng-click="setAppColor('teal')">Teal</md-option>
+            <md-option value="10" ng-click="setAppColor('green')">Green</md-option>
+            <md-option value="11" ng-click="setAppColor('light-green')">Light Green</md-option>
+            <md-option value="12" ng-click="setAppColor('lime')">Lime</md-option>
+            <md-option value="13" ng-click="setAppColor('yellow')">Yellow</md-option>
+            <md-option value="14" ng-click="setAppColor('amber')">Amber</md-option>
+            <md-option value="15" ng-click="setAppColor('orange')">Orange</md-option>
+            <md-option value="16" ng-click="setAppColor('deep-orange')">Deep Orange</md-option>
+            <md-option value="17" ng-click="setAppColor('brown')">Brown</md-option>
+            <md-option value="18" ng-click="setAppColor('grey')">Grey</md-option>
+            <md-option value="19" ng-click="setAppColor('blue-grey')">Blue Grey</md-option>
+        </md-select>
         <div class="row" ng-if="loginFlag == true">
             <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_template}}</div>
         </div>
