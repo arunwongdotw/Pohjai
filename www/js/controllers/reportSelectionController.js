@@ -37,6 +37,10 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
     }, ($scope.isAndroid == false ? 300 : 0));
   };
 
+  $scope.btnBack = function() {
+    navigator.app.backHistory();
+  };
+
   var ipObj1 = {
     callback: function(val) { //Mandatory
       // console.log('Return value from the datepicker popup is : ' + val, new Date(val));
