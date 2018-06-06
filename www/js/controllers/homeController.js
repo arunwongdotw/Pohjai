@@ -1,7 +1,7 @@
 appControllers.controller('homeCtrl', function($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state, $ionicPlatform, $mdDialog, $mdBottomSheet, $mdMenu, $mdSelect, $http, myService, $ionicNavBarDelegate) {
   $scope.appLanguage = {};
   $scope.home = {};
-
+  
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
     getAppLanguage();
