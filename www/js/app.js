@@ -371,15 +371,20 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
         //Learn more about material color patten: https://www.materialpalette.com/
         //Learn more about material theme: https://material.angularjs.org/latest/#/Theming/01_introduction
 
+        // $mdThemingProvider
+        //     .theme('default')
+        //     .primaryPalette('pink')
+        //     .accentPalette('red');
+
         if (typeof window.localStorage.appColor == 'undefined') {
           $mdThemingProvider
               .theme('default')
-              .primaryPalette('pink')
+              .primaryPalette('red')
               .accentPalette('red');
         } else if ((window.localStorage.appColor == "") || (window.localStorage.appColor == null)) {
           $mdThemingProvider
               .theme('default')
-              .primaryPalette('pink')
+              .primaryPalette('red')
               .accentPalette('red');
         } else {
           $mdThemingProvider
