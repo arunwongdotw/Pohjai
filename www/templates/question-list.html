@@ -8,15 +8,15 @@
     <ion-content id="online-course-content">
         <div class="course-list" style="margin-top: 0px;">
             <div class="course-item" ng-repeat="question in allQuestionInSet">
-                <div class="title angular-course-background">
+                <div class="title angular-course-background" style="background-color: {{color}} !important;">
                     {{appLanguage.app_lang_question_list_name}} : {{question.question_name}}
                 </div>
                 <div class="content">
                     <p style="margin-top: 10px;">
-                        <a href="" class="md-raised md-button md-default-theme angular-course-background" ng-click="btnEditQuestion(question)">
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important;" ng-click="btnEditQuestion(question)">
                             <i class="fas fa-edit"></i> {{appLanguage.app_lang_question_list_edit_btn}}
                         </a>
-                        <a href="" class="md-raised md-button md-default-theme angular-course-background" ng-click="btnDelQuestion(question)">
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important;" ng-click="btnDelQuestion(question)">
                             <i class="fas fa-trash"></i> {{appLanguage.app_lang_question_list_del_btn}}
                         </a>
                     </p>

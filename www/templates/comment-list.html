@@ -8,7 +8,7 @@
     <ion-content id="online-course-content">
         <div class="course-list" style="margin-top: 0px;">
             <div class="course-item" ng-repeat="comment in commentList">
-                <div class="title angular-course-background">
+                <div class="title angular-course-background" style="background-color: {{color}} !important;">
                     {{appLanguage.app_lang_comment_list_comment}} : {{comment.comment_detail}}
                 </div>
                 <div class="content">

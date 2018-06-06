@@ -3,22 +3,22 @@
     <ion-content id="online-course-content">
         <div class="course-list" style="margin-top: 0px;">
             <div class="course-item" ng-repeat="questionSet in questionSetArrayList">
-                <div class="title angular-course-background">
+                <div class="title angular-course-background" style="background-color: {{color}} !important;">
                     {{appLanguage.app_lang_question_question_name}} : {{questionSet.question_set_name}}
                 </div>
                 <div class="content">
                     <p ng-repeat="question in questionArrayList" ng-if="question.question_question_set_id == questionSet.question_set_id" style="margin-top: 10px;">{{question.question_name}}</p>
                     <p style="margin-top: 10px;">
-                        <a href="" class="md-raised md-button md-default-theme angular-course-background" ng-click="btnEditQuestionSet(questionSet)">
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important;" ng-click="btnEditQuestionSet(questionSet)">
                             <i class="fas fa-edit"></i> {{appLanguage.app_lang_question_edit_set}}
                         </a>
-                        <a href="" class="md-raised md-button md-default-theme angular-course-background" ng-click="btnDelQuestionSet(questionSet)">
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important;" ng-click="btnDelQuestionSet(questionSet)">
                             <i class="fas fa-trash"></i> {{appLanguage.app_lang_question_delete_set}}
                         </a>
-                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="margin-top: 5px;" ng-click="btnCreateQuestion(questionSet)">
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="margin-top: 5px; background-color: {{color}} !important;" ng-click="btnCreateQuestion(questionSet)">
                             <i class="fas fa-plus"></i> {{appLanguage.app_lang_question_create_question}}
                         </a>
-                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="margin-top: 5px;" ng-click="btnEditQuestion(questionSet)">
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="margin-top: 5px; background-color: {{color}} !important;" ng-click="btnEditQuestion(questionSet)">
                             <i class="fas fa-edit"></i> {{appLanguage.app_lang_question_edit_question}}
                         </a>
                     </p>

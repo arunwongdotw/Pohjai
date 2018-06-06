@@ -8,12 +8,12 @@
     <ion-content id="online-course-content">
         <div class="course-list" style="margin-top: 0px;">
             <div class="course-item" ng-repeat="staff in staffList">
-                <div class="title angular-course-background">
+                <div class="title angular-course-background" style="background-color: {{color}} !important;">
                     {{appLanguage.app_lang_staff_list_name}} : {{staff.staff_name}}
                 </div>
                 <div class="content">
                     <p style="margin-top: 10px;">
-                        <a href="" class="md-raised md-button md-default-theme angular-course-background" ng-click="btnNavigateToScore(staff)">
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important;" ng-click="btnNavigateToScore(staff)">
                             <i class="far fa-smile"></i> {{appLanguage.app_lang_staff_list_create_score}}
                         </a>
                     </p>
