@@ -225,7 +225,7 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
           }
         }).then(function(response) {
           if (response.data.results == 'confirmPassword_success') {
-            $ionicHistory.goBack();
+            $state.go('menu2.question');
           } else {
             $mdDialog.show({
               controller: 'DialogController',
@@ -278,7 +278,7 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
           }
         }).then(function(response) {
           if (response.data.results == 'confirmPassword_success') {
-            $ionicHistory.goBack();
+            $state.go('menu2.question');
           } else {
             $mdDialog.show({
               controller: 'DialogController',

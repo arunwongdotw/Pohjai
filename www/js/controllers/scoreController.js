@@ -124,7 +124,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           }
         }).then(function(response) {
           if (response.data.results == 'confirmPassword_success') {
-            navigator.app.backHistory();
+            $state.go('menu2.question');
           } else {
             $mdDialog.show({
               controller: 'DialogController',
@@ -177,7 +177,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           }
         }).then(function(response) {
           if (response.data.results == 'confirmPassword_success') {
-            navigator.app.backHistory();
+            $state.go('menu2.question');
           } else {
             $mdDialog.show({
               controller: 'DialogController',
