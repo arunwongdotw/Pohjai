@@ -12,7 +12,8 @@
                     {{appLanguage.app_lang_question_list_name}} : {{question.question_name}}
                 </div>
                 <div class="content">
-                    <p style="margin-top: 10px;">
+                    <p style="margin-top: 10px;">{{appLanguage.app_lang_comment_list_comment_datetime}} : {{question.question_datetime}}</p>
+                    <p>
                         <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important;" ng-click="btnEditQuestion(question)">
                             <i class="fas fa-edit"></i> {{appLanguage.app_lang_question_list_edit_btn}}
                         </a>

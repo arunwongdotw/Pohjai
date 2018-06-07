@@ -8,7 +8,7 @@
                 </div>
                 <div class="content">
                     <p ng-repeat="question in questionArrayList" ng-if="question.question_question_set_id == questionSet.question_set_id" style="margin-top: 10px;">{{question.question_name}}</p>
-                    <p style="margin-top: 10px;">
+                    <p>
                         <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important;" ng-click="btnNavigateToScore(questionSet)">
                             <i class="far fa-smile"></i> {{appLanguage.app_lang_question_create_score}}
                         </a>
