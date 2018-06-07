@@ -1,0 +1,71 @@
+<ion-view id="online-course" hide-nav-bar="false">
+    <ion-nav-title>{{appLanguage.app_lang_contact_us_title}}</ion-nav-title>
+    <ion-content id="online-course-content" style="background-color: white;">
+        <md-toolbar class="bar-subheader md-tall md-primary toolbar-online-course">
+            <div>
+                <img src="img/smartonline.jpg" class="user-img"/>
+                <h1>{{appLanguage.app_lang_contact_us_company}}</h1>
+            </div>
+        </md-toolbar>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="{{appLanguage.app_lang_contact_us_contact}}">
+                <md-content>
+                    <div class="news-item">
+                        <div class="row detail">
+                            <div class="col">
+                                <p class="content" style="margin-top: 10px; margin-left: 10px; font-size: 14px;">
+                                    <i class="fas fa-map-marker"></i>&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_address}} : {{appLanguage.app_lang_contact_us_address_ans}}</br></br>
+                                    <i class="far fa-clock"></i>&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_working_time}} : {{appLanguage.app_lang_contact_us_working_time_ans}}</br></br>
+                                    <i class="fa fa-phone"></i>&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_phone_number}} : 075-806504, 080-9907722<br></br>
+                                    <i class="fas fa-envelope"></i>&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_email}} : smartapp2017@gmail.com<br></br>
+                                    <i class="fas fa-globe"></i>&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_website}} : www.smartonline.info
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="{{appLanguage.app_lang_contact_us_report}}">
+                <md-content>
+                    <md-input-container md-no-float="" style="margin-top: 15px; margin-left: 20px;">
+                        <p>{{appLanguage.app_lang_contact_us_report_title}}</p>
+                        <div>
+                          <input class="user-name" placeholder="{{appLanguage.app_lang_contact_us_report_title}} *" style="width: 300px;" ng-model="contactUs.topic">
+                        </div>
+                    </md-input-container>
+                    <md-input-container md-no-float="" style="margin-left: 20px;">
+                        <p>{{appLanguage.app_lang_contact_us_report_detail}}</p>
+                        <div>
+                          <input class="user-name" placeholder="{{appLanguage.app_lang_contact_us_report_detail}} *" style="width: 300px;" ng-model="contactUs.detail">
+                        </div>
+                    </md-input-container>
+                    <center>
+                        <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnReport()">
+                          {{appLanguage.app_lang_contact_us_report_btn}}
+                        </a>
+                    </center>
+                </md-content>
+            </md-tab>
+            <md-tab label="{{appLanguage.app_lang_contact_us_report_list}}">
+                <md-content>
+                    <div class="news-item">
+                        <div class="row detail">
+                            <div class="col">
+                                <div class="list">
+                                    <p style="margin-left: 10px;">{{appLanguage.app_lang_contact_us_report_list}}</p>
+                                    <div ng-repeat="report in reportArrayList" style="margin-left: 10px;">
+                                        <p>
+                                          {{$index + 1}}. {{appLanguage.app_lang_contact_us_report_title}} : {{report.report_topic}}<br>
+                                          &nbsp;&nbsp;&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_report_detail}} : {{report.report_detail}}<br>
+                                          &nbsp;&nbsp;&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_report_datetime}} : {{report.report_datetime}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </ion-content>
+</ion-view>
