@@ -25,7 +25,19 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน questionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -35,7 +47,19 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
       getQuestionSet();
       getQuestion();
     }, function(error) {
-      console.log(error);
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getMemberDetail.php ใน questionController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
     });
 
   function getQuestionSet() {
@@ -43,7 +67,19 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
       .then(function(response) {
         $scope.questionSetArrayList = response.data.results;
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getQuestionSet ใน questionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -52,7 +88,19 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
       .then(function(response) {
         $scope.questionArrayList = response.data.results;
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getQuestion ใน questionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -79,7 +127,19 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
           callback();
         }
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getStaffList ใน questionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -101,8 +161,6 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
               }
             }).then(function(response) {
               $state.go('menu2.createquestion');
-            }, function(error) {
-              console.log(error);
             });
           } else {
             $mdDialog.show({
@@ -117,8 +175,6 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
               }
             }).then(function(response) {
               $state.go('menu2.createquestion');
-            }, function(error) {
-              console.log(error);
             });
           }
         } else {
@@ -134,7 +190,19 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
           });
         }
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด btnNavigateToScore ใน questionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -158,7 +226,19 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
           myService.allCommentInSetAndStaff = response.data.results;
           $state.go('menu2.commentlist');
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnComment ใน questionController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
       } else {
         $state.go('menu2.stafflistcomment');

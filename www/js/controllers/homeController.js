@@ -1,7 +1,7 @@
 appControllers.controller('homeCtrl', function($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state, $ionicPlatform, $mdDialog, $mdBottomSheet, $mdMenu, $mdSelect, $http, myService, $ionicNavBarDelegate) {
   $scope.appLanguage = {};
   $scope.home = {};
-  
+
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
     getAppLanguage();
@@ -18,7 +18,19 @@ appControllers.controller('homeCtrl', function($scope, $timeout, $mdUtil, $mdSid
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน homeController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -117,8 +129,6 @@ appControllers.controller('homeCtrl', function($scope, $timeout, $mdUtil, $mdSid
               }).then(function(response) {
                 window.localStorage.memberUsername = $scope.home.username;
                 $state.go('menu2.question');
-              }, function(error){
-                console.log(error);
               });
             } else {
               $mdDialog.show({
@@ -134,16 +144,23 @@ appControllers.controller('homeCtrl', function($scope, $timeout, $mdUtil, $mdSid
               }).then(function() {
                 window.localStorage.memberUsername = $scope.home.username;
                 $state.go('menu2.question');
-              }, function(error){
-                console.log(error);
               });
             }
-            // window.localStorage.username = $scope.login.username;
-            // // myService.passDataObject = response.data.results[0];
-            // $state.go('app2.home');
           }
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnSignIn ใน homeController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
       } else {
         if ($scope.appLanguageID == "1") {

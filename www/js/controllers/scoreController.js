@@ -22,7 +22,19 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
       $scope.memberID = response.data.results[0].member_id;
       getMemberSetting();
     }, function(error) {
-      console.log(error);
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getMemberDetail.php ใน scoreController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
     });
 
   function getAppLanguage() {
@@ -30,7 +42,19 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน scoreController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -48,7 +72,19 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           $scope.memberSetting.question_set_comment = "1";
         }
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getMemberSetting ใน scoreController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -78,7 +114,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             cancel: "ยกเลิก"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
           method: 'POST',
@@ -103,10 +139,20 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             });
           }
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnBack ใน scoreController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
-      }, function() {
-        console.log('cancel');
       });
     } else {
       $mdDialog.show({
@@ -121,7 +167,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             cancel: "Cancel"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
           method: 'POST',
@@ -146,10 +192,20 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             });
           }
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnBack ใน scoreController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
-      }, function() {
-        console.log('cancel');
       });
     }
   };
@@ -165,7 +221,6 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           var_type: 1
         }
       }).then(function(response) {
-        console.log(response);
         if ((index + 1) < $scope.allQuestionInSet.length) {
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
@@ -178,7 +233,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "ตกลง"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               $ionicSlideBoxDelegate.next();
             });
           } else {
@@ -192,7 +247,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "Confirm"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               $ionicSlideBoxDelegate.next();
             });
           }
@@ -208,7 +263,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "ตกลง"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               if ($scope.memberSetting.question_set_comment == 1) {
                 $ionicSlideBoxDelegate.next();
               } else {
@@ -226,7 +281,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "Confirm"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               if ($scope.memberSetting.question_set_comment == 1) {
                 $ionicSlideBoxDelegate.next();
               } else {
@@ -236,7 +291,19 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           }
         }
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด giveScore ใน scoreController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
     } else {
       $http({
@@ -261,7 +328,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "ตกลง"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               $ionicSlideBoxDelegate.next();
             });
           } else {
@@ -275,7 +342,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "Confirm"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               $ionicSlideBoxDelegate.next();
             });
           }
@@ -291,7 +358,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "ตกลง"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               if ($scope.memberSetting.question_set_comment == 1) {
                 $ionicSlideBoxDelegate.next();
               } else {
@@ -309,7 +376,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "Confirm"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               if ($scope.memberSetting.question_set_comment == 1) {
                 $ionicSlideBoxDelegate.next();
               } else {
@@ -319,7 +386,19 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           }
         }
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด giveScore ใน scoreController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
     }
   };
@@ -346,7 +425,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "ตกลง"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               $state.go('menu2.scorecomplete');
             });
           } else {
@@ -360,12 +439,24 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "Confirm"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               $state.go('menu2.scorecomplete');
             });
           }
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnComment ใน scoreController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
       } else {
         if ($scope.appLanguageID == "1") {
@@ -416,7 +507,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "ตกลง"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               $state.go('menu2.scorecomplete');
             });
           } else {
@@ -430,12 +521,24 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "Confirm"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               $state.go('menu2.scorecomplete');
             });
           }
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnComment ใน scoreController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
       } else {
         if ($scope.appLanguageID == "1") {
@@ -494,7 +597,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                         ok: "ตกลง"
                       }
                     }
-                  }).then(function() {
+                  }).then(function(response) {
                     $state.go('menu2.scorecomplete');
                   });
                 } else {
@@ -508,10 +611,24 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                         ok: "Confirm"
                       }
                     }
-                  }).then(function() {
+                  }).then(function(response) {
                     $state.go('menu2.scorecomplete');
                   });
                 }
+              }, function(error) {
+                $mdDialog.show({
+                  controller: 'DialogController',
+                  templateUrl: 'confirm-dialog.html',
+                  locals: {
+                    displayOption: {
+                      title: "เกิดข้อผิดพลาด !",
+                      content: "เกิดข้อผิดพลาด btnGiveScoreByForm ใน scoreController ระบบจะปิดอัตโนมัติ",
+                      ok: "ตกลง"
+                    }
+                  }
+                }).then(function(response) {
+                  ionic.Platform.exitApp();
+                });
               });
             } else {
               $http({
@@ -534,7 +651,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                         ok: "ตกลง"
                       }
                     }
-                  }).then(function() {
+                  }).then(function(response) {
                     $state.go('menu2.scorecomplete');
                   });
                 } else {
@@ -548,10 +665,24 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                         ok: "Confirm"
                       }
                     }
-                  }).then(function() {
+                  }).then(function(response) {
                     $state.go('menu2.scorecomplete');
                   });
                 }
+              }, function(error) {
+                $mdDialog.show({
+                  controller: 'DialogController',
+                  templateUrl: 'confirm-dialog.html',
+                  locals: {
+                    displayOption: {
+                      title: "เกิดข้อผิดพลาด !",
+                      content: "เกิดข้อผิดพลาด btnGiveScoreByForm ใน scoreController ระบบจะปิดอัตโนมัติ",
+                      ok: "ตกลง"
+                    }
+                  }
+                }).then(function(response) {
+                  ionic.Platform.exitApp();
+                });
               });
             }
           } else {
@@ -595,7 +726,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "ตกลง"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               $state.go('menu2.scorecomplete');
             });
           } else {
@@ -609,7 +740,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   ok: "Confirm"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               $state.go('menu2.scorecomplete');
             });
           }

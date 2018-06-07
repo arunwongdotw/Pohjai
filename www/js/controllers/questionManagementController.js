@@ -25,7 +25,19 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน questionManagementController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -35,7 +47,19 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
       getQuestionSet();
       getQuestion();
     }, function(error) {
-      console.log(error);
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getMemberDetail.php ใน questionManagementController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
     });
 
   function getQuestionSet() {
@@ -43,7 +67,19 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
       .then(function(response) {
         $scope.questionSetArrayList = response.data.results;
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getQuestionSet ใน questionManagementController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -52,7 +88,19 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
       .then(function(response) {
         $scope.questionArrayList = response.data.results;
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getQuestion ใน questionManagementController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -106,7 +154,19 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
         }
       }
     }, function(error) {
-      console.log(error);
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด btnCreateQuestionSet ใน questionManagementController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
     });
   }
 
@@ -127,7 +187,19 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
         myService.allQuestionInSet = response.data.results;
         $state.go('menu2.questionlist');
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด btnEditQuestion ใน questionManagementController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -144,7 +216,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
             cancel: "ยกเลิก"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/deleteQuestionSet.php',
           method: 'POST',
@@ -166,7 +238,19 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
             $state.reload();
           });
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnDelQuestionSet ใน questionManagementController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
       });
     } else {
@@ -199,11 +283,23 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
                 ok: "Confirm"
               }
             }
-          }).then(function() {
+          }).then(function(response) {
             $state.reload();
           });
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnDelQuestionSet ใน questionManagementController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
       });
     }

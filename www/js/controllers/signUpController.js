@@ -17,7 +17,19 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด setColor ใน signUpController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -49,8 +61,20 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
     $cordovaCamera.getPicture(options).then(function(imageURI) {
       var image = document.getElementById('sign-up-picture');
       image.src = imageURI;
-    }, function(err) {
-      console.log(err);
+    }, function(error) {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด btnSignUpPickPicture ใน signUpController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
     });
   };
 
@@ -124,7 +148,7 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
                             ok: "ตกลง"
                           }
                         }
-                      }).then(function() {
+                      }).then(function(response) {
                         window.localStorage.memberUsername = $scope.signup.username;
                         $state.go('menu2.question');
                       });
@@ -139,14 +163,26 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
                             ok: "Confirm"
                           }
                         }
-                      }).then(function() {
+                      }).then(function(response) {
                         window.localStorage.memberUsername = $scope.signup.username;
                         $state.go('menu2.question');
                       });
                     }
                   }
                 }, function(error) {
-                  console.log(error);
+                  $mdDialog.show({
+                    controller: 'DialogController',
+                    templateUrl: 'confirm-dialog.html',
+                    locals: {
+                      displayOption: {
+                        title: "เกิดข้อผิดพลาด !",
+                        content: "เกิดข้อผิดพลาด btnSignUp ใน signUpController ระบบจะปิดอัตโนมัติ",
+                        ok: "ตกลง"
+                      }
+                    }
+                  }).then(function(response) {
+                    ionic.Platform.exitApp();
+                  });
                 });
               } else {
                 if ($scope.appLanguageID == "1") {

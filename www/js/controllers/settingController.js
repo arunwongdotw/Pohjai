@@ -173,7 +173,19 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน settingController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -194,7 +206,19 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
           callback();
         }
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getMemberSetting ใน settingController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -223,7 +247,7 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
             ok: "ตกลง"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         window.localStorage.appColor = colorName;
         ionic.Platform.exitApp();
       });
@@ -238,7 +262,7 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
             ok: "Confirm"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         window.localStorage.appColor = colorName;
         ionic.Platform.exitApp();
       });
@@ -257,7 +281,7 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
             ok: "ตกลง"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         window.localStorage.secondColor = colorCode;
         ionic.Platform.exitApp();
       });
@@ -272,7 +296,7 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
             ok: "Confirm"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         window.localStorage.secondColor = colorCode;
         ionic.Platform.exitApp();
       });
@@ -305,7 +329,19 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         reload: 'menu2.question'
       });
     }, function(error) {
-      console.log(error);
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด setTemplate ใน settingController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
     });
   };
 
@@ -322,7 +358,19 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         reload: 'menu2.question'
       });
     }, function(error) {
-      console.log(error);
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด setOrder ใน settingController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
     });
   };
 
@@ -339,7 +387,19 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         reload: 'menu2.question'
       });
     }, function(error) {
-      console.log(error);
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด setColor ใน settingController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
     });
   };
 });

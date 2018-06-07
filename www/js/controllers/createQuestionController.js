@@ -19,7 +19,19 @@ appControllers.controller('createQuestionCtrl', function($scope, $timeout, $stat
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน createQuestionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -60,7 +72,7 @@ appControllers.controller('createQuestionCtrl', function($scope, $timeout, $stat
                 ok: "ตกลง"
               }
             }
-          }).then(function() {
+          }).then(function(response) {
             $state.go('menu2.question');
           });
         } else {
@@ -74,12 +86,24 @@ appControllers.controller('createQuestionCtrl', function($scope, $timeout, $stat
                 ok: "Confirm"
               }
             }
-          }).then(function() {
+          }).then(function(response) {
             $state.go('menu2.question');
           });
         }
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด btnCreateQuestion ใน createQuestionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
     } else {
       if ($scope.appLanguageID == "1") {

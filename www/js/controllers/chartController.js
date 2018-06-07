@@ -19,20 +19,19 @@ appControllers.controller('chartCtrl', function($scope, $timeout, $state, $state
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
-        // $mdDialog.show({
-        //   controller: 'DialogController',
-        //   templateUrl: 'confirm-dialog.html',
-        //   locals: {
-        //     displayOption: {
-        //       title: "เกิดข้อผิดพลาด !",
-        //       content: "เกิดข้อผิดพลาด getAppLanguage ใน ChartController ระบบจะปิดอัตโนมัติ",
-        //       ok: "ตกลง"
-        //     }
-        //   }
-        // }).then(function(response) {
-        //   ionic.Platform.exitApp();
-        // });
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน ChartController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -41,7 +40,19 @@ appControllers.controller('chartCtrl', function($scope, $timeout, $state, $state
       $scope.questionArrayList = response.data.results;
       makeLabelsForChart();
     }, function(error) {
-      console.log(error);
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด GetQuestionInChart.php ใน ChartController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
     });
 
   // $scope.options = { legend: { display: true } };

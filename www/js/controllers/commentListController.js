@@ -26,7 +26,19 @@ appControllers.controller('commentListCtrl', function($scope, $timeout, $state, 
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน commentListController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -81,7 +93,19 @@ appControllers.controller('commentListCtrl', function($scope, $timeout, $state, 
             $state.go('menu2.question');
           });
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnDelComment ใน commentListController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
       });
     } else {
@@ -118,7 +142,19 @@ appControllers.controller('commentListCtrl', function($scope, $timeout, $state, 
             $state.go('menu2.question');
           });
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnDelComment ใน commentListController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
       });
     }

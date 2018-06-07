@@ -17,7 +17,19 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน scoreCompleteController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -59,7 +71,19 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
         $scope.allAds = response.data.results;
         callback();
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAllAds ใน scoreCompleteController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -108,12 +132,7 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
     for (var i = 0; i < $scope.adsArray.length; i++) {
       var frequency = parseInt($scope.adsArray[i].advertise_frequency);
       frequency = frequency + 1;
-      $http.get(myService.configAPI.webserviceURL + 'webservices/addAdFrequency.php?adID=' + $scope.adsArray[i].advertise_id + '&frequency=' + frequency)
-        .then(function(response) {
-          console.log(response);
-        }, function(error) {
-          console.log(error);
-        });
+      $http.get(myService.configAPI.webserviceURL + 'webservices/addAdFrequency.php?adID=' + $scope.adsArray[i].advertise_id + '&frequency=' + frequency);
     }
     callback();
   }

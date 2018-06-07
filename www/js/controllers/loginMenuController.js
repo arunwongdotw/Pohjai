@@ -29,7 +29,19 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน loginMenuController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -38,7 +50,19 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
       $scope.menu2 = response.data.results[0];
       myService.memberDetailFromLogin = response.data.results[0];
     }, function(error) {
-      console.log(error);
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getMemberDetail.php ใน loginMenuController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
     });
 
   function buildToggler(navID) {
@@ -79,7 +103,7 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
             cancel: "ยกเลิก"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
           method: 'POST',
@@ -105,10 +129,20 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
             });
           }
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnLogout ใน loginMenuController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
-      }, function() {
-        console.log('cancel');
       });
     } else {
       $mdDialog.show({
@@ -123,7 +157,7 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
             cancel: "Cancel"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
           method: 'POST',
@@ -149,10 +183,20 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
             });
           }
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnLogout ใน loginMenuController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
-      }, function() {
-        console.log('cancel');
       });
     }
   };
@@ -171,7 +215,7 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
             cancel: "ยกเลิก"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
           method: 'POST',
@@ -181,7 +225,6 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
           }
         }).then(function(response) {
           if (response.data.results == 'confirmPassword_success') {
-            // navigator.app.backHistory();
             $ionicHistory.goBack();
           } else {
             $mdDialog.show({
@@ -197,10 +240,20 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
             });
           }
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด back ใน loginMenuController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
-      }, function() {
-        console.log('cancel');
       });
     } else {
       $mdDialog.show({
@@ -215,7 +268,7 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
             cancel: "Cancel"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
           method: 'POST',
@@ -225,7 +278,6 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
           }
         }).then(function(response) {
           if (response.data.results == 'confirmPassword_success') {
-            // navigator.app.backHistory();
             $ionicHistory.goBack();
           } else {
             $mdDialog.show({
@@ -241,10 +293,20 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
             });
           }
         }, function(error) {
-          console.log(error);
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด back ใน loginMenuController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
-      }, function() {
-        console.log('cancel');
       });
     }
   };
@@ -352,12 +414,10 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
                   cancel: "ยกเลิก"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               //If user tap Confirm at the popup dialog.
               //Application will close.
               ionic.Platform.exitApp();
-            }, function() {
-              // For cancel button actions.
             }); //End mdDialog
           } else {
             $mdDialog.show({
@@ -372,12 +432,10 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
                   cancel: "Cancel"
                 }
               }
-            }).then(function() {
+            }).then(function(response) {
               //If user tap Confirm at the popup dialog.
               //Application will close.
               ionic.Platform.exitApp();
-            }, function() {
-              // For cancel button actions.
             }); //End mdDialog
           }
         }

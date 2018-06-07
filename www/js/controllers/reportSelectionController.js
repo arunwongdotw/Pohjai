@@ -20,7 +20,19 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       .then(function(response) {
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAppLanguage ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -146,6 +158,34 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
           }).then(function(response) {
             myService.countScorePerSet = response.data.results;
             $state.go('menu2.chart');
+          }, function(error) {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "เกิดข้อผิดพลาด !",
+                  content: "เกิดข้อผิดพลาด btnChart ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+                  ok: "ตกลง"
+                }
+              }
+            }).then(function(response) {
+              ionic.Platform.exitApp();
+            });
+          });
+        }, function(error) {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnChart ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
           });
         });
       } else {
