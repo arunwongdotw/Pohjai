@@ -13,6 +13,11 @@
                 </div>
                 <div class="content">
                     <p style="margin-top: 10px;">{{appLanguage.app_lang_comment_list_comment_datetime}} : {{comment.comment_datetime}}</p>
+                    <p>
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important;" ng-click="btnDelComment(comment)">
+                            <i class="fas fa-trash"></i> {{appLanguage.app_lang_comment_list_del_comment}}
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
