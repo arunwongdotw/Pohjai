@@ -20,6 +20,19 @@ appControllers.controller('chartCtrl', function($scope, $timeout, $state, $state
         $scope.appLanguage = response.data.results[0];
       }, function(error) {
         console.log(error);
+        // $mdDialog.show({
+        //   controller: 'DialogController',
+        //   templateUrl: 'confirm-dialog.html',
+        //   locals: {
+        //     displayOption: {
+        //       title: "เกิดข้อผิดพลาด !",
+        //       content: "เกิดข้อผิดพลาด getAppLanguage ใน ChartController ระบบจะปิดอัตโนมัติ",
+        //       ok: "ตกลง"
+        //     }
+        //   }
+        // }).then(function(response) {
+        //   ionic.Platform.exitApp();
+        // });
       });
   }
 
@@ -32,7 +45,7 @@ appControllers.controller('chartCtrl', function($scope, $timeout, $state, $state
     });
 
   // $scope.options = { legend: { display: true } };
-  
+
   function makeLabelsForChart() {
     if (myService.questionSetDetail.question_set_number_btn == 1) {
       if ($scope.appLanguageID == "1") {
