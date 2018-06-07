@@ -64,7 +64,7 @@ appControllers.controller('questionListCtrl', function($scope, $timeout, $state,
             cancel: "ยกเลิก"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/deleteQuestion.php',
           method: 'POST',
@@ -72,35 +72,19 @@ appControllers.controller('questionListCtrl', function($scope, $timeout, $state,
             var_questionid: question.question_id
           }
         }).then(function(response) {
-          if ($scope.appLanguageID == "1") {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "ลบหัวข้อสำเร็จ",
-                  content: "คุณลบหัวข้อสำเร็จ",
-                  ok: "ตกลง"
-                }
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ลบหัวข้อสำเร็จ",
+                content: "คุณลบหัวข้อสำเร็จ",
+                ok: "ตกลง"
               }
-            }).then(function() {
-              $state.go('menu2.questionmanagement');
-            });
-          } else {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "Delete Topic Successfully",
-                  content: "You deleted topic successfully.",
-                  ok: "Confirm"
-                }
-              }
-            }).then(function() {
-              $state.go('menu2.questionmanagement');
-            });
-          }
+            }
+          }).then(function() {
+            $state.go('menu2.questionmanagement');
+          });
         }, function(error) {
           console.log(error);
         });
@@ -117,7 +101,7 @@ appControllers.controller('questionListCtrl', function($scope, $timeout, $state,
             cancel: "Cancel"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/deleteQuestion.php',
           method: 'POST',
@@ -125,35 +109,19 @@ appControllers.controller('questionListCtrl', function($scope, $timeout, $state,
             var_questionid: question.question_id
           }
         }).then(function(response) {
-          if ($scope.appLanguageID == "1") {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "ลบชุดประเมินสำเร็จ !",
-                  content: "คุณลบชุดประเมินสำเร็จ",
-                  ok: "ตกลง"
-                }
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Delete Form Successfully",
+                content: "You deleted form successfully.",
+                ok: "Confirm"
               }
-            }).then(function() {
-              $state.reload();
-            });
-          } else {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "Delete Form Successfully",
-                  content: "You deleted form successfully.",
-                  ok: "Confirm"
-                }
-              }
-            }).then(function() {
-              $state.reload();
-            });
-          }
+            }
+          }).then(function() {
+            $state.go('menu2.questionmanagement');
+          });
         }, function(error) {
           console.log(error);
         });

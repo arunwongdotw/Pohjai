@@ -152,35 +152,19 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
             var_questionsetid: questionSet.question_set_id
           }
         }).then(function(response) {
-          if ($scope.appLanguageID == "1") {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "ลบชุดประเมินสำเร็จ !",
-                  content: "คุณลบชุดประเมินสำเร็จ",
-                  ok: "ตกลง"
-                }
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ลบชุดประเมินสำเร็จ !",
+                content: "คุณลบชุดประเมินสำเร็จ",
+                ok: "ตกลง"
               }
-            }).then(function() {
-              $state.reload();
-            });
-          } else {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "Delete Form Successfully",
-                  content: "You deleted form successfully.",
-                  ok: "Confirm"
-                }
-              }
-            }).then(function() {
-              $state.reload();
-            });
-          }
+            }
+          }).then(function(response) {
+            $state.reload();
+          });
         }, function(error) {
           console.log(error);
         });
@@ -197,7 +181,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
             cancel: "Cancel"
           }
         }
-      }).then(function() {
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/deleteQuestionSet.php',
           method: 'POST',
@@ -205,35 +189,19 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
             var_questionsetid: questionSet.question_set_id
           }
         }).then(function(response) {
-          if ($scope.appLanguageID == "1") {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "ลบชุดประเมินสำเร็จ !",
-                  content: "คุณลบชุดประเมินสำเร็จ",
-                  ok: "ตกลง"
-                }
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Delete Form Successfully",
+                content: "You deleted form successfully.",
+                ok: "Confirm"
               }
-            }).then(function() {
-              $state.reload();
-            });
-          } else {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "Delete Form Successfully",
-                  content: "You deleted form successfully.",
-                  ok: "Confirm"
-                }
-              }
-            }).then(function() {
-              $state.reload();
-            });
-          }
+            }
+          }).then(function() {
+            $state.reload();
+          });
         }, function(error) {
           console.log(error);
         });
