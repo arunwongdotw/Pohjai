@@ -2,6 +2,7 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
   $scope.toggleLeft = buildToggler('left');
   $scope.appLanguage = {};
   $scope.menu2 = {}; // $scope.menu2 คือ object ของ member
+  $scope.randomNumber = Math.random();
 
   $scope.$on('$ionicView.enter', function() {
     $scope.currState = $state;

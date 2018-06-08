@@ -5,6 +5,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   $scope.score = {};
   $scope.allQuestionInSet = myService.allQuestionInSet;
   $scope.staffDetail = myService.staffDetail;
+  $scope.randomNumber = Math.random();
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
@@ -15,6 +16,12 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   } else {
     $scope.appLanguageID = "1";
     getAppLanguage();
+  }
+
+  if (Object.keys($scope.staffDetail).length === 0) {
+    $scope.navTitle = $scope.menu2.member_company;
+  } else {
+    $scope.navTitle = $scope.menu2.member_company + ' (' + $scope.staffDetail.staff_name + ')';
   }
 
   $http.get(myService.configAPI.webserviceURL + 'webservices/getMemberDetail.php?memberUsername=' + window.localStorage.memberUsername)
