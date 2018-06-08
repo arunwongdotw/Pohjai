@@ -6,6 +6,7 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
 
   $scope.$on('$ionicView.enter', function() {
     $scope.currState = $state;
+    $scope.randomNumber = Math.random();
     if ($state.current.name == "menu2.question") {
       if ((typeof window.localStorage.appLanguageID != 'undefined') && ($scope.appLanguageID != window.localStorage.appLanguageID)) {
         $scope.appLanguageID = window.localStorage.appLanguageID;

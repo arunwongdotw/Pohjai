@@ -642,6 +642,17 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                         controller: 'contactUsCtrl'
                     }
                 }
+            })
+            .state('menu2.editprofile', {
+                url: "/editprofile",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/edit-profile.html",
+                        controller: 'editProfileCtrl'
+                    }
+                }
             });// End $stateProvider
 
         //Use $urlRouterProvider.otherwise(Url);

@@ -14,7 +14,7 @@
                 <p>
                     <span class="title">{{menu2.member_username}}</span>
                     <br/>
-                    <span class="sub-title">{{appLanguage.app_lang_menu2_subtitle}}</span>
+                    <span class="sub-title">{{menu2.member_company}}</span>
                 </p>
             </div>
         </div>
@@ -38,6 +38,14 @@
                     </div>
                     <div class="col-66">
                         <span>{{appLanguage.app_lang_menu2_question_management}}</span>
+                    </div>
+                </div>
+                <div class="row menu-item"  ng-click="navigateTo('menu2.editprofile')">
+                    <div class="col-33">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="col-66">
+                        <span>{{appLanguage.app_lang_menu2_profile}}</span>
                     </div>
                 </div>
                 <!-- <div class="row menu-item"  ng-click="navigateTo('menu2.report')">
@@ -85,6 +93,10 @@
                 <md-list-item class="menu-list-item" ng-click="navigateTo('menu2.questionmanagement')">
                     <i class="fab fa-wpforms"></i>
                     <span>{{appLanguage.app_lang_menu2_question_management}}</span>
+                </md-list-item>
+                <md-list-item class="menu-list-item" ng-click="navigateTo('menu2.editprofile')">
+                    <i class="fas fa-user"></i>
+                    <span>{{appLanguage.app_lang_menu2_profile}}</span>
                 </md-list-item>
                 <!-- <md-list-item class="menu-list-item" ng-click="navigateTo('menu2.report')">
                     <i class="fas fa-chart-area"></i>

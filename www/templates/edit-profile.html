@@ -1,0 +1,44 @@
+<ion-view>
+    <ion-nav-title>{{appLanguage.app_lang_profile_title}}</ion-nav-title>
+    <ion-content id="social-sign-up-content">
+        <div class="app-icon">
+            <img src="{{editProfile.profile}}" class="md-card-image" id="edit-profile-picture">
+            <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnEditProfilePickPicture()">
+                {{appLanguage.app_lang_profile_upload_btn}}
+            </a>
+        </div>
+        <md-input-container md-no-float="">
+            <div>
+                <input class="user-name" ng-model="editProfile.member_company" placeholder="{{appLanguage.app_lang_profile_company}}" style="width: 284px;">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+                <input class="user-name" ng-model="editProfile.member_address" placeholder="{{appLanguage.app_lang_profile_address}}" style="width: 284px;">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+                <input class="user-name" ng-model="editProfile.member_contact" placeholder="{{appLanguage.app_lang_profile_contact}}" style="width: 284px;">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+                <input class="user-name" ng-model="editProfile.member_phone_number" placeholder="{{appLanguage.app_lang_profile_phonenumber}}" style="width: 284px;">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+                <input class="user-name" ng-model="editProfile.member_email" placeholder="{{appLanguage.app_lang_profile_email}}" style="width: 284px;">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="">
+            <div>
+                <input class="user-name" ng-model="editProfile.member_line" placeholder="{{appLanguage.app_lang_profile_line}}" style="width: 284px;">
+            </div>
+        </md-input-container>
+        <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnEditProfile()">
+            {{appLanguage.app_lang_profile_edit_btn}}
+        </a>
+    </ion-content>
+</ion-view>
