@@ -60,11 +60,11 @@ appControllers.controller('chartCtrl', function($scope, $timeout, $state, $state
   function makeLabelsForChart() {
     if (myService.questionSetDetail.question_set_number_btn == 1) {
       if ($scope.appLanguageID == "1") {
-        $scope.labels = ['แย่', 'พอใช้', 'ดี', 'ดีมาก'];
+        $scope.labels = ['ควรปรับปรุง', 'พอใช้', 'ดี', 'ดีมาก'];
         makeQuestionDataForChart();
         makeSetDataForChart();
       } else {
-        $scope.labels = ['Bad', 'OK', 'Good', 'Very Good'];
+        $scope.labels = ['Should Improve', 'OK', 'Good', 'Very Good'];
         makeQuestionDataForChart();
         makeSetDataForChart();
       }
