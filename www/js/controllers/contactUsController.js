@@ -52,7 +52,7 @@ appControllers.controller('contactUsCtrl', function($scope, $timeout, $state, $s
         locals: {
           displayOption: {
             title: "เกิดข้อผิดพลาด !",
-            content: "เกิดข้อผิดพลาด getAppLanguage ใน createQuestionController ระบบจะปิดอัตโนมัติ",
+            content: "เกิดข้อผิดพลาด getReportList.php ใน createQuestionController ระบบจะปิดอัตโนมัติ",
             ok: "ตกลง"
           }
         }
