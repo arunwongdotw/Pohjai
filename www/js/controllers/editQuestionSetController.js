@@ -62,15 +62,15 @@ appControllers.controller('editQuestionSetCtrl', function($scope, $timeout, $sta
 
   $scope.setNoBtn = function(noBtnID) {
     $scope.mdSelectValueNoBtn = noBtnID;
-  }
+  };
 
   $scope.setForm = function(formID) {
     $scope.mdSelectValueForm = formID;
-  }
+  };
 
   $scope.setComment = function(commentID) {
     $scope.mdSelectValueComment = commentID;
-  }
+  };
 
   $scope.btnEditQuestionSet = function() {
     if (($scope.editQuestionSet.name != null) && ($scope.editQuestionSet.name != "")) {
@@ -156,5 +156,5 @@ appControllers.controller('editQuestionSetCtrl', function($scope, $timeout, $sta
         });
       }
     }
-  }
+  };
 });

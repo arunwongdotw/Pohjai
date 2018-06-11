@@ -119,5 +119,5 @@ appControllers.controller('reportCtrl', function($scope, $timeout, $state, $stat
   $scope.btnReportSelection = function(questionSet) {
     myService.questionSetDetail = questionSet;
     $scope.navigateTo('menu2.reportselection');
-  }
+  };
 });

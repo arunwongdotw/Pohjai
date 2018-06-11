@@ -293,7 +293,7 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
         });
       }
     }
-  }
+  };
 
   $scope.btnSignUp = function() {
     var checkEnglishNumberRegEx = /^[0-9a-zA-Z]+$/;

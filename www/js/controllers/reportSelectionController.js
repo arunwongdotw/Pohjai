@@ -131,7 +131,7 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
 
   $scope.setChart = function(chartID) {
     $scope.mdSelectValueChart = chartID;
-  }
+  };
 
   $scope.btnChart = function() {
     if (typeof $scope.reportSelection.startdate != 'undefined') {
@@ -242,5 +242,5 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
         });
       }
     }
-  }
+  };
 });

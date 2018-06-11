@@ -132,5 +132,5 @@ appControllers.controller('createQuestionCtrl', function($scope, $timeout, $stat
         });
       }
     }
-  }
+  };
 });

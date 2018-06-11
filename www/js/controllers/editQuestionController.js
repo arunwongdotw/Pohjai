@@ -138,5 +138,5 @@ appControllers.controller('editQuestionCtrl', function($scope, $timeout, $state,
         });
       }
     }
-  }
+  };
 });

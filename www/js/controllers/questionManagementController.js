@@ -168,12 +168,12 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
         ionic.Platform.exitApp();
       });
     });
-  }
+  };
 
   $scope.btnEditQuestionSet = function(questionSet) {
     myService.questionSetDetail = questionSet;
     $state.go('menu2.editquestionset');
-  }
+  };
 
   $scope.btnCreateQuestion = function(questionSet) {
     $http({
@@ -229,7 +229,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
         ionic.Platform.exitApp();
       });
     });
-  }
+  };
 
   $scope.btnEditQuestion = function(questionSet) {
     myService.questionSetDetail = questionSet;
@@ -252,7 +252,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
           ionic.Platform.exitApp();
         });
       });
-  }
+  };
 
   $scope.btnDelQuestionSet = function(questionSet) {
     if ($scope.appLanguageID == "1") {

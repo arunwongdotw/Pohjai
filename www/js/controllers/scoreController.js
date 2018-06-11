@@ -780,7 +780,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         }
       }
     });
-  }
+  };
 
   function checkCheckBoxSelected(callback) {
     $scope.checkBoxFlagArray = [];
@@ -957,5 +957,5 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         var checkbox4 = document.getElementById(chkbID4).checked = false;
       }
     }
-  }
+  };
 });

@@ -58,15 +58,15 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
 
   $scope.setNoBtn = function(noBtnID) {
     $scope.mdSelectValueNoBtn = noBtnID;
-  }
+  };
 
   $scope.setForm = function(formID) {
     $scope.mdSelectValueForm = formID;
-  }
+  };
 
   $scope.setComment = function(commentID) {
     $scope.mdSelectValueComment = commentID;
-  }
+  };
 
   $scope.getNumberStaff = function(noStaff) {
     var numberStaff = [];
@@ -74,7 +74,7 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
       numberStaff.push(i);
     }
     return numberStaff;
-  }
+  };
 
   function insertStaff(callback) {
     for (var i = 0; i < Object.keys($scope.staff.staffname).length; i++) {
@@ -210,5 +210,5 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
         });
       }
     }
-  }
+  };
 });

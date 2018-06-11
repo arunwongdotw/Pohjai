@@ -311,7 +311,7 @@ appControllers.controller('loginMenuCtrl', function($scope, $timeout, $mdUtil, $
         });
       });
     }
-  };
+  }
 
   //  $ionicPlatform.registerBackButtonAction(callback, priority, [actionId])
   //
