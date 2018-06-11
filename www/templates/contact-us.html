@@ -55,10 +55,12 @@
                                     <p style="margin-left: 10px;">{{appLanguage.app_lang_contact_us_report_list}}</p>
                                     <div ng-repeat="report in reportArrayList" style="margin-left: 10px;">
                                         <p>
-                                          {{$index + 1}}. {{appLanguage.app_lang_contact_us_report_title}} : {{report.report_topic}}<br>
-                                          &nbsp;&nbsp;&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_report_detail}} : {{report.report_detail}}<br>
-                                          &nbsp;&nbsp;&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_report_datetime}} : {{report.report_datetime}}
-                                          <p ng-if="report.report_ans != ''" style="color: red; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_report_ans}} : {{report.report_ans}}</p>
+                                            {{$index + 1}}. {{appLanguage.app_lang_contact_us_report_title}} : {{report.report_topic}}<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_report_detail}} : {{report.report_detail}}<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_report_datetime}} : {{report.report_datetime}}
+                                            <p ng-if="report.report_ans != ''" style="color: red; font-weight: bold;">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;{{appLanguage.app_lang_contact_us_report_ans}} : {{report.report_ans}}
+                                            </p>
                                         </p>
                                     </div>
                                 </div>
