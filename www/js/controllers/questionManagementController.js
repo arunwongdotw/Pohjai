@@ -124,7 +124,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
         var_memberid: $scope.memberID
       }
     }).then(function(response) {
-      if (response.data.results = 'countToMakeChartPerQuestion_lessThan10') {
+      if (response.data.results = 'countQuestionSet_lessThan') {
         $state.go('menu2.createquestionset');
       } else {
         if ($scope.appLanguageID == "1") {
@@ -134,7 +134,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
             locals: {
               displayOption: {
                 title: "ไม่สามารถสร้างชุดแบบประเมินได้ !",
-                content: "คุณได้สร้างชุดแบบประเมินเกิน 10 ชุดตามจำนวนที่กำหนด",
+                content: "คุณได้สร้างชุดแบบประเมินเกินจำนวนที่กำหนด",
                 ok: "ตกลง"
               }
             }
@@ -146,7 +146,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
             locals: {
               displayOption: {
                 title: "Cannot Create Question Set !",
-                content: "You created question set more than 10 set that defined.",
+                content: "You created question set more than limit that defined.",
                 ok: "Confirm"
               }
             }
@@ -176,8 +176,59 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
   }
 
   $scope.btnCreateQuestion = function(questionSet) {
-    myService.questionSetDetail = questionSet;
-    $state.go('menu2.createquestion');
+    $http({
+      url: myService.configAPI.webserviceURL + 'webservices/countQuestion.php',
+      method: 'POST',
+      data: {
+        var_memberid: $scope.memberID,
+        var_questionsetid: questionSet.question_set_id
+      }
+    }).then(function(response) {
+      if (response.data.results = 'countQuestion_lessThan') {
+        myService.questionSetDetail = questionSet;
+        $state.go('menu2.createquestion');
+      } else {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ไม่สามารถสร้างหัวข้อแบบประเมินได้ !",
+                content: "คุณได้สร้างหัวข้อแบบประเมินเกินจำนวนที่กำหนด",
+                ok: "ตกลง"
+              }
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Cannot Create Question !",
+                content: "You created question more than limit that defined.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
+      }
+    }, function(error) {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด btnCreateQuestion ใน questionManagementController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
+    });
   }
 
   $scope.btnEditQuestion = function(questionSet) {
