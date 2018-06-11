@@ -276,7 +276,7 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
           locals: {
             displayOption: {
               title: "เกิดข้อผิดพลาด !",
-              content: "เกิดข้อผิดพลาด getAllAds ใน scoreCompleteController ระบบจะปิดอัตโนมัติ",
+              content: "เกิดข้อผิดพลาด getAllAds ใน questionController ระบบจะปิดอัตโนมัติ",
               ok: "ตกลง"
             }
           }
