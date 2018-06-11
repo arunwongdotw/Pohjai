@@ -354,5 +354,95 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
         });
       });
     }
+  };
+
+  $scope.closeCard = function() {
+    var myEl = angular.element(document.querySelector('#advertise-card'));
+    myEl.remove();
+  };
+
+  $scope.adsArray = [];
+  var arrayOfRandomNumber = [];
+  var randomNumber;
+  var allAdsLength;
+  var checkDup;
+
+  $scope.$on('$ionicView.enter', function() {
+    getAllAds(function(status) {
+      createAdsArray(function(status) {});
+      addAdFrequency(function(status) {});
+    });
+  });
+
+  function getAllAds(callback) {
+    $http.get(myService.configAPI.webserviceURL + 'webservices/getAllAds.php')
+      .then(function(response) {
+        $scope.allAds = response.data.results;
+        callback();
+      }, function(error) {
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getAllAds ใน scoreCompleteController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
+      });
+  }
+
+  function createAdsArray(callback) {
+    for (var i = 0; i < 1; i++) {
+      getRandomNumber(function(status) {
+        pushAdsArray(randomNumber, function(status) {
+          callback();
+        });
+      });
+    }
+  }
+
+  function getRandomNumber(callback) {
+    allAdsLength = $scope.allAds.length;
+    randomNumber = Math.floor(Math.random() * allAdsLength);
+    if (arrayOfRandomNumber.length == 0) {
+      arrayOfRandomNumber.push(randomNumber);
+      callback(randomNumber);
+    } else {
+      checkDup = checkDupInArrayOfRandomNumber(randomNumber);
+      if (checkDup == true) {
+        getRandomNumber(callback);
+      } else {
+        arrayOfRandomNumber.push(randomNumber);
+        callback(randomNumber);
+      }
+    }
+  }
+
+  function pushAdsArray(randomNumber, callback) {
+    $scope.adsArray.push($scope.allAds[randomNumber]);
+    callback();
+  }
+
+  function checkDupInArrayOfRandomNumber(randomNumber) {
+    for (var j = 0; j < arrayOfRandomNumber.length; j++) {
+      if (arrayOfRandomNumber[j] == randomNumber) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function addAdFrequency(callback) {
+    for (var i = 0; i < $scope.adsArray.length; i++) {
+      var frequency = parseInt($scope.adsArray[i].advertise_frequency);
+      frequency = frequency + 1;
+      $http.get(myService.configAPI.webserviceURL + 'webservices/addAdFrequency.php?adID=' + $scope.adsArray[i].advertise_id + '&frequency=' + frequency);
+    }
+    callback();
   }
 });

@@ -1,6 +1,14 @@
 <ion-view id="online-course" hide-nav-bar="false">
     <ion-nav-title>{{appLanguage.app_lang_question_title}}</ion-nav-title>
     <ion-content id="online-course-content">
+        <div class="card" id="advertise-card" ng-repeat="ads in adsArray" style="border: 3px solid red;">
+            <div class="item item-icon-right" style="text-align: center;">
+                <p style="font-weight: bold; font-size: 20px;">{{ads.advertise_text_1}}</p>
+                <p style="font-weight: bold; font-size: 18px;">{{ads.advertise_text_2}}</p>
+                <p style="font-weight: bold; font-size: 18px;">{{ads.advertise_text_3}}</p>
+                <i class="icon fas fa-times" ng-click="closeCard()"></i>
+            </div>
+        </div>
         <div class="course-list" style="margin-top: 0px;">
             <div class="course-item" ng-repeat="questionSet in questionSetArrayList">
                 <div class="title angular-course-background" style="background-color: {{color}} !important;">
