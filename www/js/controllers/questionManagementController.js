@@ -13,11 +13,11 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
   }
 
   if (typeof window.localStorage.secondColor == 'undefined') {
-    $scope.color = "#F44336";
+    $scope.color = "#3F51B5";
   } else if ((window.localStorage.secondColor != "") || (window.localStorage.secondColor != null)) {
     $scope.color = window.localStorage.secondColor;
   } else {
-    $scope.color = "#F44336";
+    $scope.color = "#3F51B5";
   }
 
   function getAppLanguage() {

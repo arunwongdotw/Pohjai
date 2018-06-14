@@ -373,24 +373,24 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
         // $mdThemingProvider
         //     .theme('default')
-        //     .primaryPalette('pink')
-        //     .accentPalette('red');
+        //     .primaryPalette('indigo')
+        //     .accentPalette('cyan');
 
         if (typeof window.localStorage.appColor == 'undefined') {
           $mdThemingProvider
               .theme('default')
-              .primaryPalette('red')
-              .accentPalette('red');
+              .primaryPalette('indigo')
+              .accentPalette('cyan');
         } else if ((window.localStorage.appColor == "") || (window.localStorage.appColor == null)) {
           $mdThemingProvider
               .theme('default')
-              .primaryPalette('red')
-              .accentPalette('red');
+              .primaryPalette('indigo')
+              .accentPalette('cyan');
         } else {
           $mdThemingProvider
               .theme('default')
               .primaryPalette(window.localStorage.appColor)
-              .accentPalette('red');
+              .accentPalette('cyan');
         }
 
         appPrimaryColor = $mdColorPalette[$mdThemingProvider._THEMES.default.colors.primary.name]["500"]; //Use for get base color of theme.

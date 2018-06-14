@@ -7,6 +7,10 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   $scope.staffDetail = myService.staffDetail;
   $scope.randomNumber = Math.random();
 
+  $scope.lockSlide = function() {
+    $ionicSlideBoxDelegate.enableSlide(false);
+  }
+
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
     getAppLanguage();
