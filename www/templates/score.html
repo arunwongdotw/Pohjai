@@ -6,7 +6,8 @@
         </a>
     </ion-nav-buttons>
     <ion-content id="try-app-content">
-        <ion-slide-box id="user-interface-content" active-slide="0" ng-if="memberSetting.question_set_form == 1" ng-init="lockSlide()">
+        <!-- <ion-slide-box id="user-interface-content" active-slide="0" ng-if="memberSetting.question_set_form == 1" ng-init="lockSlide()"> -->
+        <ion-slide-box id="user-interface-content" active-slide="0" ng-if="memberSetting.question_set_form == 1">
             <ion-slide class="slide-first" style="top: 11%;" ng-repeat="question in allQuestionInSet">
                 <img class="user-img" src="http://1did.net/pohjai9/img/img_profile/{{menu2.member_username}}.jpg?random={{randomNumber}}" style="width: 7%; margin-top: 10px; border-radius: 50%;">
                 <div style="text-align: center; margin-top: 10px; font-weight: bold; font-size: 20px;">{{question.question_name}}</div>

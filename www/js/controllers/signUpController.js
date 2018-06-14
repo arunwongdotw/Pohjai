@@ -194,7 +194,7 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
                     locals: {
                       displayOption: {
                         title: "ชื่อบริษัทไม่ถูกต้อง !",
-                        content: "กรุณากรอกชื่อบริษัทให้ถูกต้องตามรูปแบบที่กำหนด",
+                        content: "กรุณากรอกชื่อบริษัท",
                         ok: "ตกลง"
                       }
                     }
@@ -206,7 +206,7 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
                     locals: {
                       displayOption: {
                         title: "Invalid Company Name !",
-                        content: "Please fill company name in the form provided.",
+                        content: "Please fill company name.",
                         ok: "Confirm"
                       }
                     }

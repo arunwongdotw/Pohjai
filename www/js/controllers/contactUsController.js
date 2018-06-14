@@ -165,7 +165,7 @@ appControllers.controller('contactUsCtrl', function($scope, $timeout, $state, $s
             locals: {
               displayOption: {
                 title: "รายละเอียดไม่ถูกต้อง !",
-                content: "กรุณารายละเอียดตามรูปแบบที่กำหนด",
+                content: "กรุณารายละเอียด",
                 ok: "ตกลง"
               }
             }
@@ -177,7 +177,7 @@ appControllers.controller('contactUsCtrl', function($scope, $timeout, $state, $s
             locals: {
               displayOption: {
                 title: "Invalid Detail !",
-                content: "Please fill detail in the form provided.",
+                content: "Please fill detail.",
                 ok: "Confirm"
               }
             }
@@ -192,7 +192,7 @@ appControllers.controller('contactUsCtrl', function($scope, $timeout, $state, $s
           locals: {
             displayOption: {
               title: "หัวข้อไม่ถูกต้อง !",
-              content: "กรุณากรอกหัวข้อตามรูปแบบที่กำหนด",
+              content: "กรุณากรอกหัวข้อ",
               ok: "ตกลง"
             }
           }
@@ -204,7 +204,7 @@ appControllers.controller('contactUsCtrl', function($scope, $timeout, $state, $s
           locals: {
             displayOption: {
               title: "Invalid Topic !",
-              content: "Please fill topic in the form provided.",
+              content: "Please fill topic.",
               ok: "Confirm"
             }
           }

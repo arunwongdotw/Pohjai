@@ -137,7 +137,7 @@ appControllers.controller('editQuestionSetCtrl', function($scope, $timeout, $sta
           locals: {
             displayOption: {
               title: "ชื่อชุดแบบประเมินไม่ถูกต้อง !",
-              content: "กรุณากรอกชื่อชุดแบบประเมินตามรูปแบบที่กำหนด",
+              content: "กรุณากรอกชื่อชุดแบบประเมิน",
               ok: "ตกลง"
             }
           }
@@ -149,7 +149,7 @@ appControllers.controller('editQuestionSetCtrl', function($scope, $timeout, $sta
           locals: {
             displayOption: {
               title: "Invalid Set of Form Name !",
-              content: "Please fill set of form name in the form provided.",
+              content: "Please fill set of form name.",
               ok: "Confirm"
             }
           }

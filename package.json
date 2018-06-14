@@ -4,7 +4,6 @@
   "description": "Satisfaction Application.",
   "dependencies": {
     "cordova-android": "^7.0.0",
-    "cordova-ios": "~4.1.1",
     "cordova-plugin-camera": "~4.0.3",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-contacts": "^2.1.0",
@@ -31,7 +30,6 @@
   ],
   "cordova": {
     "platforms": [
-      "ios",
       "android"
     ],
     "plugins": {

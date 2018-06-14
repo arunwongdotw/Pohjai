@@ -7,9 +7,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   $scope.staffDetail = myService.staffDetail;
   $scope.randomNumber = Math.random();
 
-  $scope.lockSlide = function() {
-    $ionicSlideBoxDelegate.enableSlide(false);
-  }
+  // $scope.lockSlide = function() {
+  //   $ionicSlideBoxDelegate.enableSlide(false);
+  // }
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
@@ -477,7 +477,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             locals: {
               displayOption: {
                 title: "รายละเอียดข้อเสนอแนะไม่ถูกต้อง !",
-                content: "กรุณากรอกรายละเอียดข้อเสนอแนะตามรูปแบบที่กำหนด",
+                content: "กรุณากรอกรายละเอียดข้อเสนอแนะ",
                 ok: "ตกลง"
               }
             }
@@ -489,7 +489,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             locals: {
               displayOption: {
                 title: "Invalid Comment Detail !",
-                content: "Please fill comment detail in the form provided.",
+                content: "Please fill comment detail.",
                 ok: "Confirm"
               }
             }
@@ -559,7 +559,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             locals: {
               displayOption: {
                 title: "รายละเอียดข้อเสนอแนะไม่ถูกต้อง !",
-                content: "กรุณากรอกรายละเอียดข้อเสนอแนะตามรูปแบบที่กำหนด",
+                content: "กรุณากรอกรายละเอียดข้อเสนอแนะ",
                 ok: "ตกลง"
               }
             }
@@ -571,7 +571,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             locals: {
               displayOption: {
                 title: "Invalid Comment Detail !",
-                content: "Please fill comment detail in the form provided.",
+                content: "Please fill comment detail.",
                 ok: "Confirm"
               }
             }
@@ -704,7 +704,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 locals: {
                   displayOption: {
                     title: "รายละเอียดข้อเสนอแนะไม่ถูกต้อง !",
-                    content: "กรุณากรอกรายละเอียดข้อเสนอแนะตามรูปแบบที่กำหนด",
+                    content: "กรุณากรอกรายละเอียดข้อเสนอแนะ",
                     ok: "ตกลง"
                   }
                 }
@@ -716,7 +716,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 locals: {
                   displayOption: {
                     title: "Invalid Comment Detail !",
-                    content: "Please fill comment detail in the form provided.",
+                    content: "Please fill comment detail.",
                     ok: "Confirm"
                   }
                 }

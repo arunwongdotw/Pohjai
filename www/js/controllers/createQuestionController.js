@@ -113,7 +113,7 @@ appControllers.controller('createQuestionCtrl', function($scope, $timeout, $stat
           locals: {
             displayOption: {
               title: "ชื่อหัวข้อแบบประเมินไม่ถูกต้อง !",
-              content: "กรุณากรอกชื่อหัวข้อแบบประเมินตามรูปแบบที่กำหนด",
+              content: "กรุณากรอกชื่อหัวข้อแบบประเมิน",
               ok: "ตกลง"
             }
           }
@@ -125,7 +125,7 @@ appControllers.controller('createQuestionCtrl', function($scope, $timeout, $stat
           locals: {
             displayOption: {
               title: "Invalid Topic Name !",
-              content: "Please fill topic name in the form provided.",
+              content: "Please fill topic name.",
               ok: "Confirm"
             }
           }

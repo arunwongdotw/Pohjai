@@ -166,7 +166,7 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
                   locals: {
                     displayOption: {
                       title: "อีเมลไม่ถูกต้อง !",
-                      content: "กรุณากรอกอีเมลให้ถูกต้องตามรูปแบบที่กำหนด",
+                      content: "กรุณากรอกอีเมล",
                       ok: "ตกลง"
                     }
                   }
@@ -178,7 +178,7 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
                   locals: {
                     displayOption: {
                       title: "Invalid Email !",
-                      content: "Please fill email in the form provided.",
+                      content: "Please fill email.",
                       ok: "Confirm"
                     }
                   }
@@ -220,7 +220,7 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
               locals: {
                 displayOption: {
                   title: "หมายเลขโทรศัพท์ไม่ถูกต้อง !",
-                  content: "กรุณากรอกหมายเลขโทรศัพท์ให้ถูกต้องตามรูปแบบที่กำหนด",
+                  content: "กรุณากรอกหมายเลขโทรศัพท์",
                   ok: "ตกลง"
                 }
               }
@@ -232,7 +232,7 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
               locals: {
                 displayOption: {
                   title: "Invalid Phone Number !",
-                  content: "Please fill phone number in the form provided.",
+                  content: "Please fill phone number.",
                   ok: "Confirm"
                 }
               }
@@ -247,7 +247,7 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
             locals: {
               displayOption: {
                 title: "ชื่อผู้ติดต่อไม่ถูกต้อง !",
-                content: "กรุณากรอกชื่อผู้ติดต่อให้ถูกต้องตามรูปแบบที่กำหนด",
+                content: "กรุณากรอกชื่อผู้ติดต่อ",
                 ok: "ตกลง"
               }
             }
@@ -259,7 +259,7 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
             locals: {
               displayOption: {
                 title: "Invalid Contact !",
-                content: "Please fill contact in the form provided.",
+                content: "Please fill contact.",
                 ok: "Confirm"
               }
             }
@@ -274,7 +274,7 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
           locals: {
             displayOption: {
               title: "ชื่อบริษัทไม่ถูกต้อง !",
-              content: "กรุณากรอกชื่อบริษัทให้ถูกต้องตามรูปแบบที่กำหนด",
+              content: "กรุณากรอกชื่อบริษัท",
               ok: "ตกลง"
             }
           }
@@ -286,277 +286,7 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
           locals: {
             displayOption: {
               title: "Invalid Company Name !",
-              content: "Please fill company name in the form provided.",
-              ok: "Confirm"
-            }
-          }
-        });
-      }
-    }
-  };
-
-  $scope.btnSignUp = function() {
-    var checkEnglishNumberRegEx = /^[0-9a-zA-Z]+$/;
-    if (($scope.signup.username != null) && ($scope.signup.username != "")) {
-      if (checkEnglishNumberRegEx.test($scope.signup.username)) {
-        if (($scope.signup.password != null) && ($scope.signup.password != "")) {
-          if (checkEnglishNumberRegEx.test($scope.signup.password)) {
-            if ($scope.signup.password == $scope.signup.confirmpassword) {
-              if (($scope.signup.company != null) && ($scope.signup.company != "")) {
-                var img = document.getElementById('sign-up-picture');
-                var imageURI = img.src;
-                var server = myService.configAPI.webserviceURL + 'webservices/uploadMemberPic.php?username=' + $scope.signup.username;
-                var trustHosts = true;
-                var options2 = {
-                  fileKey: "myCameraImg",
-                  fileName: imageURI.substr(imageURI.lastIndexOf('/') + 1),
-                  mimeType: "image/jpeg",
-                  chunkedMode: false
-                };
-                $cordovaFileTransfer.upload(server, imageURI, options2);
-                $http({
-                  url: myService.configAPI.webserviceURL + 'webservices/signUpMember.php',
-                  method: 'POST',
-                  data: {
-                    var_username: $scope.signup.username,
-                    var_password: $scope.signup.password,
-                    var_company: $scope.signup.company,
-                    var_template: "1",
-                    var_color: "1",
-                    var_numberBtn: "5",
-                    var_numberStaff: "5"
-                  }
-                }).then(function(response) {
-                  if (response.data.results == 'duplicate_username') {
-                    if ($scope.appLanguageID == "1") {
-                      $mdDialog.show({
-                        controller: 'DialogController',
-                        templateUrl: 'confirm-dialog.html',
-                        locals: {
-                          displayOption: {
-                            title: "ชื่อผู้ใช้ (Username) ไม่ถูกต้อง !",
-                            content: "พบชื่อผู้ใช้ (Username) มีอยู่ในระบบแล้ว กรุณาเปลี่ยนชื่อผู้ใช้",
-                            ok: "ตกลง"
-                          }
-                        }
-                      });
-                    } else {
-                      $mdDialog.show({
-                        controller: 'DialogController',
-                        templateUrl: 'confirm-dialog.html',
-                        locals: {
-                          displayOption: {
-                            title: "Invalid Username !",
-                            content: "Found username in the system, please change username.",
-                            ok: "Confirm"
-                          }
-                        }
-                      });
-                    }
-                  } else {
-                    if ($scope.appLanguageID == "1") {
-                      $mdDialog.show({
-                        controller: 'DialogController',
-                        templateUrl: 'confirm-dialog.html',
-                        locals: {
-                          displayOption: {
-                            title: "สมัครสมาชิกสำเร็จ !",
-                            content: "คุณสมัครสมาชิกสำเร็จ",
-                            ok: "ตกลง"
-                          }
-                        }
-                      }).then(function(response) {
-                        window.localStorage.memberUsername = $scope.signup.username;
-                        $state.go('menu2.question');
-                      });
-                    } else {
-                      $mdDialog.show({
-                        controller: 'DialogController',
-                        templateUrl: 'confirm-dialog.html',
-                        locals: {
-                          displayOption: {
-                            title: "Register Successfully",
-                            content: "You registered successfully.",
-                            ok: "Confirm"
-                          }
-                        }
-                      }).then(function(response) {
-                        window.localStorage.memberUsername = $scope.signup.username;
-                        $state.go('menu2.question');
-                      });
-                    }
-                  }
-                }, function(error) {
-                  $mdDialog.show({
-                    controller: 'DialogController',
-                    templateUrl: 'confirm-dialog.html',
-                    locals: {
-                      displayOption: {
-                        title: "เกิดข้อผิดพลาด !",
-                        content: "เกิดข้อผิดพลาด btnSignUp ใน signUpController ระบบจะปิดอัตโนมัติ",
-                        ok: "ตกลง"
-                      }
-                    }
-                  }).then(function(response) {
-                    ionic.Platform.exitApp();
-                  });
-                });
-              } else {
-                if ($scope.appLanguageID == "1") {
-                  $mdDialog.show({
-                    controller: 'DialogController',
-                    templateUrl: 'confirm-dialog.html',
-                    locals: {
-                      displayOption: {
-                        title: "ชื่อบริษัทไม่ถูกต้อง !",
-                        content: "กรุณากรอกชื่อบริษัทให้ถูกต้องตามรูปแบบที่กำหนด",
-                        ok: "ตกลง"
-                      }
-                    }
-                  });
-                } else {
-                  $mdDialog.show({
-                    controller: 'DialogController',
-                    templateUrl: 'confirm-dialog.html',
-                    locals: {
-                      displayOption: {
-                        title: "Invalid Company Name !",
-                        content: "Please fill company name in the form provided.",
-                        ok: "Confirm"
-                      }
-                    }
-                  });
-                }
-              }
-            } else {
-              if ($scope.appLanguageID == "1") {
-                $mdDialog.show({
-                  controller: 'DialogController',
-                  templateUrl: 'confirm-dialog.html',
-                  locals: {
-                    displayOption: {
-                      title: "ยืนยันรหัสผ่านไม่ถูกต้อง !",
-                      content: "กรุณากรอกยืนยันรหัสผ่านให้ตรงกับรหัสผ่าน (Password)",
-                      ok: "ตกลง"
-                    }
-                  }
-                });
-              } else {
-                $mdDialog.show({
-                  controller: 'DialogController',
-                  templateUrl: 'confirm-dialog.html',
-                  locals: {
-                    displayOption: {
-                      title: "Invalid Confirm Password !",
-                      content: "Please fill confirm password same as password.",
-                      ok: "Confirm"
-                    }
-                  }
-                });
-              }
-            }
-          } else {
-            if ($scope.appLanguageID == "1") {
-              $mdDialog.show({
-                controller: 'DialogController',
-                templateUrl: 'confirm-dialog.html',
-                locals: {
-                  displayOption: {
-                    title: "รหัสผ่าน (Password) ไม่ถูกต้อง !",
-                    content: "รหัสผ่าน (Password) ต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น",
-                    ok: "ตกลง"
-                  }
-                }
-              });
-            } else {
-              $mdDialog.show({
-                controller: 'DialogController',
-                templateUrl: 'confirm-dialog.html',
-                locals: {
-                  displayOption: {
-                    title: "Invalid Password !",
-                    content: "Password must be in English and numeric.",
-                    ok: "Confirm"
-                  }
-                }
-              });
-            }
-          }
-        } else {
-          if ($scope.appLanguageID == "1") {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "รหัสผ่าน (Password) ไม่ถูกต้อง !",
-                  content: "กรุณากรอกรหัสผ่าน (Password) ตามรูปแบบที่กำหนด",
-                  ok: "ตกลง"
-                }
-              }
-            });
-          } else {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "Invalid Password !",
-                  content: "Please fill password in the form provided.",
-                  ok: "Confirm"
-                }
-              }
-            });
-          }
-        }
-      } else {
-        if ($scope.appLanguageID == "1") {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "ชื่อผู้ใช้ (Username) ไม่ถูกต้อง !",
-                content: "ชื่อผู้ใช้ (Username) ต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น",
-                ok: "ตกลง"
-              }
-            }
-          });
-        } else {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "Invalid Username !",
-                content: "Username must be in English and numeric.",
-                ok: "Confirm"
-              }
-            }
-          });
-        }
-      }
-    } else {
-      if ($scope.appLanguageID == "1") {
-        $mdDialog.show({
-          controller: 'DialogController',
-          templateUrl: 'confirm-dialog.html',
-          locals: {
-            displayOption: {
-              title: "ชื่อผู้ใช้ (Username) ไม่ถูกต้อง !",
-              content: "กรุณากรอกชื่อผู้ใช้ (Username) ตามรูปแบบที่กำหนด",
-              ok: "ตกลง"
-            }
-          }
-        });
-      } else {
-        $mdDialog.show({
-          controller: 'DialogController',
-          templateUrl: 'confirm-dialog.html',
-          locals: {
-            displayOption: {
-              title: "Invalid Username !",
-              content: "Please fill username in the form provided.",
+              content: "Please fill company name.",
               ok: "Confirm"
             }
           }
