@@ -206,6 +206,28 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
       });
   };
 
+  $scope.btnQRCode = function(questionSet) {
+    myService.questionSetDetail = questionSet;
+    getStaffList(function(status) {
+      if (myService.staffList == "0") {
+        generateQRCode(function(status) {
+          myService.staffDetail = {};
+          $state.go('menu2.qrcode');
+        });
+      } else {
+        $state.go('menu2.stafflistqrcode');
+      }
+    });
+  };
+
+  function generateQRCode(callback) {
+    $http.get('http://1did.net/pohjai9/php_qrcode/index.php?data=' + myService.questionSetDetail.question_set_id + '&level=high&size=10')
+      .then(function(response) {
+        myService.qrCodeName = response.data;
+        callback();
+      });
+  }
+
   $scope.btnReportSelection = function(questionSet) {
     myService.questionSetDetail = questionSet;
     $scope.navigateTo('menu2.reportselection');

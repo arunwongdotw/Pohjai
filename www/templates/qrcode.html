@@ -1,0 +1,35 @@
+<ion-view id="online-course" hide-nav-bar="false">
+    <ion-nav-title>{{appLanguage.app_lang_qrcode_title}}</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="btnBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content id="online-course-content" overflow-scroll="false">
+        <!-- <div class="card" id="advertise-card" ng-repeat="ads in adsArray" style="border: 3px solid red;">
+            <div class="item item-icon-right" style="text-align: center;">
+                <p style="font-weight: bold; font-size: 20px;">{{ads.advertise_text_1}}</p>
+                <p style="font-weight: bold; font-size: 18px;">{{ads.advertise_text_2}}</p>
+                <p style="font-weight: bold; font-size: 18px;">{{ads.advertise_text_3}}</p>
+                <i class="icon fas fa-times" ng-click="closeCard()"></i>
+            </div>
+        </div> -->
+        <div class="course-list" style="margin-top: 0px;" ng-if="staffDetail == ''">
+            <div class="course-item">
+                <div class="title ios-course-background" style="background-color: {{color}} !important;">{{appLanguage.app_lang_qrcode_question_set_name}} : {{questionSetDetail.question_set_name}}</div>
+                <div class="content">
+                    <img src="{{qrCodeImg}}" style="margin-left: auto; margin-right: auto; display: block; width: 100%;"></img>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-list" style="margin-top: 0px;" ng-if="staffDetail != ''">
+            <div class="course-item">
+                <div class="title ios-course-background" style="background-color: {{color}} !important;">{{appLanguage.app_lang_qrcode_staff_name}} : {{staffDetail.staff_name}}</div>
+                <div class="content">
+                    <img src="{{qrCodeImg}}" style="margin-left: auto; margin-right: auto; display: block; width: 100%;"></img>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
