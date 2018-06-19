@@ -66,7 +66,8 @@ appControllers.controller('staffListQRCodeCtrl', function($scope, $timeout, $sta
   };
 
   function generateQRCode(callback) {
-    $http.get('http://1did.net/pohjai9/php_qrcode/index.php?data=' + myService.questionSetDetail.question_set_id + '&level=high&size=10')
+    var qrCodeData = "http://1did.net/pohjai9/php/pohjai-qrcode-staff.php?questionSetID=" + myService.questionSetDetail.question_set_id + "_" + $scope.appLanguageID + "_" + myService.staffDetail.staff_id;
+    $http.get('http://1did.net/pohjai9/php_qrcode/index.php?data=' + qrCodeData + '&level=high&size=10')
       .then(function(response) {
         myService.qrCodeName = response.data;
         callback();
