@@ -226,6 +226,20 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
       .then(function(response) {
         myService.qrCodeName = response.data;
         callback();
+      }, function(error) {
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด generateQRCode ใน questionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
