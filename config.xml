@@ -2,11 +2,11 @@
 <widget id="com.smartonline.pohjai" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Pohjai</name>
     <description>
-    Satisfaction Application.
-  </description>
+    แอปพลิเคชันประเมินความพึงพอใจของลูกค้า
+    </description>
     <author email="roj2007@gmail.com" href="http://www.smartonline.info">
-    Smart Online
-  </author>
+    Smart Online Co., Ltd.
+    </author>
     <content src="index.html" />
     <allow-navigation href="tel:*" />
     <access origin="*" />
@@ -83,5 +83,6 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-nativeaudio" spec="^3.0.9" />
     <engine name="android" spec="^7.0.0" />
 </widget>
