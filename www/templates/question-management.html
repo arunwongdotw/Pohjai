@@ -2,7 +2,7 @@
     <ion-nav-title>{{appLanguage.app_lang_question_mangement_title}}</ion-nav-title>
     <ion-content id="online-course-content">
         <div class="card" id="advertise-card" ng-repeat="ads in adsArray" style="border: 3px solid red;">
-            <div class="item item-icon-right" style="text-align: center;">
+            <div class="item item-icon-right" style="text-align: center;" ng-click="openLink(ads)">
                 <p style="font-weight: bold; font-size: 20px;">{{ads.advertise_text_1}}</p>
                 <p style="font-weight: bold; font-size: 18px;">{{ads.advertise_text_2}}</p>
                 <p style="font-weight: bold; font-size: 18px;">{{ads.advertise_text_3}}</p>

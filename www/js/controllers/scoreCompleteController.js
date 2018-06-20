@@ -49,6 +49,17 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
     $scope.navigateTo('menu2.score');
   };
 
+  $scope.openLink = function(ads) {
+    var options = {
+      location: 'yes',
+      clearcache: 'yes',
+      toolbar: 'no'
+    };
+    if ((ads.advertise_url != "") && (ads.advertise_url != null)) {
+      $cordovaInAppBrowser.open('http://' + ads.advertise_url, '_system', options);
+    }
+  }
+
   $scope.adsArray = [];
   var arrayOfRandomNumber = [];
   var randomNumber;

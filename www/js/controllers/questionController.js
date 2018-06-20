@@ -1,4 +1,4 @@
-appControllers.controller('questionCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog) {
+appControllers.controller('questionCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog, $cordovaInAppBrowser) {
   $scope.appLanguage = {};
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
@@ -268,6 +268,17 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
       }
     });
   };
+
+  $scope.openLink = function(ads) {
+    var options = {
+      location: 'yes',
+      clearcache: 'yes',
+      toolbar: 'no'
+    };
+    if ((ads.advertise_url != "") && (ads.advertise_url != null)) {
+      $cordovaInAppBrowser.open('http://' + ads.advertise_url, '_system', options);
+    }
+  }
 
   $scope.closeCard = function() {
     var myEl = angular.element(document.querySelector('#advertise-card'));
