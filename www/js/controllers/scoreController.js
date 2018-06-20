@@ -1,4 +1,4 @@
-appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog, $ionicSlideBoxDelegate) {
+appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog, $ionicSlideBoxDelegate, $cordovaNativeAudio) {
   $scope.appLanguage = {};
   $scope.memberSetting = {};
   $scope.comment = {};
@@ -6,6 +6,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   $scope.allQuestionInSet = myService.allQuestionInSet;
   $scope.staffDetail = myService.staffDetail;
   $scope.randomNumber = Math.random();
+  $cordovaNativeAudio.preloadSimple('clapping', 'audio/clapping.mp3');
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
@@ -233,6 +234,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         }
       }).then(function(response) {
         if ((index + 1) < $scope.allQuestionInSet.length) {
+          $cordovaNativeAudio.play('clapping');
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -263,6 +265,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             });
           }
         } else {
+          $cordovaNativeAudio.play('clapping');
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -328,6 +331,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         }
       }).then(function(response) {
         if ((index + 1) < $scope.allQuestionInSet.length) {
+          $cordovaNativeAudio.play('clapping');
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -358,6 +362,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             });
           }
         } else {
+          $cordovaNativeAudio.play('clapping');
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -425,6 +430,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             var_commentdetail: $scope.comment.commentDetail
           }
         }).then(function(response) {
+          $cordovaNativeAudio.play('clapping');
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -507,6 +513,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             var_staffid: $scope.staffDetail.staff_id
           }
         }).then(function(response) {
+          $cordovaNativeAudio.play('clapping');
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -597,6 +604,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   var_commentdetail: $scope.comment.commentDetail
                 }
               }).then(function(response) {
+                $cordovaNativeAudio.play('clapping');
                 if ($scope.appLanguageID == "1") {
                   $mdDialog.show({
                     controller: 'DialogController',
@@ -651,6 +659,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   var_staffid: $scope.staffDetail.staff_id
                 }
               }).then(function(response) {
+                $cordovaNativeAudio.play('clapping');
                 if ($scope.appLanguageID == "1") {
                   $mdDialog.show({
                     controller: 'DialogController',
@@ -726,6 +735,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         } else {
           getRating(function(status) {});
           addScoreToDB(function(status) {});
+          $cordovaNativeAudio.play('clapping');
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
