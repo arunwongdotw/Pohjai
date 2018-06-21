@@ -6,7 +6,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   $scope.allQuestionInSet = myService.allQuestionInSet;
   $scope.staffDetail = myService.staffDetail;
   $scope.randomNumber = Math.random();
-  $cordovaNativeAudio.preloadSimple('clapping', 'audio/clapping.mp3');
+  $cordovaNativeAudio.preloadSimple('thankscut', 'audio/thankscut.mp3');
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
@@ -23,6 +23,14 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
     $scope.navTitle = $scope.menu2.member_company;
   } else {
     $scope.navTitle = $scope.menu2.member_company + ' (' + $scope.staffDetail.staff_name + ')';
+  }
+
+  if (typeof window.localStorage.sound == 'undefined') {
+    $scope.sound = "1";
+  } else if ((window.localStorage.sound != "") || (window.localStorage.sound != null)) {
+    $scope.sound = window.localStorage.sound;
+  } else {
+    $scope.sound = "1";
   }
 
   $http.get(myService.configAPI.webserviceURL + 'webservices/getMemberDetail.php?memberUsername=' + window.localStorage.memberUsername)
@@ -234,7 +242,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         }
       }).then(function(response) {
         if ((index + 1) < $scope.allQuestionInSet.length) {
-          $cordovaNativeAudio.play('clapping');
+          if ($scope.sound == "1") {
+            $cordovaNativeAudio.play('thankscut');
+          }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -265,7 +275,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             });
           }
         } else {
-          $cordovaNativeAudio.play('clapping');
+          if ($scope.sound == "1") {
+            $cordovaNativeAudio.play('thankscut');
+          }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -331,7 +343,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         }
       }).then(function(response) {
         if ((index + 1) < $scope.allQuestionInSet.length) {
-          $cordovaNativeAudio.play('clapping');
+          if ($scope.sound == "1") {
+            $cordovaNativeAudio.play('thankscut');
+          }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -362,7 +376,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             });
           }
         } else {
-          $cordovaNativeAudio.play('clapping');
+          if ($scope.sound == "1") {
+            $cordovaNativeAudio.play('thankscut');
+          }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -430,7 +446,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             var_commentdetail: $scope.comment.commentDetail
           }
         }).then(function(response) {
-          $cordovaNativeAudio.play('clapping');
+          if ($scope.sound == "1") {
+            $cordovaNativeAudio.play('thankscut');
+          }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -513,7 +531,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             var_staffid: $scope.staffDetail.staff_id
           }
         }).then(function(response) {
-          $cordovaNativeAudio.play('clapping');
+          if ($scope.sound == "1") {
+            $cordovaNativeAudio.play('thankscut');
+          }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
@@ -604,7 +624,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   var_commentdetail: $scope.comment.commentDetail
                 }
               }).then(function(response) {
-                $cordovaNativeAudio.play('clapping');
+                if ($scope.sound == "1") {
+                  $cordovaNativeAudio.play('thankscut');
+                }
                 if ($scope.appLanguageID == "1") {
                   $mdDialog.show({
                     controller: 'DialogController',
@@ -659,7 +681,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                   var_staffid: $scope.staffDetail.staff_id
                 }
               }).then(function(response) {
-                $cordovaNativeAudio.play('clapping');
+                if ($scope.sound == "1") {
+                  $cordovaNativeAudio.play('thankscut');
+                }
                 if ($scope.appLanguageID == "1") {
                   $mdDialog.show({
                     controller: 'DialogController',
@@ -735,7 +759,9 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         } else {
           getRating(function(status) {});
           addScoreToDB(function(status) {});
-          $cordovaNativeAudio.play('clapping');
+          if ($scope.sound == "1") {
+            $cordovaNativeAudio.play('thankscut');
+          }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
               controller: 'DialogController',
