@@ -371,27 +371,27 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
         //Learn more about material color patten: https://www.materialpalette.com/
         //Learn more about material theme: https://material.angularjs.org/latest/#/Theming/01_introduction
 
-        $mdThemingProvider
-            .theme('default')
-            .primaryPalette('indigo')
-            .accentPalette('red');
+        // $mdThemingProvider
+        //     .theme('default')
+        //     .primaryPalette('indigo')
+        //     .accentPalette('red');
 
-        // if (typeof window.localStorage.appColor == 'undefined') {
-        //   $mdThemingProvider
-        //       .theme('default')
-        //       .primaryPalette('indigo')
-        //       .accentPalette('red');
-        // } else if ((window.localStorage.appColor == "") || (window.localStorage.appColor == null)) {
-        //   $mdThemingProvider
-        //       .theme('default')
-        //       .primaryPalette('indigo')
-        //       .accentPalette('red');
-        // } else {
-        //   $mdThemingProvider
-        //       .theme('default')
-        //       .primaryPalette(window.localStorage.appColor)
-        //       .accentPalette('red');
-        // }
+        if (typeof window.localStorage.appColor == 'undefined') {
+          $mdThemingProvider
+              .theme('default')
+              .primaryPalette('indigo')
+              .accentPalette('red');
+        } else if ((window.localStorage.appColor == "") || (window.localStorage.appColor == null)) {
+          $mdThemingProvider
+              .theme('default')
+              .primaryPalette('indigo')
+              .accentPalette('red');
+        } else {
+          $mdThemingProvider
+              .theme('default')
+              .primaryPalette(window.localStorage.appColor)
+              .accentPalette('red');
+        }
 
         appPrimaryColor = $mdColorPalette[$mdThemingProvider._THEMES.default.colors.primary.name]["500"]; //Use for get base color of theme.
 
