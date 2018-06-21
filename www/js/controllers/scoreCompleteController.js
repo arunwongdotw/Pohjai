@@ -1,4 +1,4 @@
-appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog) {
+appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state, $stateParams, $ionicHistory, $ionicPlatform, $http, myService, $mdDialog, $cordovaInAppBrowser) {
   $scope.appLanguage = {};
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
