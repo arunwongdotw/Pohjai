@@ -35,6 +35,14 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
     $scope.mdSelectValueSecondColor = "1";
   }
 
+  if (typeof window.localStorage.sound == 'undefined') {
+    $scope.mdSelectValueSound = "1";
+  } else if ((window.localStorage.sound != "") || (window.localStorage.sound != null)) {
+    $scope.mdSelectValueSound = window.localStorage.sound;
+  } else {
+    $scope.mdSelectValueSecondColor = "1";
+  }
+
   if ($state.current.name == "menu1.setting") {
     $scope.loginFlag = false;
   } else {
@@ -301,6 +309,13 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         ionic.Platform.exitApp();
       });
     }
+  };
+
+  $scope.setSound = function(soundID) {
+    window.localStorage.sound = soundID;
+    $state.go('menu2.question', {}, {
+      reload: 'menu2.question'
+    });
   };
 
   $scope.setLanguage = function(appLanguageID) {

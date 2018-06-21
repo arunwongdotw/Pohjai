@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view hide-nav-bar="false">
     <ion-nav-title>{{appLanguage.app_lang_setting_title}}</ion-nav-title>
     <ion-content id="try-app-content">
         <div class="row">
@@ -162,6 +162,23 @@
             <md-option value="1" ng-click="setColor(1)" ng-if="appLanguageID == 4">스타일 1</md-option>
             <md-option value="2" ng-click="setColor(2)" ng-if="appLanguageID == 4">스타일 2</md-option>
             <md-option value="3" ng-click="setColor(3)" ng-if="appLanguageID == 4">스타일 3</md-option>
-        </md-select><br><br>
+        </md-select>
+        <div class="row" ng-if="loginFlag == true">
+            <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_sound}}</div>
+        </div>
+        <md-select ng-model="mdSelectValueSound" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;" ng-if="loginFlag == true">
+            <md-option value="1" ng-click="setSound(1)" ng-if="appLanguageID == 1">เปิดเสียง</md-option>
+            <md-option value="2" ng-click="setSound(2)" ng-if="appLanguageID == 1">ปิดเสียง</md-option>
+
+            <md-option value="1" ng-click="setSound(1)" ng-if="appLanguageID == 2">Unmute</md-option>
+            <md-option value="2" ng-click="setSound(2)" ng-if="appLanguageID == 2">Mute</md-option>
+
+            <md-option value="1" ng-click="setSound(1)" ng-if="appLanguageID == 3">取消静音</md-option>
+            <md-option value="2" ng-click="setSound(2)" ng-if="appLanguageID == 3">静音</md-option>
+
+            <md-option value="1" ng-click="setSound(1)" ng-if="appLanguageID == 4">음소거 해제</md-option>
+            <md-option value="2" ng-click="setSound(2)" ng-if="appLanguageID == 4">묵자</md-option>
+        </md-select>
+        <br><br>
     </ion-content>
 </ion-view>
