@@ -17,4 +17,5 @@ angular.module('starter')
     this.staffList = {}; // object เก็บรายการของ staff ในแต่ละ question set
     this.staffDetail = {}; // object เก็บข้อมูลของ staff
     this.qrCodeName = {}; // object เก็บชื่อรูป QRCode
+    this.allStaffInSet = {}; // object เก็บรายการพนักงานไปใช้ edit พนักงาน
   });

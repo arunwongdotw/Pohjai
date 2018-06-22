@@ -254,6 +254,57 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
       });
   };
 
+  $scope.btnEditStaff = function(questionSet) {
+    myService.questionSetDetail = questionSet;
+    $http.get(myService.configAPI.webserviceURL + 'webservices/getStaffInSet.php?questionSetID=' + myService.questionSetDetail.question_set_id)
+      .then(function(response) {
+        if (response.data.results == "getStaffInSet_is0") {
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ไม่สามารถแก้ไขข้อมูลพนักงานได้ !",
+                  content: "คุณไม่สามารถแก้ไขข้อมูลพนักงาน เพราะชุดแบบประเมินนี้ไม่มีข้อมูลพนักงาน",
+                  ok: "ตกลง"
+                }
+              }
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Cannot Edit Staff !",
+                  content: "You cannot edit staff detail because this set not have staff.",
+                  ok: "Confirm"
+                }
+              }
+            });
+          }
+        } else {
+          myService.allStaffInSet = response.data.results;
+          $state.go('menu2.stafflist');
+        }
+      }, function(error) {
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด btnEditStaff ใน questionManagementController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
+      });
+  };
+
   $scope.btnDelQuestionSet = function(questionSet) {
     if ($scope.appLanguageID == "1") {
       $mdDialog.show({

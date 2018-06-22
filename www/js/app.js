@@ -675,6 +675,28 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                         controller: 'staffListQRCodeCtrl'
                     }
                 }
+            })
+            .state('menu2.stafflist', {
+                url: "/stafflist",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/staff-list.html",
+                        controller: 'staffListCtrl'
+                    }
+                }
+            })
+            .state('menu2.editstaff', {
+                url: "/editstaff",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/edit-staff.html",
+                        controller: 'editStaffCtrl'
+                    }
+                }
             });// End $stateProvider
 
         //Use $urlRouterProvider.otherwise(Url);
