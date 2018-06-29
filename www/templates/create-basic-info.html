@@ -1,0 +1,46 @@
+<ion-view hide-nav-bar="false">
+    <ion-nav-title>{{appLanguage.app_lang_create_question_set_title}}</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="btnBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content id="social-sign-up-content">
+        <div class="checkbox-container" style="margin-top: 20px;">
+            <md-checkbox aria-label="CheckboxName" ng-model="checkBox.name" ng-click="setName()">ชื่อผู้ประเมิน</md-checkbox>
+        </div>
+        <div class="checkbox-container">
+            <md-checkbox aria-label="CheckboxAge" ng-model="checkBox.age" ng-click="setAge()">อายุ</md-checkbox>
+        </div>
+        <div class="checkbox-container">
+            <md-checkbox aria-label="CheckboxSex" ng-model="checkBox.sex" ng-click="setSex()">เพศ</md-checkbox>
+        </div>
+        <div class="checkbox-container">
+            <md-checkbox aria-label="CheckboxEducation" ng-model="checkBox.education" ng-click="setEducation()">วุฒิ</md-checkbox>
+        </div>
+        <div class="checkbox-container" style="margin-bottom: 20px;">
+            <md-checkbox aria-label="CheckboxSalary" ng-model="checkBox.salary" ng-click="setSalary()">เงินเดือน</md-checkbox>
+        </div>
+        <div ng-repeat="i in getNumberBasicQuestion(numberBasicQuestion)" ng-init="$basicQuestion = $index">
+            <md-input-container md-no-float="" style="padding-bottom: 0px; margin-top: 20px;">
+                <div>
+                    <input class="user-name" ng-model="basicQuestion.question[$index]" placeholder="คำถามที่ {{$index + 1}}" style="width: 284px;">
+                </div>
+            </md-input-container>
+            <div class="checkbox-container" style="margin-left: 10px;" ng-init="checkBox.select[$index] = false; checkBox.input[$index] = false">
+                <md-checkbox aria-label="CheckboxInput[$index]" ng-model="checkBox.input[$index]" ng-click="setInput($index)" style="display: inline-block; width: 40%; font-size: 11px;">คำตอบแบบกรอก</md-checkbox>
+                <md-checkbox aria-label="CheckboxSelect[$index]" ng-model="checkBox.select[$index]" ng-click="setSelect($index)" style="display: inline-block; width: 45%; font-size: 11px;">คำตอบแบบตัวเลือก</md-checkbox>
+            </div>
+            <div ng-repeat="j in getNumberAns(numberAnswer)" ng-if="checkBox.select[$basicQuestion] == 1">
+                <md-input-container md-no-float="" style="padding-bottom: 0px; margin-left: 25px;">
+                    <div>
+                        <input class="ans" ng-model="basicAns.ans[$basicQuestion][$index]" placeholder="คำตอบ {{$index + 1}}" style="width: 284px;">
+                    </div>
+                </md-input-container>
+            </div>
+        </div>
+        <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnCreateBasicInfo()" style="margin-top: 20px;">
+            {{appLanguage.app_lang_create_question_set_create_btn}}
+        </a>
+    </ion-content>
+</ion-view>

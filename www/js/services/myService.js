@@ -18,4 +18,5 @@ angular.module('starter')
     this.staffDetail = {}; // object เก็บข้อมูลของ staff
     this.qrCodeName = {}; // object เก็บชื่อรูป QRCode
     this.allStaffInSet = {}; // object เก็บรายการพนักงานไปใช้ edit พนักงาน
+    this.questionSetID = {}; // object เก็บ question_set_id เพื่อเอาไว้สร้าง create basic information
   });
