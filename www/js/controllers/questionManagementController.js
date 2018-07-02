@@ -184,7 +184,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
         var_questionsetid: questionSet.question_set_id
       }
     }).then(function(response) {
-      if (response.data.results = 'countQuestion_lessThan') {
+      if (response.data.results == 'countQuestion_lessThan') {
         myService.questionSetDetail = questionSet;
         $state.go('menu2.createquestion');
       } else {
@@ -313,7 +313,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
         locals: {
           displayOption: {
             title: "ลบชุดแบบประเมินนี้ ?",
-            content: "คุณแน่ใจที่จะลบชุดแบบประเมินนี้",
+            content: "คุณแน่ใจที่จะลบชุดแบบประเมินนี้ ทุกอย่างที่เกี่ยวข้องกับแบบประเมินนี้จะถูกลบไปด้วย",
             ok: "ตกลง",
             cancel: "ยกเลิก"
           }
@@ -362,7 +362,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
         locals: {
           displayOption: {
             title: "Delete Form ?",
-            content: "Are you sure to delete this form ?",
+            content: "Are you sure to delete this form ? All about this form will deleted.",
             ok: "Confirm",
             cancel: "Cancel"
           }
