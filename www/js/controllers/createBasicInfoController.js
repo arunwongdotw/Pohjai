@@ -5,10 +5,10 @@ appControllers.controller('createBasicInfoCtrl', function($scope, $timeout, $sta
   $scope.basicType = {};
   $scope.basicQuestion = {};
   $scope.basicAns = {};
-  var arrayOfFlag = [];
-  $scope.numberBasicQuestion = myService.memberDetailFromLogin.member_no_basic_question;
-  $scope.numberAnswer = myService.memberDetailFromLogin.member_no_ans;
+  $scope.numberBasicQuestion = myService.memberDetailFromLogin.mbi_no_basic_question;
+  $scope.numberAnswer = myService.memberDetailFromLogin.mbi_no_basic_ans;
   $scope.questionSetID = myService.questionSetID;
+  var arrayOfFlag = [];
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
