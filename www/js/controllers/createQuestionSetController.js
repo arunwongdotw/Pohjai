@@ -177,35 +177,96 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
           }
         } else {
           insertStaff(function(status) {});
-          if ($scope.appLanguageID == "1") {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "สร้างชุดแบบประเมินสำเร็จ !",
-                  content: "คุณสร้างชุดแบบประเมินความพึงพอใจสำเร็จ",
-                  ok: "ตกลง"
+          if ($scope.mdSelectValueInfo == "2") {
+            if ($scope.appLanguageID == "1") {
+              $mdDialog.show({
+                controller: 'DialogController',
+                templateUrl: 'confirm-dialog.html',
+                locals: {
+                  displayOption: {
+                    title: "สร้างชุดแบบประเมินสำเร็จ !",
+                    content: "คุณสร้างชุดแบบประเมินความพึงพอใจสำเร็จ ระบบจะนำไปหน้าสร้างแบบสอบถามข้อมูลเบื้องต้น",
+                    ok: "ตกลง"
+                  }
                 }
-              }
-            }).then(function(response) {
-              $state.go('menu2.questionmanagement');
-            });
+              }).then(function(response) {
+                $state.go('menu2.createbasicinfo');
+              });
+            } else {
+              $mdDialog.show({
+                controller: 'DialogController',
+                templateUrl: 'confirm-dialog.html',
+                locals: {
+                  displayOption: {
+                    title: "Create Successfully !",
+                    content: "You created set of satisfaction form successfully, System will direct to create basic information question.",
+                    ok: "Confirm"
+                  }
+                }
+              }).then(function(response) {
+                $state.go('menu2.createbasicinfo');
+              });
+            }
           } else {
-            $mdDialog.show({
-              controller: 'DialogController',
-              templateUrl: 'confirm-dialog.html',
-              locals: {
-                displayOption: {
-                  title: "Create Successfully !",
-                  content: "You created set of satisfaction form successfully.",
-                  ok: "Confirm"
+            if ($scope.appLanguageID == "1") {
+              $mdDialog.show({
+                controller: 'DialogController',
+                templateUrl: 'confirm-dialog.html',
+                locals: {
+                  displayOption: {
+                    title: "สร้างชุดแบบประเมินสำเร็จ !",
+                    content: "คุณสร้างชุดแบบประเมินความพึงพอใจสำเร็จ",
+                    ok: "ตกลง"
+                  }
                 }
-              }
-            }).then(function(response) {
-              $state.go('menu2.questionmanagement');
-            });
+              }).then(function(response) {
+                $state.go('menu2.questionmanagement');
+              });
+            } else {
+              $mdDialog.show({
+                controller: 'DialogController',
+                templateUrl: 'confirm-dialog.html',
+                locals: {
+                  displayOption: {
+                    title: "Create Successfully !",
+                    content: "You created set of satisfaction form successfully.",
+                    ok: "Confirm"
+                  }
+                }
+              }).then(function(response) {
+                $state.go('menu2.questionmanagement');
+              });
+            }
           }
+          // if ($scope.appLanguageID == "1") {
+          //   $mdDialog.show({
+          //     controller: 'DialogController',
+          //     templateUrl: 'confirm-dialog.html',
+          //     locals: {
+          //       displayOption: {
+          //         title: "สร้างชุดแบบประเมินสำเร็จ !",
+          //         content: "คุณสร้างชุดแบบประเมินความพึงพอใจสำเร็จ",
+          //         ok: "ตกลง"
+          //       }
+          //     }
+          //   }).then(function(response) {
+          //     $state.go('menu2.questionmanagement');
+          //   });
+          // } else {
+          //   $mdDialog.show({
+          //     controller: 'DialogController',
+          //     templateUrl: 'confirm-dialog.html',
+          //     locals: {
+          //       displayOption: {
+          //         title: "Create Successfully !",
+          //         content: "You created set of satisfaction form successfully.",
+          //         ok: "Confirm"
+          //       }
+          //     }
+          //   }).then(function(response) {
+          //     $state.go('menu2.questionmanagement');
+          //   });
+          // }
         }
       }, function(error) {
         $mdDialog.show({
