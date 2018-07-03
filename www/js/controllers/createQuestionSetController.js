@@ -107,7 +107,8 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
           var_numberbtn: $scope.mdSelectValueNoBtn,
           var_form: $scope.mdSelectValueForm,
           var_comment: $scope.mdSelectValueComment,
-          var_memberid: $scope.memberID
+          var_memberid: $scope.memberID,
+          var_info: $scope.mdSelectValueInfo
         }
       }).then(function(response) {
         $scope.questionSetID = response.data.results[0];
