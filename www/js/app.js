@@ -708,6 +708,17 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
                         controller: 'createBasicInfoCtrl'
                     }
                 }
+            })
+            .state('menu2.basicinfo', {
+                url: "/basicinfo",
+                cache: false,
+                reload: true,
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/basic-info.html",
+                        controller: 'basicInfoCtrl'
+                    }
+                }
             });// End $stateProvider
 
         //Use $urlRouterProvider.otherwise(Url);
