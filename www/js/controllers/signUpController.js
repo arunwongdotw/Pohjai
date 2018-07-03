@@ -109,7 +109,9 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
                     var_numberBtn: "5",
                     var_numberStaff: "5",
                     var_numberQuestionSet: "10",
-                    var_numberQuestion: "10"
+                    var_numberQuestion: "10",
+                    var_noBasicQuestion: "3",
+                    var_noBasicAns: "4"
                   }
                 }).then(function(response) {
                   if (response.data.results == 'duplicate_username') {
