@@ -435,6 +435,8 @@ appControllers.controller('createBasicInfoCtrl', function($scope, $timeout, $sta
             ionic.Platform.exitApp();
           });
         });
+      } else {
+        insertBasicInfo(function(status) {});
       }
     }
   }
@@ -524,11 +526,11 @@ appControllers.controller('createBasicInfoCtrl', function($scope, $timeout, $sta
         }
       }
     } else {
-      insertBasicInfo();
+      callback();
     }
   }
 
-  function insertBasicInfo() {
+  function insertBasicInfo(callback) {
     $http({
       url: myService.configAPI.webserviceURL + 'webservices/insertBasicInfo.php',
       method: 'POST',
