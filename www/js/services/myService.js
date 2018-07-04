@@ -19,4 +19,7 @@ angular.module('starter')
     this.qrCodeName = {}; // object เก็บชื่อรูป QRCode
     this.allStaffInSet = {}; // object เก็บรายการพนักงานไปใช้ edit พนักงาน
     this.questionSetID = {}; // object เก็บ question_set_id เพื่อเอาไว้สร้าง create basic information
+    this.basicInfoInSet = {}; // object เก็บ information flag ทั้งหมดเอาไว้ใช้ใน state basic-info
+    this.basicQuestionInSet = {}; // object เก็บ basic question ทั้งหมดเอาไว้ใช้ใน state basic-info
+    this.basicAnsInQuestion = {}; // object เก็บ basic answer ทั้งหมดเอาไว้ใช้ใน state basic-info
   });

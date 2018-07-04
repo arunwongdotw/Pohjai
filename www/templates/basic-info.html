@@ -1,0 +1,94 @@
+<ion-view hide-nav-bar="false">
+    <ion-nav-title>{{appLanguage.app_lang_basic_info_title}}</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="btnBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content id="social-sign-up-content">
+        <div style="margin-top: 20px;">
+            <md-input-container md-no-float="" style="padding-bottom: 15px;" ng-if="basicInfoInSet.bi_name != 0">
+                <div>
+                    <input class="user-name" ng-model="basicInfo.name" placeholder="{{appLanguage.app_lang_basic_info_name}} *" style="width: 284px;">
+                </div>
+            </md-input-container>
+            <div class="row" ng-if="basicInfoInSet.bi_age != 0">
+                <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_basic_info_age}}</div>
+            </div>
+            <md-select ng-model="mdSelectValueAge" aria-label="md-option" style="margin-left: 10px; padding: 10px 2px 15px;" ng-if="basicInfoInSet.bi_age != 0">
+                <md-option value="1" ng-click="setAge('10-15')">10-15</md-option>
+                <md-option value="2" ng-click="setAge('16-20')">16-20</md-option>
+                <md-option value="3" ng-click="setAge('21-25')">21-25</md-option>
+                <md-option value="4" ng-click="setAge('26-30')">26-30</md-option>
+                <md-option value="5" ng-click="setAge('31-35')">31-35</md-option>
+                <md-option value="6" ng-click="setAge('36-40')">36-40</md-option>
+                <md-option value="7" ng-click="setAge('41-45')">41-45</md-option>
+                <md-option value="8" ng-click="setAge('46-50')">46-50</md-option>
+                <md-option value="9" ng-click="setAge('51-55')">51-55</md-option>
+                <md-option value="10" ng-click="setAge('56-60')">56-60</md-option>
+                <md-option value="11" ng-click="setAge('61+')" ng-if="appLanguageID == 1">61 ขึ้นไป</md-option>
+                <md-option value="12" ng-click="setAge('61+')" ng-if="appLanguageID == 2">61 years old up</md-option>
+            </md-select>
+            <div class="row" ng-if="basicInfoInSet.bi_sex != 0">
+                <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_basic_info_sex}}</div>
+            </div>
+            <md-select ng-model="mdSelectValueSex" aria-label="md-option" style="margin-left: 10px; padding: 10px 2px 15px;" ng-if="basicInfoInSet.bi_sex != 0">
+                <md-option value="1" ng-click="setSex('Male')" ng-if="appLanguageID == 1">ชาย</md-option>
+                <md-option value="2" ng-click="setSex('Female')" ng-if="appLanguageID == 1">หญิง</md-option>
+
+                <md-option value="1" ng-click="setSex('Male')" ng-if="appLanguageID == 2">Male</md-option>
+                <md-option value="2" ng-click="setSex('Female')" ng-if="appLanguageID == 2">Female</md-option>
+            </md-select>
+            <div class="row" ng-if="basicInfoInSet.bi_education != 0">
+                <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_basic_info_education}}</div>
+            </div>
+            <md-select ng-model="mdSelectValueEducation" aria-label="md-option" style="margin-left: 10px; padding: 10px 2px 15px;" ng-if="basicInfoInSet.bi_education != 0">
+                <md-option value="1" ng-click="setEducation('Lower Secondary School')" ng-if="appLanguageID == 1">ต่ำกว่ามัธยมศึกษา</md-option>
+                <md-option value="2" ng-click="setEducation('Secondary School')" ng-if="appLanguageID == 1">มัธยมศึกษาหรือเทียบเท่า</md-option>
+                <md-option value="3" ng-click="setEducation('Diploma')" ng-if="appLanguageID == 1">อนุปริญญาหรือเทียบเท่า</md-option>
+                <md-option value="4" ng-click="setEducation('Bachelor Degree')" ng-if="appLanguageID == 1">ปริญญาตรี</md-option>
+                <md-option value="5" ng-click="setEducation('Postgraduate')" ng-if="appLanguageID == 1">สูงกว่าปริญญาตรี</md-option>
+
+                <md-option value="1" ng-click="setEducation('Lower Secondary School')" ng-if="appLanguageID == 2">Lower than secondary school</md-option>
+                <md-option value="2" ng-click="setEducation('Secondary School')" ng-if="appLanguageID == 2">Secondary school</md-option>
+                <md-option value="3" ng-click="setEducation('Diploma')" ng-if="appLanguageID == 2">Diploma</md-option>
+                <md-option value="4" ng-click="setEducation('Bachelor Degree')" ng-if="appLanguageID == 2">Bachelor's degree</md-option>
+                <md-option value="5" ng-click="setEducation('Postgraduate')" ng-if="appLanguageID == 2">Postgraduate</md-option>
+            </md-select>
+            <div class="row" ng-if="basicInfoInSet.bi_salary != 0">
+                <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_basic_info_salary}}</div>
+            </div>
+            <md-select ng-model="mdSelectValueSalary" aria-label="md-option" style="margin-left: 10px; padding: 10px 2px 15px;" ng-if="basicInfoInSet.bi_salary != 0">
+                <md-option value="1" ng-click="setIncome('0')" ng-if="appLanguageID == 1">ไม่มีรายได้</md-option>
+                <md-option value="2" ng-click="setIncome('Less than 5,000')" ng-if="appLanguageID == 1">ต่ำกว่า 5,000 บาท/เดือน</md-option>
+                <md-option value="3" ng-click="setIncome('5,001 - 10,000')" ng-if="appLanguageID == 1">5,001 - 10,000 บาท/เดือน</md-option>
+                <md-option value="4" ng-click="setIncome('10,001 - 15,000')" ng-if="appLanguageID == 1">10,001 - 15,000 บาท/เดือน</md-option>
+                <md-option value="5" ng-click="setIncome('15,001 - 20,000')" ng-if="appLanguageID == 1">15,001 - 20,000 บาท/เดือน</md-option>
+                <md-option value="6" ng-click="setIncome('More than 20,001')" ng-if="appLanguageID == 1">20,001 บาท/เดือน ขึ้นไป</md-option>
+
+                <md-option value="1" ng-click="setIncome('0')" ng-if="appLanguageID == 2">No income</md-option>
+                <md-option value="2" ng-click="setIncome('Less than 5,000')" ng-if="appLanguageID == 2">Less than 5,000 Baht/Month</md-option>
+                <md-option value="3" ng-click="setIncome('5,001 - 10,000')" ng-if="appLanguageID == 2">5,001 - 10,000 Baht/Month</md-option>
+                <md-option value="4" ng-click="setIncome('10,001 - 15,000')" ng-if="appLanguageID == 2">10,001 - 15,000 Baht/Month</md-option>
+                <md-option value="5" ng-click="setIncome('15,001 - 20,000')" ng-if="appLanguageID == 2">15,001 - 20,000 Baht/Month</md-option>
+                <md-option value="6" ng-click="setIncome('More than 20,001')" ng-if="appLanguageID == 2">More than 20,001 Baht/Month</md-option>
+            </md-select>
+            <div ng-repeat="question in basicQuestionInSet" ng-init="$qindex = $index">
+                <div class="row">
+                    <div class="col-75" style="margin-left: 7px;">{{question.bq_question}}</div>
+                </div>
+                <md-input-container md-no-float="" style="padding-bottom: 10px;" ng-if="question.bq_type == 1">
+                    <div>
+                        <input class="user-name" ng-model="basicAnsInput[$qindex]" placeholder="คำตอบ *" style="width: 284px;">
+                    </div>
+                </md-input-container>
+                <md-select ng-model="mdSelectValueAns[$qindex]" aria-label="md-option" style="margin-left: 10px; padding: 10px 2px 15px;" ng-if="question.bq_type == 2">
+                    <md-option value="{{$index}}" ng-click="setAns($qindex, ans.bqa_ans)" ng-repeat="ans in basicAnsInQuestion" ng-if="question.bq_id == ans.bqa_bq_id">{{ans.bqa_ans}}</md-option>
+                </md-select>
+            </div>
+            <a class="md-raised social-button md-button md-default-theme material-background" ng-click="insertBasicInfo()" style="margin-top: 20px;">
+                {{appLanguage.app_lang_basic_info_btn}}
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

@@ -182,7 +182,17 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
             if (myService.staffList == "0") {
               myService.staffDetail = {};
               myService.allQuestionInSet = response.data.results;
-              $state.go('menu2.score');
+              if (myService.questionSetDetail.question_set_info == "1") {
+                $state.go('menu2.score');
+              } else {
+                getBasicInfo(function(status) {
+                  getBasicQuestion(function(status) {
+                    getBasicAns(function(status) {
+                      $state.go('menu2.basicinfo');
+                    });
+                  });
+                });
+              }
             } else {
               myService.allQuestionInSet = response.data.results;
               $state.go('menu2.stafflistscore');
@@ -205,6 +215,36 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
         });
       });
   };
+
+  function getBasicInfo(callback) {
+    $http.get(myService.configAPI.webserviceURL + 'webservices/getBasicInfo.php?questionSetID=' + myService.questionSetDetail.question_set_id)
+      .then(function(response) {
+        myService.basicInfoInSet = response.data.results[0];
+        callback();
+      }, function(error) {
+        console.log(error);
+      });
+  }
+
+  function getBasicQuestion(callback) {
+    $http.get(myService.configAPI.webserviceURL + 'webservices/getBasicQuestion.php?questionSetID=' + myService.questionSetDetail.question_set_id)
+      .then(function(response) {
+        myService.basicQuestionInSet = response.data.results;
+        callback();
+      }, function(error) {
+        console.log(error);
+      });
+  }
+
+  function getBasicAns(callback) {
+    $http.get(myService.configAPI.webserviceURL + 'webservices/getBasicAns.php?questionSetID=' + myService.questionSetDetail.question_set_id)
+      .then(function(response) {
+        myService.basicAnsInQuestion = response.data.results;
+        callback();
+      }, function(error) {
+        console.log(error);
+      });
+  }
 
   $scope.btnQRCode = function(questionSet) {
     myService.questionSetDetail = questionSet;

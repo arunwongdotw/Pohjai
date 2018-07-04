@@ -238,35 +238,6 @@ appControllers.controller('createQuestionSetCtrl', function($scope, $timeout, $s
               });
             }
           }
-          // if ($scope.appLanguageID == "1") {
-          //   $mdDialog.show({
-          //     controller: 'DialogController',
-          //     templateUrl: 'confirm-dialog.html',
-          //     locals: {
-          //       displayOption: {
-          //         title: "สร้างชุดแบบประเมินสำเร็จ !",
-          //         content: "คุณสร้างชุดแบบประเมินความพึงพอใจสำเร็จ",
-          //         ok: "ตกลง"
-          //       }
-          //     }
-          //   }).then(function(response) {
-          //     $state.go('menu2.questionmanagement');
-          //   });
-          // } else {
-          //   $mdDialog.show({
-          //     controller: 'DialogController',
-          //     templateUrl: 'confirm-dialog.html',
-          //     locals: {
-          //       displayOption: {
-          //         title: "Create Successfully !",
-          //         content: "You created set of satisfaction form successfully.",
-          //         ok: "Confirm"
-          //       }
-          //     }
-          //   }).then(function(response) {
-          //     $state.go('menu2.questionmanagement');
-          //   });
-          // }
         }
       }, function(error) {
         $mdDialog.show({
