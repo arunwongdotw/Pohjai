@@ -222,7 +222,19 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
         myService.basicInfoInSet = response.data.results[0];
         callback();
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getBasicInfo ใน questionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -232,7 +244,19 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
         myService.basicQuestionInSet = response.data.results;
         callback();
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getBasicQuestion ใน questionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
@@ -242,7 +266,19 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
         myService.basicAnsInQuestion = response.data.results;
         callback();
       }, function(error) {
-        console.log(error);
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getBasicAns ใน questionController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
       });
   }
 
