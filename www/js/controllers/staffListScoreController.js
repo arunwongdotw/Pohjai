@@ -60,6 +60,84 @@ appControllers.controller('staffListScoreCtrl', function($scope, $timeout, $stat
 
   $scope.btnNavigateToScore = function(staff) {
     myService.staffDetail = staff;
-    $state.go('menu2.score');
+    if (myService.questionSetDetail.question_set_info == "1") {
+      $state.go('menu2.score');
+    } else {
+      getBasicInfo(function(status) {
+        getBasicQuestion(function(status) {
+          getBasicAns(function(status) {
+            $state.go('menu2.basicinfo');
+          });
+        });
+      });
+    }
+    // myService.staffDetail = staff;
+    // $state.go('menu2.score');
   };
+
+  function getBasicInfo(callback) {
+    $http.get(myService.configAPI.webserviceURL + 'webservices/getBasicInfo.php?questionSetID=' + myService.questionSetDetail.question_set_id)
+      .then(function(response) {
+        myService.basicInfoInSet = response.data.results[0];
+        callback();
+      }, function(error) {
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getBasicInfo ใน staffListScoreController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
+      });
+  }
+
+  function getBasicQuestion(callback) {
+    $http.get(myService.configAPI.webserviceURL + 'webservices/getBasicQuestion.php?questionSetID=' + myService.questionSetDetail.question_set_id)
+      .then(function(response) {
+        myService.basicQuestionInSet = response.data.results;
+        callback();
+      }, function(error) {
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getBasicQuestion ใน staffListScoreController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
+      });
+  }
+
+  function getBasicAns(callback) {
+    $http.get(myService.configAPI.webserviceURL + 'webservices/getBasicAns.php?questionSetID=' + myService.questionSetDetail.question_set_id)
+      .then(function(response) {
+        myService.basicAnsInQuestion = response.data.results;
+        callback();
+      }, function(error) {
+        $mdDialog.show({
+          controller: 'DialogController',
+          templateUrl: 'confirm-dialog.html',
+          locals: {
+            displayOption: {
+              title: "เกิดข้อผิดพลาด !",
+              content: "เกิดข้อผิดพลาด getBasicAns ใน staffListScoreController ระบบจะปิดอัตโนมัติ",
+              ok: "ตกลง"
+            }
+          }
+        }).then(function(response) {
+          ionic.Platform.exitApp();
+        });
+      });
+  }
 });

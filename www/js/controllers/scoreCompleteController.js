@@ -46,7 +46,13 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
   };
 
   $scope.btnBack = function() {
-    $scope.navigateTo('menu2.score');
+    if (Object.keys(myService.lastInfoID).length !== 0) {
+      $scope.navigateTo('menu2.basicinfo');
+    } else if (myService.lastInfoID != 0){
+      $scope.navigateTo('menu2.basicinfo');
+    } else {
+      $scope.navigateTo('menu2.score');
+    }
   };
 
   $scope.openLink = function(ads) {
@@ -72,7 +78,13 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
       addAdFrequency(function(status) {});
     });
     $timeout(function() {
-      $scope.navigateTo('menu2.score');
+      if (Object.keys(myService.lastInfoID).length !== 0) {
+        $scope.navigateTo('menu2.basicinfo');
+      } else if (myService.lastInfoID != 0){
+        $scope.navigateTo('menu2.basicinfo');
+      } else {
+        $scope.navigateTo('menu2.score');
+      }
     }, 30000);
   });
 

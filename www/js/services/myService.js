@@ -22,4 +22,5 @@ angular.module('starter')
     this.basicInfoInSet = {}; // object เก็บ information flag ทั้งหมดเอาไว้ใช้ใน state basic-info
     this.basicQuestionInSet = {}; // object เก็บ basic question ทั้งหมดเอาไว้ใช้ใน state basic-info
     this.basicAnsInQuestion = {}; // object เก็บ basic answer ทั้งหมดเอาไว้ใช้ใน state basic-info
+    this.lastInfoID = {}; // object เก็บ info id ไว้ใช้บันทึกลงใน database ในหน้า score
   });

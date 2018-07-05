@@ -33,6 +33,14 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
     $scope.sound = "1";
   }
 
+  if (Object.keys(myService.lastInfoID).length !== 0) {
+    $scope.lastInfoID = myService.lastInfoID;
+  } else if (myService.lastInfoID != 0){
+    $scope.lastInfoID = myService.lastInfoID;
+  } else {
+    $scope.lastInfoID = 0;
+  }
+
   $http.get(myService.configAPI.webserviceURL + 'webservices/getMemberDetail.php?memberUsername=' + window.localStorage.memberUsername)
     .then(function(response) {
       $scope.memberID = response.data.results[0].member_id;
@@ -238,7 +246,8 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         data: {
           var_questionid: questionID,
           var_score: score,
-          var_type: 1
+          var_type: 1,
+          var_infoid: $scope.lastInfoID
         }
       }).then(function(response) {
         if ((index + 1) < $scope.allQuestionInSet.length) {
@@ -339,7 +348,8 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           var_questionid: questionID,
           var_score: score,
           var_type: 1,
-          var_staffid: $scope.staffDetail.staff_id
+          var_staffid: $scope.staffDetail.staff_id,
+          var_infoid: $scope.lastInfoID
         }
       }).then(function(response) {
         if ((index + 1) < $scope.allQuestionInSet.length) {
@@ -443,7 +453,8 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           method: 'POST',
           data: {
             var_questionsetid: myService.questionSetDetail.question_set_id,
-            var_commentdetail: $scope.comment.commentDetail
+            var_commentdetail: $scope.comment.commentDetail,
+            var_infoid: $scope.lastInfoID
           }
         }).then(function(response) {
           if ($scope.sound == "1") {
@@ -528,7 +539,8 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           data: {
             var_questionsetid: myService.questionSetDetail.question_set_id,
             var_commentdetail: $scope.comment.commentDetail,
-            var_staffid: $scope.staffDetail.staff_id
+            var_staffid: $scope.staffDetail.staff_id,
+            var_infoid: $scope.lastInfoID
           }
         }).then(function(response) {
           if ($scope.sound == "1") {
@@ -621,7 +633,8 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 method: 'POST',
                 data: {
                   var_questionsetid: myService.questionSetDetail.question_set_id,
-                  var_commentdetail: $scope.comment.commentDetail
+                  var_commentdetail: $scope.comment.commentDetail,
+                  var_infoid: $scope.lastInfoID
                 }
               }).then(function(response) {
                 if ($scope.sound == "1") {
@@ -678,7 +691,8 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 data: {
                   var_questionsetid: myService.questionSetDetail.question_set_id,
                   var_commentdetail: $scope.comment.commentDetail,
-                  var_staffid: $scope.staffDetail.staff_id
+                  var_staffid: $scope.staffDetail.staff_id,
+                  var_infoid: $scope.lastInfoID
                 }
               }).then(function(response) {
                 if ($scope.sound == "1") {
@@ -857,7 +871,8 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
               data: {
                 var_score: $scope.scoreArray[j].rating,
                 var_type: 2,
-                var_questionsetid: $scope.allQuestionInSet[i].question_id
+                var_questionsetid: $scope.allQuestionInSet[i].question_id,
+                var_infoid: $scope.lastInfoID
               }
             });
           }
@@ -874,7 +889,8 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 var_score: $scope.scoreArray[j].rating,
                 var_type: 2,
                 var_questionsetid: $scope.allQuestionInSet[i].question_id,
-                var_staffid: $scope.staffDetail.staff_id
+                var_staffid: $scope.staffDetail.staff_id,
+                var_infoid: $scope.lastInfoID
               }
             });
           }
