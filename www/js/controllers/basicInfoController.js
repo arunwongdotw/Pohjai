@@ -75,7 +75,10 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
         for (var j = 0; j < $scope.basicAnsInQuestion.length; j++) {
           if ($scope.basicAnsInQuestion[j].bqa_bq_id == bq_id) {
             $scope.mdSelectValueAns[i] = j;
-            $scope.basicAnsSelect[i] = $scope.basicAnsInQuestion[j].bqa_ans;
+            $scope.basicAnsSelect[i] = {
+              ans: $scope.basicAnsInQuestion[j].bqa_ans,
+              bqa_id: $scope.basicAnsInQuestion[j].bqa_id
+            };
             break;
           }
         }
@@ -103,7 +106,113 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
   };
 
   $scope.btnBack = function() {
-    navigator.app.backHistory();
+    if ($scope.appLanguageID == "1") {
+      $mdDialog.show({
+        controller: 'inputDialogController',
+        templateUrl: 'input-dialog.html',
+        locals: {
+          displayOption: {
+            title: "ย้อนกลับ ?",
+            content: "คุณต้องการที่จะย้อนกลับ ?",
+            inputplaceholder: "กรุณากรอกรหัสผ่านเพื่อยืนยัน",
+            ok: "ยืนยัน",
+            cancel: "ยกเลิก"
+          }
+        }
+      }).then(function(response) {
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
+          method: 'POST',
+          data: {
+            var_memberid: myService.memberDetailFromLogin.member_id,
+            var_password: myService.inputDialog.password
+          }
+        }).then(function(response) {
+          if (response.data.results == 'confirmPassword_success') {
+            $state.go('menu2.question');
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "ยืนยันรหัสผ่านไม่ถูกต้อง !",
+                  content: "คุณกรอกยืนยันรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่",
+                  ok: "ตกลง"
+                }
+              }
+            });
+          }
+        }, function(error) {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnBack ใน scoreController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
+        });
+      });
+    } else {
+      $mdDialog.show({
+        controller: 'inputDialogController',
+        templateUrl: 'input-dialog.html',
+        locals: {
+          displayOption: {
+            title: "Back ?",
+            content: "Do you want to back ?",
+            inputplaceholder: "Fill password for confirm",
+            ok: "Confirm",
+            cancel: "Cancel"
+          }
+        }
+      }).then(function(response) {
+        $http({
+          url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
+          method: 'POST',
+          data: {
+            var_memberid: myService.memberDetailFromLogin.member_id,
+            var_password: myService.inputDialog.password
+          }
+        }).then(function(response) {
+          if (response.data.results == 'confirmPassword_success') {
+            $state.go('menu2.question');
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Invalid Confirm Password !",
+                  content: "You fill invalid confirm password, please try again.",
+                  ok: "Confirm"
+                }
+              }
+            });
+          }
+        }, function(error) {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด btnBack ใน scoreController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
+        });
+      });
+    }
   };
 
   $scope.setAge = function(age) {
@@ -122,8 +231,11 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
     $scope.basicInfo.income = income;
   };
 
-  $scope.setAns = function(qindex, answer) {
-    $scope.basicAnsSelect[qindex] = answer;
+  $scope.setAns = function(qindex, bqa_id, answer) {
+    $scope.basicAnsSelect[qindex] = {
+      ans: answer,
+      bqa_id: bqa_id
+    };
   };
 
   $scope.insertBasicInfo = function() {
@@ -147,8 +259,8 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
                 var_staffid: $scope.staffDetail.staff_id
               }
             }).then(function(response) {
-              myService.lastInfoID = response.data.results;
-              insertAns(myService.lastInfoID, function(status) {
+              myService.lastInfoID.info_id = response.data.results;
+              insertAns(myService.lastInfoID.info_id, function(status) {
                 if ($scope.sound == "1") {
                   $cordovaNativeAudio.play('thankscut');
                 }
@@ -211,8 +323,8 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
                 var_staffid: "0"
               }
             }).then(function(response) {
-              myService.lastInfoID = response.data.results;
-              insertAns(myService.lastInfoID, function(status) {
+              myService.lastInfoID.info_id = response.data.results;
+              insertAns(myService.lastInfoID.info_id, function(status) {
                 if ($scope.sound == "1") {
                   $cordovaNativeAudio.play('thankscut');
                 }
@@ -335,8 +447,8 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
                   var_staffid: $scope.staffDetail.staff_id
                 }
               }).then(function(response) {
-                myService.lastInfoID = response.data.results;
-                insertAns(myService.lastInfoID, function(status) {
+                myService.lastInfoID.info_id = response.data.results;
+                insertAns(myService.lastInfoID.info_id, function(status) {
                   if ($scope.sound == "1") {
                     $cordovaNativeAudio.play('thankscut');
                   }
@@ -399,8 +511,8 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
                   var_staffid: "0"
                 }
               }).then(function(response) {
-                myService.lastInfoID = response.data.results;
-                insertAns(myService.lastInfoID, function(status) {
+                myService.lastInfoID.info_id = response.data.results;
+                insertAns(myService.lastInfoID.info_id, function(status) {
                   if ($scope.sound == "1") {
                     $cordovaNativeAudio.play('thankscut');
                   }
@@ -566,6 +678,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
           method: 'POST',
           data: {
             var_answer: $scope.basicAnsInput[iaLoop],
+            var_bqaid: 0,
             var_bqid: $scope.basicQuestionInSet[iaLoop].bq_id,
             var_infoid: infoid
           }
@@ -592,7 +705,8 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
           url: myService.configAPI.webserviceURL + 'webservices/insertAns.php',
           method: 'POST',
           data: {
-            var_answer: $scope.basicAnsSelect[iaLoop],
+            var_answer: $scope.basicAnsSelect[iaLoop].ans,
+            var_bqaid: $scope.basicAnsSelect[iaLoop].bqa_id,
             var_bqid: $scope.basicQuestionInSet[iaLoop].bq_id,
             var_infoid: infoid
           }

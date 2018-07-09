@@ -1,0 +1,17 @@
+<ion-view id="online-course" hide-nav-bar="false">
+    <ion-nav-title ng-if="flag == 1">{{appLanguage.app_lang_see_all_title_name}}</ion-nav-title>
+    <ion-nav-title ng-if="flag == 2">{{appLanguage.app_lang_see_all_title_ans}}</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="btnBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-content id="online-course-content">
+        <div ng-if="flag == 1" style="margin-top: 20px; margin-left: 20px;">
+          <div ng-repeat="a in all" style="font-size: 18px; margin-bottom: 10px;">{{$index + 1}}. {{a.ans_answer}}</div>
+        </div>
+        <div ng-if="flag == 2" style="margin-top: 20px; margin-left: 20px;">
+          <div ng-repeat="a in all" style="font-size: 20px; margin-bottom: 10px;">{{$index + 1}}. {{a.info_name}}</div>
+        </div>
+    </ion-content>
+</ion-view>

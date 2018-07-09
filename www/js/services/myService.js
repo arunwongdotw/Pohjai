@@ -23,4 +23,15 @@ angular.module('starter')
     this.basicQuestionInSet = {}; // object เก็บ basic question ทั้งหมดเอาไว้ใช้ใน state basic-info
     this.basicAnsInQuestion = {}; // object เก็บ basic answer ทั้งหมดเอาไว้ใช้ใน state basic-info
     this.lastInfoID = {}; // object เก็บ info id ไว้ใช้บันทึกลงใน database ในหน้า score
+    this.countAgePerSet = {}; // object เก็บ count age ไว้สร้าง chart
+    this.countSexPerSet = {}; // object เก็บ count sex ไว้สร้าง chart
+    this.countEducationPerSet = {}; // object เก็บ count education ไว้สร้าง chart
+    this.countIncomePerSet = {}; // object เก็บ count income ไว้สร้าง chart
+    this.allBasicFlag = {}; // object เก็บ flag ของ basic info ไว้เช็ค
+    // this.allName = {}; // object เก็บ list ของ name ไว้แสดงในหน้า chart
+    // this.allAnswerTypeInput = {}; // object เก็บ list ของ answer ที่เป็นประเภท input ไว้แสดงในหน้า chart
+    this.countAnswerTypeSelect = {}; // object เก็บ count ของ answer ที่เป็นประเภท select ไว้สร้าง chart
+    this.chartDate = {}; // object เก็บ start date และ end date ในตอนเรียกดู chart
+    this.allAns = {};
+    this.allName = {};
   });

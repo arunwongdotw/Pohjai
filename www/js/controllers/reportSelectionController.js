@@ -2,7 +2,9 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
   $scope.appLanguage = {};
   $scope.currState = $state; // get ค่าชื่อ state
   $scope.mdSelectValueChart = 1;
+  $scope.mdSelectValueData = 1;
   $scope.reportSelection = {};
+  $scope.questionSetDetail = myService.questionSetDetail;
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
@@ -133,22 +135,19 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
     $scope.mdSelectValueChart = chartID;
   };
 
+  $scope.setData = function(dataID) {
+    $scope.mdSelectValueData = dataID;
+  };
+
   $scope.btnChart = function() {
+    myService.chartDate.startdate = $scope.reportSelection.startdate;
+    myService.chartDate.enddate = $scope.reportSelection.enddate;
     if (typeof $scope.reportSelection.startdate != 'undefined') {
       if (typeof $scope.reportSelection.enddate != 'undefined') {
-        myService.chartType = $scope.mdSelectValueChart;
-        $http({
-          url: myService.configAPI.webserviceURL + 'webservices/countToMakeChartPerQuestion.php',
-          method: 'POST',
-          data: {
-            var_questionsetid: myService.questionSetDetail.question_set_id,
-            var_startdate: $scope.reportSelection.startdate,
-            var_enddate: $scope.reportSelection.enddate
-          }
-        }).then(function(response) {
-          myService.countScorePerQuestion = response.data.results;
+        if ($scope.mdSelectValueData == 1) {
+          myService.chartType = $scope.mdSelectValueChart;
           $http({
-            url: myService.configAPI.webserviceURL + 'webservices/countToMakeChartPerSet.php',
+            url: myService.configAPI.webserviceURL + 'webservices/countToMakeChartPerQuestion.php',
             method: 'POST',
             data: {
               var_questionsetid: myService.questionSetDetail.question_set_id,
@@ -156,8 +155,33 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
               var_enddate: $scope.reportSelection.enddate
             }
           }).then(function(response) {
-            myService.countScorePerSet = response.data.results;
-            $state.go('menu2.chart');
+            myService.countScorePerQuestion = response.data.results;
+            $http({
+              url: myService.configAPI.webserviceURL + 'webservices/countToMakeChartPerSet.php',
+              method: 'POST',
+              data: {
+                var_questionsetid: myService.questionSetDetail.question_set_id,
+                var_startdate: $scope.reportSelection.startdate,
+                var_enddate: $scope.reportSelection.enddate
+              }
+            }).then(function(response) {
+              myService.countScorePerSet = response.data.results;
+              $state.go('menu2.chart');
+            }, function(error) {
+              $mdDialog.show({
+                controller: 'DialogController',
+                templateUrl: 'confirm-dialog.html',
+                locals: {
+                  displayOption: {
+                    title: "เกิดข้อผิดพลาด !",
+                    content: "เกิดข้อผิดพลาด btnChart ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+                    ok: "ตกลง"
+                  }
+                }
+              }).then(function(response) {
+                ionic.Platform.exitApp();
+              });
+            });
           }, function(error) {
             $mdDialog.show({
               controller: 'DialogController',
@@ -173,21 +197,326 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
               ionic.Platform.exitApp();
             });
           });
-        }, function(error) {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "เกิดข้อผิดพลาด !",
-                content: "เกิดข้อผิดพลาด btnChart ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
-                ok: "ตกลง"
+        } else {
+          myService.chartType = $scope.mdSelectValueChart;
+          getSetBasicInfo(function(status) {
+            if (myService.allBasicFlag.bi_name == "1") {
+              getAllName(function(status) {
+                if (myService.allBasicFlag.bi_age == "1") {
+                  getCountAge(function(status) {
+                    if (myService.allBasicFlag.bi_sex == "1") {
+                      getCountSex(function(status) {
+                        if (myService.allBasicFlag.bi_education == "1") {
+                          getCountEducation(function(status) {
+                            if (myService.allBasicFlag.bi_salary == "1") {
+                              getCountIncome(function(status) {
+                                getCountAnsSelect(function(status) {
+                                  getAllAnsTypeInput(function(status) {
+                                    $state.go('menu2.basicchart');
+                                  });
+                                });
+                              });
+                            } else {
+                              getCountAnsSelect(function(status) {
+                                getAllAnsTypeInput(function(status) {
+                                  $state.go('menu2.basicchart');
+                                });
+                              });
+                            }
+                          });
+                        } else {
+                          if (myService.allBasicFlag.bi_salary == "1") {
+                            getCountIncome(function(status) {
+                              getCountAnsSelect(function(status) {
+                                getAllAnsTypeInput(function(status) {
+                                  $state.go('menu2.basicchart');
+                                });
+                              });
+                            });
+                          } else {
+                            getCountAnsSelect(function(status) {
+                              getAllAnsTypeInput(function(status) {
+                                $state.go('menu2.basicchart');
+                              });
+                            });
+                          }
+                        }
+                      });
+                    } else {
+                      if (myService.allBasicFlag.bi_education == "1") {
+                        getCountEducation(function(status) {
+                          if (myService.allBasicFlag.bi_salary == "1") {
+                            getCountIncome(function(status) {
+                              getCountAnsSelect(function(status) {
+                                getAllAnsTypeInput(function(status) {
+                                  $state.go('menu2.basicchart');
+                                });
+                              });
+                            });
+                          } else {
+                            getCountAnsSelect(function(status) {
+                              getAllAnsTypeInput(function(status) {
+                                $state.go('menu2.basicchart');
+                              });
+                            });
+                          }
+                        });
+                      } else {
+                        if (myService.allBasicFlag.bi_salary == "1") {
+                          getCountIncome(function(status) {
+                            getCountAnsSelect(function(status) {
+                              getAllAnsTypeInput(function(status) {
+                                $state.go('menu2.basicchart');
+                              });
+                            });
+                          });
+                        } else {
+                          getCountAnsSelect(function(status) {
+                            getAllAnsTypeInput(function(status) {
+                              $state.go('menu2.basicchart');
+                            });
+                          });
+                        }
+                      }
+                    }
+                  });
+                } else {
+                  if (myService.allBasicFlag.bi_sex == "1") {
+                    getCountSex(function(status) {
+                      if (myService.allBasicFlag.bi_education == "1") {
+                        getCountEducation(function(status) {
+                          if (myService.allBasicFlag.bi_salary == "1") {
+                            getCountIncome(function(status) {
+                              getCountAnsSelect(function(status) {
+                                getAllAnsTypeInput(function(status) {
+                                  $state.go('menu2.basicchart');
+                                });
+                              });
+                            });
+                          } else {
+                            getCountAnsSelect(function(status) {
+                              getAllAnsTypeInput(function(status) {
+                                $state.go('menu2.basicchart');
+                              });
+                            });
+                          }
+                        });
+                      } else {
+                        if (myService.allBasicFlag.bi_salary == "1") {
+                          getCountIncome(function(status) {
+                            getCountAnsSelect(function(status) {
+                              getAllAnsTypeInput(function(status) {
+                                $state.go('menu2.basicchart');
+                              });
+                            });
+                          });
+                        } else {
+                          getCountAnsSelect(function(status) {
+                            getAllAnsTypeInput(function(status) {
+                              $state.go('menu2.basicchart');
+                            });
+                          });
+                        }
+                      }
+                    });
+                  } else {
+                    if (myService.allBasicFlag.bi_education == "1") {
+                      getCountEducation(function(status) {
+                        if (myService.allBasicFlag.bi_salary == "1") {
+                          getCountIncome(function(status) {
+                            getCountAnsSelect(function(status) {
+                              getAllAnsTypeInput(function(status) {
+                                $state.go('menu2.basicchart');
+                              });
+                            });
+                          });
+                        } else {
+                          getCountAnsSelect(function(status) {
+                            getAllAnsTypeInput(function(status) {
+                              $state.go('menu2.basicchart');
+                            });
+                          });
+                        }
+                      });
+                    } else {
+                      if (myService.allBasicFlag.bi_salary == "1") {
+                        getCountIncome(function(status) {
+                          getCountAnsSelect(function(status) {
+                            getAllAnsTypeInput(function(status) {
+                              $state.go('menu2.basicchart');
+                            });
+                          });
+                        });
+                      } else {
+                        getCountAnsSelect(function(status) {
+                          getAllAnsTypeInput(function(status) {
+                            $state.go('menu2.basicchart');
+                          });
+                        });
+                      }
+                    }
+                  }
+                }
+              });
+            } else {
+              if (myService.allBasicFlag.bi_age == "1") {
+                getCountAge(function(status) {
+                  if (myService.allBasicFlag.bi_sex == "1") {
+                    getCountSex(function(status) {
+                      if (myService.allBasicFlag.bi_education == "1") {
+                        getCountEducation(function(status) {
+                          if (myService.allBasicFlag.bi_salary == "1") {
+                            getCountIncome(function(status) {
+                              getCountAnsSelect(function(status) {
+                                getAllAnsTypeInput(function(status) {
+                                  $state.go('menu2.basicchart');
+                                });
+                              });
+                            });
+                          } else {
+                            getCountAnsSelect(function(status) {
+                              getAllAnsTypeInput(function(status) {
+                                $state.go('menu2.basicchart');
+                              });
+                            });
+                          }
+                        });
+                      } else {
+                        if (myService.allBasicFlag.bi_salary == "1") {
+                          getCountIncome(function(status) {
+                            getCountAnsSelect(function(status) {
+                              getAllAnsTypeInput(function(status) {
+                                $state.go('menu2.basicchart');
+                              });
+                            });
+                          });
+                        } else {
+                          getCountAnsSelect(function(status) {
+                            getAllAnsTypeInput(function(status) {
+                              $state.go('menu2.basicchart');
+                            });
+                          });
+                        }
+                      }
+                    });
+                  } else {
+                    if (myService.allBasicFlag.bi_education == "1") {
+                      getCountEducation(function(status) {
+                        if (myService.allBasicFlag.bi_salary == "1") {
+                          getCountIncome(function(status) {
+                            getCountAnsSelect(function(status) {
+                              getAllAnsTypeInput(function(status) {
+                                $state.go('menu2.basicchart');
+                              });
+                            });
+                          });
+                        } else {
+                          getCountAnsSelect(function(status) {
+                            getAllAnsTypeInput(function(status) {
+                              $state.go('menu2.basicchart');
+                            });
+                          });
+                        }
+                      });
+                    } else {
+                      if (myService.allBasicFlag.bi_salary == "1") {
+                        getCountIncome(function(status) {
+                          getCountAnsSelect(function(status) {
+                            getAllAnsTypeInput(function(status) {
+                              $state.go('menu2.basicchart');
+                            });
+                          });
+                        });
+                      } else {
+                        getCountAnsSelect(function(status) {
+                          getAllAnsTypeInput(function(status) {
+                            $state.go('menu2.basicchart');
+                          });
+                        });
+                      }
+                    }
+                  }
+                });
+              } else {
+                if (myService.allBasicFlag.bi_sex == "1") {
+                  getCountSex(function(status) {
+                    if (myService.allBasicFlag.bi_education == "1") {
+                      getCountEducation(function(status) {
+                        if (myService.allBasicFlag.bi_salary == "1") {
+                          getCountIncome(function(status) {
+                            getCountAnsSelect(function(status) {
+                              getAllAnsTypeInput(function(status) {
+                                $state.go('menu2.basicchart');
+                              });
+                            });
+                          });
+                        } else {
+                          getCountAnsSelect(function(status) {
+                            getAllAnsTypeInput(function(status) {
+                              $state.go('menu2.basicchart');
+                            });
+                          });
+                        }
+                      });
+                    } else {
+                      if (myService.allBasicFlag.bi_salary == "1") {
+                        getCountIncome(function(status) {
+                          getCountAnsSelect(function(status) {
+                            getAllAnsTypeInput(function(status) {
+                              $state.go('menu2.basicchart');
+                            });
+                          });
+                        });
+                      } else {
+                        getCountAnsSelect(function(status) {
+                          getAllAnsTypeInput(function(status) {
+                            $state.go('menu2.basicchart');
+                          });
+                        });
+                      }
+                    }
+                  });
+                } else {
+                  if (myService.allBasicFlag.bi_education == "1") {
+                    getCountEducation(function(status) {
+                      if (myService.allBasicFlag.bi_salary == "1") {
+                        getCountIncome(function(status) {
+                          getCountAnsSelect(function(status) {
+                            getAllAnsTypeInput(function(status) {
+                              $state.go('menu2.basicchart');
+                            });
+                          });
+                        });
+                      } else {
+                        getCountAnsSelect(function(status) {
+                          getAllAnsTypeInput(function(status) {
+                            $state.go('menu2.basicchart');
+                          });
+                        });
+                      }
+                    });
+                  } else {
+                    if (myService.allBasicFlag.bi_salary == "1") {
+                      getCountIncome(function(status) {
+                        getCountAnsSelect(function(status) {
+                          getAllAnsTypeInput(function(status) {
+                            $state.go('menu2.basicchart');
+                          });
+                        });
+                      });
+                    } else {
+                      getCountAnsSelect(function(status) {
+                        getAllAnsTypeInput(function(status) {
+                          $state.go('menu2.basicchart');
+                        });
+                      });
+                    }
+                  }
+                }
               }
             }
-          }).then(function(response) {
-            ionic.Platform.exitApp();
           });
-        });
+        }
       } else {
         if ($scope.appLanguageID == "1") {
           $mdDialog.show({
@@ -243,4 +572,263 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       }
     }
   };
+
+  function getSetBasicInfo(callback) {
+    $http({
+      url: myService.configAPI.webserviceURL + 'webservices/getSetBasicFlag.php',
+      method: 'POST',
+      data: {
+        var_questionsetid: myService.questionSetDetail.question_set_id
+      }
+    }).then(function(response) {
+      myService.allBasicFlag = response.data.results[0];
+      callback();
+    }, function(error) {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getSetBasicInfo ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
+    });
+  }
+
+  function getCountAnsSelect(callback) {
+    $http({
+      url: myService.configAPI.webserviceURL + 'webservices/getCountAnsSelect.php',
+      method: 'POST',
+      data: {
+        var_questionsetid: myService.questionSetDetail.question_set_id,
+        var_startdate: $scope.reportSelection.startdate,
+        var_enddate: $scope.reportSelection.enddate
+      }
+    }).then(function(response) {
+      myService.countAnswerTypeSelect = response.data.results; // ถ้าไม่มี type select จะ return null
+      callback();
+    }, function(error) {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getCountAnsSelect ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
+    });
+  }
+
+  function getCountAge(callback) {
+    $http({
+      url: myService.configAPI.webserviceURL + 'webservices/countAgePerSet.php',
+      method: 'POST',
+      data: {
+        var_questionsetid: myService.questionSetDetail.question_set_id,
+        var_startdate: $scope.reportSelection.startdate,
+        var_enddate: $scope.reportSelection.enddate
+      }
+    }).then(function(response) {
+      myService.countAgePerSet = response.data.results;
+      callback();
+    }, function(error) {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getCountAge ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
+    });
+  }
+
+  function getCountSex(callback) {
+    $http({
+      url: myService.configAPI.webserviceURL + 'webservices/countSexPerSet.php',
+      method: 'POST',
+      data: {
+        var_questionsetid: myService.questionSetDetail.question_set_id,
+        var_startdate: $scope.reportSelection.startdate,
+        var_enddate: $scope.reportSelection.enddate
+      }
+    }).then(function(response) {
+      myService.countSexPerSet = response.data.results;
+      callback();
+    }, function(error) {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getCountSex ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
+    });
+  }
+
+  function getCountEducation(callback) {
+    $http({
+      url: myService.configAPI.webserviceURL + 'webservices/countEducationPerSet.php',
+      method: 'POST',
+      data: {
+        var_questionsetid: myService.questionSetDetail.question_set_id,
+        var_startdate: $scope.reportSelection.startdate,
+        var_enddate: $scope.reportSelection.enddate
+      }
+    }).then(function(response) {
+      myService.countEducationPerSet = response.data.results;
+      callback();
+    }, function(error) {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getCountEducation ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
+    });
+  }
+
+  function getCountIncome(callback) {
+    $http({
+      url: myService.configAPI.webserviceURL + 'webservices/countIncomePerSet.php',
+      method: 'POST',
+      data: {
+        var_questionsetid: myService.questionSetDetail.question_set_id,
+        var_startdate: $scope.reportSelection.startdate,
+        var_enddate: $scope.reportSelection.enddate
+      }
+    }).then(function(response) {
+      myService.countIncomePerSet = response.data.results;
+      callback();
+    }, function(error) {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getCountIncome ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
+    });
+  }
+
+  function getCountIncome(callback) {
+    $http({
+      url: myService.configAPI.webserviceURL + 'webservices/countIncomePerSet.php',
+      method: 'POST',
+      data: {
+        var_questionsetid: myService.questionSetDetail.question_set_id,
+        var_startdate: $scope.reportSelection.startdate,
+        var_enddate: $scope.reportSelection.enddate
+      }
+    }).then(function(response) {
+      myService.countIncomePerSet = response.data.results;
+      callback();
+    }, function(error) {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "เกิดข้อผิดพลาด !",
+            content: "เกิดข้อผิดพลาด getCountIncome ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+            ok: "ตกลง"
+          }
+        }
+      }).then(function(response) {
+        ionic.Platform.exitApp();
+      });
+    });
+  }
+
+  function getAllName(callback) {
+    // $http({
+    //   url: myService.configAPI.webserviceURL + 'webservices/getAllName.php',
+    //   method: 'POST',
+    //   data: {
+    //     var_questionsetid: myService.questionSetDetail.question_set_id,
+    //     var_startdate: $scope.reportSelection.startdate,
+    //     var_enddate: $scope.reportSelection.enddate
+    //   }
+    // }).then(function(response) {
+    //   myService.allName = response.data.results;
+      callback();
+    // }, function(error) {
+    //   $mdDialog.show({
+    //     controller: 'DialogController',
+    //     templateUrl: 'confirm-dialog.html',
+    //     locals: {
+    //       displayOption: {
+    //         title: "เกิดข้อผิดพลาด !",
+    //         content: "เกิดข้อผิดพลาด getAllName ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+    //         ok: "ตกลง"
+    //       }
+    //     }
+    //   }).then(function(response) {
+    //     ionic.Platform.exitApp();
+    //   });
+    // });
+  }
+
+  function getAllAnsTypeInput(callback) {
+    // $http({
+    //   url: myService.configAPI.webserviceURL + 'webservices/getAllAnsTypeInput.php',
+    //   method: 'POST',
+    //   data: {
+    //     var_questionsetid: myService.questionSetDetail.question_set_id,
+    //     var_startdate: $scope.reportSelection.startdate,
+    //     var_enddate: $scope.reportSelection.enddate
+    //   }
+    // }).then(function(response) {
+    //   myService.allAnswerTypeInput = response.data.results; // null
+      callback();
+    // }, function(error) {
+    //   $mdDialog.show({
+    //     controller: 'DialogController',
+    //     templateUrl: 'confirm-dialog.html',
+    //     locals: {
+    //       displayOption: {
+    //         title: "เกิดข้อผิดพลาด !",
+    //         content: "เกิดข้อผิดพลาด getAllName ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+    //         ok: "ตกลง"
+    //       }
+    //     }
+    //   }).then(function(response) {
+    //     ionic.Platform.exitApp();
+    //   });
+    // });
+  }
 });

@@ -181,6 +181,7 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
           getStaffList(function(status) {
             if (myService.staffList == "0") {
               myService.staffDetail = {};
+              myService.lastInfoID = {};
               myService.allQuestionInSet = response.data.results;
               if (myService.questionSetDetail.question_set_info == "1") {
                 $state.go('menu2.score');

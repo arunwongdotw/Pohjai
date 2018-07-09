@@ -34,9 +34,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   }
 
   if (Object.keys(myService.lastInfoID).length !== 0) {
-    $scope.lastInfoID = myService.lastInfoID;
-  } else if (myService.lastInfoID != 0){
-    $scope.lastInfoID = myService.lastInfoID;
+    $scope.lastInfoID = myService.lastInfoID.info_id;
   } else {
     $scope.lastInfoID = 0;
   }

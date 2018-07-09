@@ -48,8 +48,6 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
   $scope.btnBack = function() {
     if (Object.keys(myService.lastInfoID).length !== 0) {
       $scope.navigateTo('menu2.basicinfo');
-    } else if (myService.lastInfoID != 0){
-      $scope.navigateTo('menu2.basicinfo');
     } else {
       $scope.navigateTo('menu2.score');
     }
@@ -78,9 +76,8 @@ appControllers.controller('scoreCompleteCtrl', function($scope, $timeout, $state
       addAdFrequency(function(status) {});
     });
     $timeout(function() {
+      console.log(Object.keys(myService.lastInfoID).length);
       if (Object.keys(myService.lastInfoID).length !== 0) {
-        $scope.navigateTo('menu2.basicinfo');
-      } else if (myService.lastInfoID != 0){
         $scope.navigateTo('menu2.basicinfo');
       } else {
         $scope.navigateTo('menu2.score');

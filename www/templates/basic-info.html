@@ -83,7 +83,8 @@
                     </div>
                 </md-input-container>
                 <md-select ng-model="mdSelectValueAns[$qindex]" aria-label="md-option" style="margin-left: 10px; padding: 10px 2px 15px;" ng-if="question.bq_type == 2">
-                    <md-option value="{{$index}}" ng-click="setAns($qindex, ans.bqa_ans)" ng-repeat="ans in basicAnsInQuestion" ng-if="question.bq_id == ans.bqa_bq_id">{{ans.bqa_ans}}</md-option>
+                    <!-- <md-option value="{{$index}}" ng-click="setAns($qindex, ans.bqa_ans)" ng-repeat="ans in basicAnsInQuestion" ng-if="question.bq_id == ans.bqa_bq_id">{{ans.bqa_ans}}</md-option> -->
+                    <md-option value="{{$index}}" ng-click="setAns($qindex, ans.bqa_id, ans.bqa_ans)" ng-repeat="ans in basicAnsInQuestion" ng-if="question.bq_id == ans.bqa_bq_id">{{ans.bqa_ans}}</md-option>
                 </md-select>
             </div>
             <a class="md-raised social-button md-button md-default-theme material-background" ng-click="insertBasicInfo()" style="margin-top: 20px;">

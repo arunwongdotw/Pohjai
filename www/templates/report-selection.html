@@ -18,6 +18,16 @@
             <md-option value="2" ng-click="setChart(2)" ng-if="appLanguageID == 2">Line Chart</md-option>
             <md-option value="3" ng-click="setChart(3)" ng-if="appLanguageID == 2">Pie Chart</md-option>
         </md-select>
+        <div class="row" ng-if="questionSetDetail.question_set_info == 2">
+            <div class="col-50" style="margin-left: 20px;">ข้อมูลที่ใช้สร้างกราฟ</div>
+        </div>
+        <md-select ng-model="mdSelectValueData" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;" ng-if="questionSetDetail.question_set_info == 2">
+            <md-option value="1" ng-click="setData(1)" ng-if="appLanguageID == 1">ข้อมูลจากแบบประเมินความพึงพอใจ</md-option>
+            <md-option value="2" ng-click="setData(2)" ng-if="appLanguageID == 1">ข้อมูลจากแบบสอบถามเบื้องต้น</md-option>
+
+            <md-option value="1" ng-click="setData(1)" ng-if="appLanguageID == 2">Data from satisfaction form</md-option>
+            <md-option value="2" ng-click="setData(2)" ng-if="appLanguageID == 2">Data from basic information</md-option>
+        </md-select>
         <md-input-container md-no-float="" style="margin-left: 20px;">
             <p>{{appLanguage.app_lang_report_selection_start}}</p>
             <div>
