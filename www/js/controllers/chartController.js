@@ -55,7 +55,7 @@ appControllers.controller('chartCtrl', function($scope, $timeout, $state, $state
       });
     });
 
-  // $scope.options = { legend: { display: true } };
+  // $scope.options = { legends: { display: true } };
 
   function makeLabelsForChart() {
     if (myService.questionSetDetail.question_set_number_btn == 1) {
@@ -163,5 +163,9 @@ appControllers.controller('chartCtrl', function($scope, $timeout, $state, $state
         $state.go(stateName);
       }
     }, ($scope.isAnimated ? 300 : 0));
+  };
+
+  $scope.btnBack = function() {
+    $scope.navigateTo('menu2.question');
   };
 });

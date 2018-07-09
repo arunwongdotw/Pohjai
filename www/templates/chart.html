@@ -1,5 +1,10 @@
 <ion-view id="online-course" hide-nav-bar="false">
     <ion-nav-title>{{appLanguage.app_lang_chart_title}}</ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="btnBack()" class="button back-button buttons button-clear header-item nav-back-btn">
+            <i class="ion-android-arrow-back"></i>
+        </a>
+    </ion-nav-buttons>
     <ion-content id="online-course-content">
         <div class="card" ng-repeat="question in questionArrayList" ng-if="chartType == 1">
             <div class="item item-divider" style="font-size: 14px;">
