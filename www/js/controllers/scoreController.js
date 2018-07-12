@@ -6,7 +6,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   $scope.allQuestionInSet = myService.allQuestionInSet;
   $scope.staffDetail = myService.staffDetail;
   $scope.randomNumber = Math.random();
-  $cordovaNativeAudio.preloadSimple('thankscut', 'audio/thankscut.mp3');
+  $cordovaNativeAudio.preloadSimple('thanks', 'audio/thanks.mp3');
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
@@ -262,7 +262,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
       }).then(function(response) {
         if ((index + 1) < $scope.allQuestionInSet.length) {
           if ($scope.sound == "1") {
-            // $cordovaNativeAudio.play('thankscut');
+            $cordovaNativeAudio.play('thanks');
           }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
@@ -295,7 +295,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           }
         } else {
           if ($scope.sound == "1") {
-            $cordovaNativeAudio.play('thankscut');
+            $cordovaNativeAudio.play('thanks');
           }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
@@ -364,7 +364,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
       }).then(function(response) {
         if ((index + 1) < $scope.allQuestionInSet.length) {
           if ($scope.sound == "1") {
-            $cordovaNativeAudio.play('thankscut');
+            $cordovaNativeAudio.play('thanks');
           }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
@@ -397,7 +397,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           }
         } else {
           if ($scope.sound == "1") {
-            $cordovaNativeAudio.play('thankscut');
+            $cordovaNativeAudio.play('thanks');
           }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
@@ -468,7 +468,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           }
         }).then(function(response) {
           if ($scope.sound == "1") {
-            $cordovaNativeAudio.play('thankscut');
+            $cordovaNativeAudio.play('thanks');
           }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
@@ -554,7 +554,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           }
         }).then(function(response) {
           if ($scope.sound == "1") {
-            $cordovaNativeAudio.play('thankscut');
+            $cordovaNativeAudio.play('thanks');
           }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
@@ -648,7 +648,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 }
               }).then(function(response) {
                 if ($scope.sound == "1") {
-                  $cordovaNativeAudio.play('thankscut');
+                  $cordovaNativeAudio.play('thanks');
                 }
                 if ($scope.appLanguageID == "1") {
                   $mdDialog.show({
@@ -706,7 +706,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 }
               }).then(function(response) {
                 if ($scope.sound == "1") {
-                  $cordovaNativeAudio.play('thankscut');
+                  $cordovaNativeAudio.play('thanks');
                 }
                 if ($scope.appLanguageID == "1") {
                   $mdDialog.show({
@@ -784,7 +784,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
           getRating(function(status) {});
           addScoreToDB(function(status) {});
           if ($scope.sound == "1") {
-            $cordovaNativeAudio.play('thankscut');
+            $cordovaNativeAudio.play('thanks');
           }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({

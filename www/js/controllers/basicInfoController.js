@@ -12,7 +12,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
   $scope.basicAnsInput = {};
   $scope.basicAnsSelect = {};
   $scope.staffDetail = myService.staffDetail;
-  $cordovaNativeAudio.preloadSimple('thankscut', 'audio/thankscut.mp3');
+  $cordovaNativeAudio.preloadSimple('thanks', 'audio/thanks.mp3');
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
@@ -275,7 +275,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
               myService.lastInfoID.info_id = response.data.results;
               insertAns(myService.lastInfoID.info_id, function(status) {
                 if ($scope.sound == "1") {
-                  $cordovaNativeAudio.play('thankscut');
+                  $cordovaNativeAudio.play('thanks');
                 }
                 if ($scope.appLanguageID == "1") {
                   $mdDialog.show({
@@ -339,7 +339,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
               myService.lastInfoID.info_id = response.data.results;
               insertAns(myService.lastInfoID.info_id, function(status) {
                 if ($scope.sound == "1") {
-                  $cordovaNativeAudio.play('thankscut');
+                  $cordovaNativeAudio.play('thanks');
                 }
                 if ($scope.appLanguageID == "1") {
                   $mdDialog.show({
@@ -433,7 +433,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
               myService.lastInfoID.info_id = response.data.results;
               insertAns(myService.lastInfoID.info_id, function(status) {
                 if ($scope.sound == "1") {
-                  $cordovaNativeAudio.play('thankscut');
+                  $cordovaNativeAudio.play('thanks');
                 }
                 if ($scope.appLanguageID == "1") {
                   $mdDialog.show({
@@ -497,7 +497,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
               myService.lastInfoID.info_id = response.data.results;
               insertAns(myService.lastInfoID.info_id, function(status) {
                 if ($scope.sound == "1") {
-                  $cordovaNativeAudio.play('thankscut');
+                  $cordovaNativeAudio.play('thanks');
                 }
                 if ($scope.appLanguageID == "1") {
                   $mdDialog.show({
@@ -595,7 +595,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
                 myService.lastInfoID.info_id = response.data.results;
                 insertAns(myService.lastInfoID.info_id, function(status) {
                   if ($scope.sound == "1") {
-                    $cordovaNativeAudio.play('thankscut');
+                    $cordovaNativeAudio.play('thanks');
                   }
                   if ($scope.appLanguageID == "1") {
                     $mdDialog.show({
@@ -659,7 +659,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
                 myService.lastInfoID.info_id = response.data.results;
                 insertAns(myService.lastInfoID.info_id, function(status) {
                   if ($scope.sound == "1") {
-                    $cordovaNativeAudio.play('thankscut');
+                    $cordovaNativeAudio.play('thanks');
                   }
                   if ($scope.appLanguageID == "1") {
                     $mdDialog.show({
