@@ -48,7 +48,6 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
   $http.get(myService.configAPI.webserviceURL + 'webservices/getBasicQuestionChart.php?questionSetID=' + myService.questionSetDetail.question_set_id)
     .then(function(response) {
       $scope.allQuestion = response.data.results;
-      console.log($scope.allQuestion);
       makeSelectChart();
     }, function(error) {
       $mdDialog.show({
@@ -254,17 +253,30 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
     }
   }
 
+  var kloop = 0;
+  var lloop = 0;
+
   function makeAnsTypeSelectData(callback) {
-    for (var i = 0; i < $scope.allBasicAns.length; i++) {
-      if (typeof myService.countAnswerTypeSelect[i] != 'undefined') {
-        if ($scope.allBasicAns[i].bqa_id == myService.countAnswerTypeSelect[i].ans_bqa_id) {
-          $scope.dataSelect[$scope.allBasicAns[i].bq_id].push(myService.countAnswerTypeSelect[i].countans)
+    if (kloop < $scope.allBasicAns.length) {
+      if (lloop < myService.countAnswerTypeSelect.length) {
+        if ($scope.allBasicAns[kloop].bqa_id == myService.countAnswerTypeSelect[lloop].ans_bqa_id) {
+          $scope.dataSelect[$scope.allBasicAns[kloop].bq_id].push(myService.countAnswerTypeSelect[lloop].countans);
+          lloop = 0;
+          kloop = kloop + 1;
+          makeAnsTypeSelectData(callback);
         } else {
-          $scope.dataSelect[$scope.allBasicAns[i].bq_id].push(0);
+          lloop = lloop + 1;
+          makeAnsTypeSelectData(callback);
         }
+      } else {
+        $scope.dataSelect[$scope.allBasicAns[kloop].bq_id].push("0");
+        lloop = 0;
+        kloop = kloop + 1;
+        makeAnsTypeSelectData(callback);
       }
+    } else {
+      callback();
     }
-    callback();
   }
 
   $scope.seeAllName = function(questionSetID) {
@@ -275,8 +287,8 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
       method: 'POST',
       data: {
         var_questionsetid: questionSetID,
-        var_startdate: myService.chartDate.startdate,
-        var_enddate: myService.chartDate.enddate
+        var_startdate: myService.chartDate.startdatetime,
+        var_enddate: myService.chartDate.enddatetime
       }
     }).then(function(response) {
       myService.allName = response.data.results;
@@ -306,8 +318,8 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
       method: 'POST',
       data: {
         var_bqid: bq_id,
-        var_startdate: myService.chartDate.startdate,
-        var_enddate: myService.chartDate.enddate
+        var_startdate: myService.chartDate.startdatetime,
+        var_enddate: myService.chartDate.enddatetime
       }
     }).then(function(response) {
       myService.allAns = response.data.results;
