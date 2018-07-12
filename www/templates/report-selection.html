@@ -19,7 +19,7 @@
             <md-option value="3" ng-click="setChart(3)" ng-if="appLanguageID == 2">Pie Chart</md-option>
         </md-select>
         <div class="row" ng-if="questionSetDetail.question_set_info == 2">
-            <div class="col-50" style="margin-left: 20px;">ข้อมูลที่ใช้สร้างกราฟ</div>
+            <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_report_selection_data_type}}</div>
         </div>
         <md-select ng-model="mdSelectValueData" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;" ng-if="questionSetDetail.question_set_info == 2">
             <md-option value="1" ng-click="setData(1)" ng-if="appLanguageID == 1">ข้อมูลจากแบบประเมินความพึงพอใจ</md-option>
@@ -35,21 +35,21 @@
             </div>
         </md-input-container>
         <md-input-container md-no-float="" style="margin-left: 20px;">
+            <p>{{appLanguage.app_lang_report_selection_time_start}}</p>
+            <div>
+                <input class="user-name" placeholder="{{appLanguage.app_lang_report_selection_time_start}} *" style="width: 300px;" ng-model="reportSelection.starttime" ng-click="openTimePickerStart()">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="" style="margin-left: 20px;">
             <p>{{appLanguage.app_lang_report_selection_end}}</p>
             <div>
                 <input class="user-name" placeholder="{{appLanguage.app_lang_report_selection_end}} *" style="width: 300px;" ng-model="reportSelection.enddate" ng-click="openDatePickerEnd()">
             </div>
         </md-input-container>
         <md-input-container md-no-float="" style="margin-left: 20px;">
-            <p>เวลา</p>
+            <p>{{appLanguage.app_lang_report_selection_time_end}}</p>
             <div>
-                <input class="user-name" placeholder="เวลา *" style="width: 300px;" ng-model="reportSelection.starttime" ng-click="openTimePickerStart()">
-            </div>
-        </md-input-container>
-        <md-input-container md-no-float="" style="margin-left: 20px;">
-            <p>เวลา</p>
-            <div>
-                <input class="user-name" placeholder="เวลา *" style="width: 300px;" ng-model="reportSelection.endtime" ng-click="openTimePickerEnd()">
+                <input class="user-name" placeholder="{{appLanguage.app_lang_report_selection_time_end}} *" style="width: 300px;" ng-model="reportSelection.endtime" ng-click="openTimePickerEnd()">
             </div>
         </md-input-container>
         <center>
