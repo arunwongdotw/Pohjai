@@ -5,6 +5,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
   $scope.mdSelectValueData = 1;
   $scope.reportSelection = {};
   $scope.questionSetDetail = myService.questionSetDetail;
+  $scope.reportSelection.starttime = "00:00";
+  $scope.reportSelection.endtime = "00:00";
 
   if (typeof window.localStorage.appLanguageID == 'undefined') {
     $scope.appLanguageID = "1";
@@ -84,7 +86,6 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       // console.log('Return value from the datepicker popup is : ' + val, new Date(val));
       $scope.reportSelection.enddate = new Date(val + 25200000).toISOString().slice(0, 10).replace('T', ' ');
       $scope.reportSelection.enddatetime = $scope.reportSelection.enddate + ' ' + $scope.reportSelection.endtime;
-      console.log($scope.reportSelection.enddatetime);
       var strArray = str.split('-');
       var year = strArray[0];
       var month = strArray[1] - 1;
@@ -153,7 +154,7 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       }
       $scope.reportSelection.startdatetime = $scope.reportSelection.startdate + ' ' + $scope.reportSelection.starttime;
     },
-    inputTime: 50400, //Optional
+    inputTime: 0, //Optional
     format: 24, //Optional
     step: 15, //Optional
     setLabel: 'Set' //Optional
@@ -181,7 +182,7 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       }
       $scope.reportSelection.enddatetime = $scope.reportSelection.enddate + ' ' + $scope.reportSelection.endtime;
     },
-    inputTime: 50400, //Optional
+    inputTime: 0, //Optional
     format: 24, //Optional
     step: 15, //Optional
     setLabel: 'Set' //Optional
@@ -215,33 +216,61 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
               var_enddate: $scope.reportSelection.enddatetime
             }
           }).then(function(response) {
-            myService.countScorePerQuestion = response.data.results;
-            $http({
-              url: myService.configAPI.webserviceURL + 'webservices/countToMakeChartPerSet.php',
-              method: 'POST',
-              data: {
-                var_questionsetid: myService.questionSetDetail.question_set_id,
-                var_startdate: $scope.reportSelection.startdatetime,
-                var_enddate: $scope.reportSelection.enddatetime
-              }
-            }).then(function(response) {
-              myService.countScorePerSet = response.data.results;
-              $state.go('menu2.chart');
-            }, function(error) {
-              $mdDialog.show({
-                controller: 'DialogController',
-                templateUrl: 'confirm-dialog.html',
-                locals: {
-                  displayOption: {
-                    title: "เกิดข้อผิดพลาด !",
-                    content: "เกิดข้อผิดพลาด btnChart ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
-                    ok: "ตกลง"
-                  }
+            if (response.data.results != null) {
+              myService.countScorePerQuestion = response.data.results;
+              $http({
+                url: myService.configAPI.webserviceURL + 'webservices/countToMakeChartPerSet.php',
+                method: 'POST',
+                data: {
+                  var_questionsetid: myService.questionSetDetail.question_set_id,
+                  var_startdate: $scope.reportSelection.startdatetime,
+                  var_enddate: $scope.reportSelection.enddatetime
                 }
               }).then(function(response) {
-                ionic.Platform.exitApp();
+                myService.countScorePerSet = response.data.results;
+                $state.go('menu2.chart');
+              }, function(error) {
+                $mdDialog.show({
+                  controller: 'DialogController',
+                  templateUrl: 'confirm-dialog.html',
+                  locals: {
+                    displayOption: {
+                      title: "เกิดข้อผิดพลาด !",
+                      content: "เกิดข้อผิดพลาด btnChart ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+                      ok: "ตกลง"
+                    }
+                  }
+                }).then(function(response) {
+                  ionic.Platform.exitApp();
+                });
               });
-            });
+            } else {
+              if ($scope.appLanguageID == "1") {
+                $mdDialog.show({
+                  controller: 'DialogController',
+                  templateUrl: 'confirm-dialog.html',
+                  locals: {
+                    displayOption: {
+                      title: "ไม่พบข้อมูล !",
+                      content: "ไม่พบข้อมูลในช่วงวันเวลาที่คุณค้นหา กรุณาลองใหม่",
+                      ok: "ตกลง"
+                    }
+                  }
+                });
+              } else {
+                $mdDialog.show({
+                  controller: 'DialogController',
+                  templateUrl: 'confirm-dialog.html',
+                  locals: {
+                    displayOption: {
+                      title: "Not Found Data !",
+                      content: "Not found data at time that your search, Please try again.",
+                      ok: "Confirm"
+                    }
+                  }
+                });
+              }
+            }
           }, function(error) {
             $mdDialog.show({
               controller: 'DialogController',
@@ -641,8 +670,36 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
         var_questionsetid: myService.questionSetDetail.question_set_id
       }
     }).then(function(response) {
-      myService.allBasicFlag = response.data.results[0];
-      callback();
+      if (response.data.results != null) {
+        myService.allBasicFlag = response.data.results[0];
+        callback();
+      } else {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ไม่พบข้อมูล !",
+                content: "ไม่พบข้อมูลในช่วงวันเวลาที่คุณค้นหา กรุณาลองใหม่",
+                ok: "ตกลง"
+              }
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Not Found Data !",
+                content: "Not found data at time that your search, Please try again.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
+      }
     }, function(error) {
       $mdDialog.show({
         controller: 'DialogController',
@@ -670,8 +727,36 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
         var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
-      myService.countAnswerTypeSelect = response.data.results; // ถ้าไม่มี type select จะ return null
-      callback();
+      if (response.data.results != null) {
+        myService.countAnswerTypeSelect = response.data.results; // ถ้าไม่มี type select จะ return null
+        callback();
+      } else {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ไม่พบข้อมูล !",
+                content: "ไม่พบข้อมูลในช่วงวันเวลาที่คุณค้นหา กรุณาลองใหม่",
+                ok: "ตกลง"
+              }
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Not Found Data !",
+                content: "Not found data at time that your search, Please try again.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
+      }
     }, function(error) {
       $mdDialog.show({
         controller: 'DialogController',
@@ -699,8 +784,36 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
         var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
-      myService.countAgePerSet = response.data.results;
-      callback();
+      if (response.data.results != null) {
+        myService.countAgePerSet = response.data.results;
+        callback();
+      } else {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ไม่พบข้อมูล !",
+                content: "ไม่พบข้อมูลในช่วงวันเวลาที่คุณค้นหา กรุณาลองใหม่",
+                ok: "ตกลง"
+              }
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Not Found Data !",
+                content: "Not found data at time that your search, Please try again.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
+      }
     }, function(error) {
       $mdDialog.show({
         controller: 'DialogController',
@@ -728,8 +841,36 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
         var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
-      myService.countSexPerSet = response.data.results;
-      callback();
+      if (response.data.results != null) {
+        myService.countSexPerSet = response.data.results;
+        callback();
+      } else {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ไม่พบข้อมูล !",
+                content: "ไม่พบข้อมูลในช่วงวันเวลาที่คุณค้นหา กรุณาลองใหม่",
+                ok: "ตกลง"
+              }
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Not Found Data !",
+                content: "Not found data at time that your search, Please try again.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
+      }
     }, function(error) {
       $mdDialog.show({
         controller: 'DialogController',
@@ -757,8 +898,36 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
         var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
-      myService.countEducationPerSet = response.data.results;
-      callback();
+      if (response.data.results != null) {
+        myService.countEducationPerSet = response.data.results;
+        callback();
+      } else {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ไม่พบข้อมูล !",
+                content: "ไม่พบข้อมูลในช่วงวันเวลาที่คุณค้นหา กรุณาลองใหม่",
+                ok: "ตกลง"
+              }
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Not Found Data !",
+                content: "Not found data at time that your search, Please try again.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
+      }
     }, function(error) {
       $mdDialog.show({
         controller: 'DialogController',
@@ -786,8 +955,36 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
         var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
-      myService.countIncomePerSet = response.data.results;
-      callback();
+      if (response.data.results != null) {
+        myService.countIncomePerSet = response.data.results;
+        callback();
+      } else {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ไม่พบข้อมูล !",
+                content: "ไม่พบข้อมูลในช่วงวันเวลาที่คุณค้นหา กรุณาลองใหม่",
+                ok: "ตกลง"
+              }
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Not Found Data !",
+                content: "Not found data at time that your search, Please try again.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
+      }
     }, function(error) {
       $mdDialog.show({
         controller: 'DialogController',
@@ -815,8 +1012,36 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
         var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
-      myService.countIncomePerSet = response.data.results;
-      callback();
+      if (response.data.results != null) {
+        myService.countIncomePerSet = response.data.results;
+        callback();
+      } else {
+        if ($scope.appLanguageID == "1") {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ไม่พบข้อมูล !",
+                content: "ไม่พบข้อมูลในช่วงวันเวลาที่คุณค้นหา กรุณาลองใหม่",
+                ok: "ตกลง"
+              }
+            }
+          });
+        } else {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "Not Found Data !",
+                content: "Not found data at time that your search, Please try again.",
+                ok: "Confirm"
+              }
+            }
+          });
+        }
+      }
     }, function(error) {
       $mdDialog.show({
         controller: 'DialogController',
