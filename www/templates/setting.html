@@ -179,6 +179,22 @@
             <md-option value="1" ng-click="setSound(1)" ng-if="appLanguageID == 4">음소거 해제</md-option>
             <md-option value="2" ng-click="setSound(2)" ng-if="appLanguageID == 4">묵자</md-option>
         </md-select>
+        <div class="row" ng-if="loginFlag == true">
+            <div class="col-50" style="margin-left: 20px;">{{appLanguage.app_lang_setting_pass}}</div>
+        </div>
+        <md-select ng-model="mdSelectValuePassword" aria-label="md-option" style="margin-left: 20px; padding: 10px 2px 26px;" ng-if="loginFlag == true">
+            <md-option value="1" ng-click="setPassword(1)" ng-if="appLanguageID == 1">ไม่มี</md-option>
+            <md-option value="2" ng-click="setPassword(2)" ng-if="appLanguageID == 1">มี</md-option>
+
+            <md-option value="1" ng-click="setPassword(1)" ng-if="appLanguageID == 2">No</md-option>
+            <md-option value="2" ng-click="setPassword(2)" ng-if="appLanguageID == 2">Yes</md-option>
+
+            <md-option value="1" ng-click="setPassword(1)" ng-if="appLanguageID == 3">没有</md-option>
+            <md-option value="2" ng-click="setPassword(2)" ng-if="appLanguageID == 3">是</md-option>
+
+            <md-option value="1" ng-click="setPassword(1)" ng-if="appLanguageID == 4">아니</md-option>
+            <md-option value="2" ng-click="setPassword(2)" ng-if="appLanguageID == 4">예</md-option>
+        </md-select>
         <br><br>
     </ion-content>
 </ion-view>

@@ -43,6 +43,14 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
     $scope.mdSelectValueSecondColor = "1";
   }
 
+  if (typeof window.localStorage.password == 'undefined') {
+    $scope.mdSelectValuePassword = "1";
+  } else if ((window.localStorage.password != "") || (window.localStorage.password != null)) {
+    $scope.mdSelectValuePassword = window.localStorage.password;
+  } else {
+    $scope.mdSelectValuePassword = "1";
+  }
+
   if ($state.current.name == "menu1.setting") {
     $scope.loginFlag = false;
   } else {
@@ -313,6 +321,13 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
 
   $scope.setSound = function(soundID) {
     window.localStorage.sound = soundID;
+    $state.go('menu2.question', {}, {
+      reload: 'menu2.question'
+    });
+  };
+
+  $scope.setPassword = function(passwordID) {
+    window.localStorage.password = passwordID;
     $state.go('menu2.question', {}, {
       reload: 'menu2.question'
     });

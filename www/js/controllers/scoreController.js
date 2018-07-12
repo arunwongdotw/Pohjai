@@ -33,6 +33,14 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
     $scope.sound = "1";
   }
 
+  if (typeof window.localStorage.password == 'undefined') {
+    $scope.password = "1";
+  } else if ((window.localStorage.password != "") || (window.localStorage.password != null)) {
+    $scope.password = window.localStorage.password;
+  } else {
+    $scope.password = "1";
+  }
+
   if (Object.keys(myService.lastInfoID).length !== 0) {
     $scope.lastInfoID = myService.lastInfoID.info_id;
   } else {
@@ -127,112 +135,116 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
   };
 
   $scope.btnBack = function() {
-    if ($scope.appLanguageID == "1") {
-      $mdDialog.show({
-        controller: 'inputDialogController',
-        templateUrl: 'input-dialog.html',
-        locals: {
-          displayOption: {
-            title: "ย้อนกลับ ?",
-            content: "คุณต้องการที่จะย้อนกลับ ?",
-            inputplaceholder: "กรุณากรอกรหัสผ่านเพื่อยืนยัน",
-            ok: "ยืนยัน",
-            cancel: "ยกเลิก"
-          }
-        }
-      }).then(function(response) {
-        $http({
-          url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
-          method: 'POST',
-          data: {
-            var_memberid: myService.memberDetailFromLogin.member_id,
-            var_password: myService.inputDialog.password
+    if ($scope.password == 1) {
+      $state.go('menu2.question');
+    } else {
+      if ($scope.appLanguageID == "1") {
+        $mdDialog.show({
+          controller: 'inputDialogController',
+          templateUrl: 'input-dialog.html',
+          locals: {
+            displayOption: {
+              title: "ย้อนกลับ ?",
+              content: "คุณต้องการที่จะย้อนกลับ ?",
+              inputplaceholder: "กรุณากรอกรหัสผ่านเพื่อยืนยัน",
+              ok: "ยืนยัน",
+              cancel: "ยกเลิก"
+            }
           }
         }).then(function(response) {
-          if (response.data.results == 'confirmPassword_success') {
-            $state.go('menu2.question');
-          } else {
+          $http({
+            url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
+            method: 'POST',
+            data: {
+              var_memberid: myService.memberDetailFromLogin.member_id,
+              var_password: myService.inputDialog.password
+            }
+          }).then(function(response) {
+            if (response.data.results == 'confirmPassword_success') {
+              $state.go('menu2.question');
+            } else {
+              $mdDialog.show({
+                controller: 'DialogController',
+                templateUrl: 'confirm-dialog.html',
+                locals: {
+                  displayOption: {
+                    title: "ยืนยันรหัสผ่านไม่ถูกต้อง !",
+                    content: "คุณกรอกยืนยันรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่",
+                    ok: "ตกลง"
+                  }
+                }
+              });
+            }
+          }, function(error) {
             $mdDialog.show({
               controller: 'DialogController',
               templateUrl: 'confirm-dialog.html',
               locals: {
                 displayOption: {
-                  title: "ยืนยันรหัสผ่านไม่ถูกต้อง !",
-                  content: "คุณกรอกยืนยันรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่",
+                  title: "เกิดข้อผิดพลาด !",
+                  content: "เกิดข้อผิดพลาด btnBack ใน scoreController ระบบจะปิดอัตโนมัติ",
                   ok: "ตกลง"
                 }
               }
+            }).then(function(response) {
+              ionic.Platform.exitApp();
             });
-          }
-        }, function(error) {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "เกิดข้อผิดพลาด !",
-                content: "เกิดข้อผิดพลาด btnBack ใน scoreController ระบบจะปิดอัตโนมัติ",
-                ok: "ตกลง"
-              }
-            }
-          }).then(function(response) {
-            ionic.Platform.exitApp();
           });
         });
-      });
-    } else {
-      $mdDialog.show({
-        controller: 'inputDialogController',
-        templateUrl: 'input-dialog.html',
-        locals: {
-          displayOption: {
-            title: "Back ?",
-            content: "Do you want to back ?",
-            inputplaceholder: "Fill password for confirm",
-            ok: "Confirm",
-            cancel: "Cancel"
-          }
-        }
-      }).then(function(response) {
-        $http({
-          url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
-          method: 'POST',
-          data: {
-            var_memberid: myService.memberDetailFromLogin.member_id,
-            var_password: myService.inputDialog.password
+      } else {
+        $mdDialog.show({
+          controller: 'inputDialogController',
+          templateUrl: 'input-dialog.html',
+          locals: {
+            displayOption: {
+              title: "Back ?",
+              content: "Do you want to back ?",
+              inputplaceholder: "Fill password for confirm",
+              ok: "Confirm",
+              cancel: "Cancel"
+            }
           }
         }).then(function(response) {
-          if (response.data.results == 'confirmPassword_success') {
-            $state.go('menu2.question');
-          } else {
+          $http({
+            url: myService.configAPI.webserviceURL + 'webservices/confirmPassword.php',
+            method: 'POST',
+            data: {
+              var_memberid: myService.memberDetailFromLogin.member_id,
+              var_password: myService.inputDialog.password
+            }
+          }).then(function(response) {
+            if (response.data.results == 'confirmPassword_success') {
+              $state.go('menu2.question');
+            } else {
+              $mdDialog.show({
+                controller: 'DialogController',
+                templateUrl: 'confirm-dialog.html',
+                locals: {
+                  displayOption: {
+                    title: "Invalid Confirm Password !",
+                    content: "You fill invalid confirm password, please try again.",
+                    ok: "Confirm"
+                  }
+                }
+              });
+            }
+          }, function(error) {
             $mdDialog.show({
               controller: 'DialogController',
               templateUrl: 'confirm-dialog.html',
               locals: {
                 displayOption: {
-                  title: "Invalid Confirm Password !",
-                  content: "You fill invalid confirm password, please try again.",
-                  ok: "Confirm"
+                  title: "เกิดข้อผิดพลาด !",
+                  content: "เกิดข้อผิดพลาด btnBack ใน scoreController ระบบจะปิดอัตโนมัติ",
+                  ok: "ตกลง"
                 }
               }
+            }).then(function(response) {
+              ionic.Platform.exitApp();
             });
-          }
-        }, function(error) {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "เกิดข้อผิดพลาด !",
-                content: "เกิดข้อผิดพลาด btnBack ใน scoreController ระบบจะปิดอัตโนมัติ",
-                ok: "ตกลง"
-              }
-            }
-          }).then(function(response) {
-            ionic.Platform.exitApp();
           });
         });
-      });
+      }
     }
   };
 
@@ -250,7 +262,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
       }).then(function(response) {
         if ((index + 1) < $scope.allQuestionInSet.length) {
           if ($scope.sound == "1") {
-            $cordovaNativeAudio.play('thankscut');
+            // $cordovaNativeAudio.play('thankscut');
           }
           if ($scope.appLanguageID == "1") {
             $mdDialog.show({
