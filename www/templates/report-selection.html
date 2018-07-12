@@ -40,6 +40,18 @@
                 <input class="user-name" placeholder="{{appLanguage.app_lang_report_selection_end}} *" style="width: 300px;" ng-model="reportSelection.enddate" ng-click="openDatePickerEnd()">
             </div>
         </md-input-container>
+        <md-input-container md-no-float="" style="margin-left: 20px;">
+            <p>เวลา</p>
+            <div>
+                <input class="user-name" placeholder="เวลา *" style="width: 300px;" ng-model="reportSelection.starttime" ng-click="openTimePickerStart()">
+            </div>
+        </md-input-container>
+        <md-input-container md-no-float="" style="margin-left: 20px;">
+            <p>เวลา</p>
+            <div>
+                <input class="user-name" placeholder="เวลา *" style="width: 300px;" ng-model="reportSelection.endtime" ng-click="openTimePickerEnd()">
+            </div>
+        </md-input-container>
         <center>
             <a class="md-raised social-button md-button md-default-theme material-background" ng-click="btnChart()" style="margin-left: 20px;">
                 {{appLanguage.app_lang_report_selection_chart_btn}}

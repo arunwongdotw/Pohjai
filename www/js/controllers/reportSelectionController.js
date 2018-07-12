@@ -1,4 +1,4 @@
-appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state, $ionicPlatform, $mdDialog, $mdBottomSheet, $mdMenu, $mdSelect, $http, myService, $ionicNavBarDelegate, ionicDatePicker) {
+appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdUtil, $mdSidenav, $log, $ionicHistory, $state, $ionicPlatform, $mdDialog, $mdBottomSheet, $mdMenu, $mdSelect, $http, myService, $ionicNavBarDelegate, ionicDatePicker, ionicTimePicker) {
   $scope.appLanguage = {};
   $scope.currState = $state; // get ค่าชื่อ state
   $scope.mdSelectValueChart = 1;
@@ -59,6 +59,7 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
     callback: function(val) { //Mandatory
       // console.log('Return value from the datepicker popup is : ' + val, new Date(val));
       $scope.reportSelection.startdate = new Date(val + 25200000).toISOString().slice(0, 10).replace('T', ' ');
+      $scope.reportSelection.startdatetime = $scope.reportSelection.startdate + ' ' + $scope.reportSelection.starttime;
       var str = $scope.reportSelection.startdate;
       var strArray = str.split('-');
       var year = strArray[0];
@@ -82,7 +83,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
     callback: function(val) { //Mandatory
       // console.log('Return value from the datepicker popup is : ' + val, new Date(val));
       $scope.reportSelection.enddate = new Date(val + 25200000).toISOString().slice(0, 10).replace('T', ' ');
-      var str = $scope.reportSelection.enddate;
+      $scope.reportSelection.enddatetime = $scope.reportSelection.enddate + ' ' + $scope.reportSelection.endtime;
+      console.log($scope.reportSelection.enddatetime);
       var strArray = str.split('-');
       var year = strArray[0];
       var month = strArray[1] - 1;
@@ -106,6 +108,7 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       callback: function(val) { //Mandatory
         // console.log('Return value from the datepicker popup is : ' + val, new Date(val));
         $scope.reportSelection.enddate = new Date(val + 25200000).toISOString().slice(0, 10).replace('T', ' ');
+        $scope.reportSelection.enddatetime = $scope.reportSelection.enddate + ' ' + $scope.reportSelection.endtime;
       },
       from: new Date(year, month, day), //Optional
       to: new Date(2020, 10, 30), //Optional
@@ -121,6 +124,7 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       callback: function(val) { //Mandatory
         // console.log('Return value from the datepicker popup is : ' + val, new Date(val));
         $scope.reportSelection.startdate = new Date(val + 25200000).toISOString().slice(0, 10).replace('T', ' ');
+        $scope.reportSelection.startdatetime = $scope.reportSelection.startdate + ' ' + $scope.reportSelection.starttime;
       },
       from: new Date(2018, 00, 01), //Optional
       to: new Date(year, month, day), //Optional
@@ -131,6 +135,62 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
     };
   }
 
+  var ipObj3 = {
+    callback: function(val) { //Mandatory
+      var selectedTime = new Date(val * 1000);
+      if (selectedTime.getUTCHours() < 10) {
+        if (selectedTime.getUTCMinutes() < 10) {
+          $scope.reportSelection.starttime = '0' + selectedTime.getUTCHours() + ':0' + selectedTime.getUTCMinutes();
+        } else {
+          $scope.reportSelection.starttime = '0' + selectedTime.getUTCHours() + ':' + selectedTime.getUTCMinutes();
+        }
+      } else {
+        if (selectedTime.getUTCMinutes() < 10) {
+          $scope.reportSelection.starttime = selectedTime.getUTCHours() + ':0' + selectedTime.getUTCMinutes();
+        } else {
+          $scope.reportSelection.starttime = selectedTime.getUTCHours() + ':' + selectedTime.getUTCMinutes();
+        }
+      }
+      $scope.reportSelection.startdatetime = $scope.reportSelection.startdate + ' ' + $scope.reportSelection.starttime;
+    },
+    inputTime: 50400, //Optional
+    format: 24, //Optional
+    step: 15, //Optional
+    setLabel: 'Set' //Optional
+  };
+
+  $scope.openTimePickerStart = function() {
+    ionicTimePicker.openTimePicker(ipObj3);
+  };
+
+  var ipObj4 = {
+    callback: function(val) { //Mandatory
+      var selectedTime = new Date(val * 1000);
+      if (selectedTime.getUTCHours() < 10) {
+        if (selectedTime.getUTCMinutes() < 10) {
+          $scope.reportSelection.endtime = '0' + selectedTime.getUTCHours() + ':0' + selectedTime.getUTCMinutes();
+        } else {
+          $scope.reportSelection.endtime = '0' + selectedTime.getUTCHours() + ':' + selectedTime.getUTCMinutes();
+        }
+      } else {
+        if (selectedTime.getUTCMinutes() < 10) {
+          $scope.reportSelection.endtime = selectedTime.getUTCHours() + ':0' + selectedTime.getUTCMinutes();
+        } else {
+          $scope.reportSelection.endtime = selectedTime.getUTCHours() + ':' + selectedTime.getUTCMinutes();
+        }
+      }
+      $scope.reportSelection.enddatetime = $scope.reportSelection.enddate + ' ' + $scope.reportSelection.endtime;
+    },
+    inputTime: 50400, //Optional
+    format: 24, //Optional
+    step: 15, //Optional
+    setLabel: 'Set' //Optional
+  };
+
+  $scope.openTimePickerEnd = function() {
+    ionicTimePicker.openTimePicker(ipObj4);
+  };
+
   $scope.setChart = function(chartID) {
     $scope.mdSelectValueChart = chartID;
   };
@@ -140,8 +200,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
   };
 
   $scope.btnChart = function() {
-    myService.chartDate.startdate = $scope.reportSelection.startdate;
-    myService.chartDate.enddate = $scope.reportSelection.enddate;
+    myService.chartDate.startdatetime = $scope.reportSelection.startdatetime;
+    myService.chartDate.enddatetime = $scope.reportSelection.enddatetime;
     if (typeof $scope.reportSelection.startdate != 'undefined') {
       if (typeof $scope.reportSelection.enddate != 'undefined') {
         if ($scope.mdSelectValueData == 1) {
@@ -151,8 +211,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
             method: 'POST',
             data: {
               var_questionsetid: myService.questionSetDetail.question_set_id,
-              var_startdate: $scope.reportSelection.startdate,
-              var_enddate: $scope.reportSelection.enddate
+              var_startdate: $scope.reportSelection.startdatetime,
+              var_enddate: $scope.reportSelection.enddatetime
             }
           }).then(function(response) {
             myService.countScorePerQuestion = response.data.results;
@@ -161,8 +221,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
               method: 'POST',
               data: {
                 var_questionsetid: myService.questionSetDetail.question_set_id,
-                var_startdate: $scope.reportSelection.startdate,
-                var_enddate: $scope.reportSelection.enddate
+                var_startdate: $scope.reportSelection.startdatetime,
+                var_enddate: $scope.reportSelection.enddatetime
               }
             }).then(function(response) {
               myService.countScorePerSet = response.data.results;
@@ -606,8 +666,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       method: 'POST',
       data: {
         var_questionsetid: myService.questionSetDetail.question_set_id,
-        var_startdate: $scope.reportSelection.startdate,
-        var_enddate: $scope.reportSelection.enddate
+        var_startdate: $scope.reportSelection.startdatetime,
+        var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
       myService.countAnswerTypeSelect = response.data.results; // ถ้าไม่มี type select จะ return null
@@ -635,8 +695,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       method: 'POST',
       data: {
         var_questionsetid: myService.questionSetDetail.question_set_id,
-        var_startdate: $scope.reportSelection.startdate,
-        var_enddate: $scope.reportSelection.enddate
+        var_startdate: $scope.reportSelection.startdatetime,
+        var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
       myService.countAgePerSet = response.data.results;
@@ -664,8 +724,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       method: 'POST',
       data: {
         var_questionsetid: myService.questionSetDetail.question_set_id,
-        var_startdate: $scope.reportSelection.startdate,
-        var_enddate: $scope.reportSelection.enddate
+        var_startdate: $scope.reportSelection.startdatetime,
+        var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
       myService.countSexPerSet = response.data.results;
@@ -693,8 +753,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       method: 'POST',
       data: {
         var_questionsetid: myService.questionSetDetail.question_set_id,
-        var_startdate: $scope.reportSelection.startdate,
-        var_enddate: $scope.reportSelection.enddate
+        var_startdate: $scope.reportSelection.startdatetime,
+        var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
       myService.countEducationPerSet = response.data.results;
@@ -722,8 +782,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       method: 'POST',
       data: {
         var_questionsetid: myService.questionSetDetail.question_set_id,
-        var_startdate: $scope.reportSelection.startdate,
-        var_enddate: $scope.reportSelection.enddate
+        var_startdate: $scope.reportSelection.startdatetime,
+        var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
       myService.countIncomePerSet = response.data.results;
@@ -751,8 +811,8 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
       method: 'POST',
       data: {
         var_questionsetid: myService.questionSetDetail.question_set_id,
-        var_startdate: $scope.reportSelection.startdate,
-        var_enddate: $scope.reportSelection.enddate
+        var_startdate: $scope.reportSelection.startdatetime,
+        var_enddate: $scope.reportSelection.enddatetime
       }
     }).then(function(response) {
       myService.countIncomePerSet = response.data.results;
@@ -785,7 +845,7 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
     //   }
     // }).then(function(response) {
     //   myService.allName = response.data.results;
-      callback();
+    callback();
     // }, function(error) {
     //   $mdDialog.show({
     //     controller: 'DialogController',
@@ -814,7 +874,7 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
     //   }
     // }).then(function(response) {
     //   myService.allAnswerTypeInput = response.data.results; // null
-      callback();
+    callback();
     // }, function(error) {
     //   $mdDialog.show({
     //     controller: 'DialogController',
