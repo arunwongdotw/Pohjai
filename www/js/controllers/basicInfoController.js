@@ -242,6 +242,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
     caiLoop = 0;
     iaLoop = 0;
     if ($scope.basicInfoInSet.bi_name == "0") {
+      findInputQuestion(function(status) {});
       if (Object.keys($scope.basicAnsInput).length !== 0) {
         checkAnsInput(function(status) {});
         if ($scope.checkAnsInputFlag == true) {
@@ -402,30 +403,162 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
           }
         }
       } else {
-        if ($scope.appLanguageID == "1") {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "คำตอบไม่ถูกต้อง !",
-                content: "กรุณากรอกคำตอบให้ครบทุกข้อ",
-                ok: "ตกลง"
+        if ($scope.inputFlag == false) {
+          if (Object.keys($scope.staffDetail).length !== 0) {
+            $http({
+              url: myService.configAPI.webserviceURL + 'webservices/insertInfo.php',
+              method: 'POST',
+              data: {
+                var_name: "0",
+                var_age: $scope.basicInfo.age,
+                var_sex: $scope.basicInfo.sex,
+                var_education: $scope.basicInfo.education,
+                var_income: $scope.basicInfo.income,
+                var_questionsetid: myService.questionSetDetail.question_set_id,
+                var_staffid: $scope.staffDetail.staff_id
               }
-            }
-          });
+            }).then(function(response) {
+              myService.lastInfoID.info_id = response.data.results;
+              insertAns(myService.lastInfoID.info_id, function(status) {
+                if ($scope.sound == "1") {
+                  $cordovaNativeAudio.play('thankscut');
+                }
+                if ($scope.appLanguageID == "1") {
+                  $mdDialog.show({
+                    controller: 'DialogController',
+                    templateUrl: 'confirm-dialog.html',
+                    locals: {
+                      displayOption: {
+                        title: "ตอบแบบสอบถามเบื้องต้นสำเร็จ !",
+                        content: "คุณตอบแบบสอบถามเบื้องต้นสำเร็จ ระบบจะนำไปสู่หน้าประเมินความพึงพอใจ",
+                        ok: "ตกลง"
+                      }
+                    }
+                  }).then(function(response) {
+                    $state.go('menu2.score');
+                  });
+                } else {
+                  $mdDialog.show({
+                    controller: 'DialogController',
+                    templateUrl: 'confirm-dialog.html',
+                    locals: {
+                      displayOption: {
+                        title: "Answer Successfully !",
+                        content: "You answer a basic information successfully. System will direct to satisfaction rating.",
+                        ok: "Confirm"
+                      }
+                    }
+                  }).then(function(response) {
+                    $state.go('menu2.score');
+                  });
+                }
+              });
+            }, function(error) {
+              $mdDialog.show({
+                controller: 'DialogController',
+                templateUrl: 'confirm-dialog.html',
+                locals: {
+                  displayOption: {
+                    title: "เกิดข้อผิดพลาด !",
+                    content: "เกิดข้อผิดพลาด insertBasicInfo ใน basicInfoController ระบบจะปิดอัตโนมัติ",
+                    ok: "ตกลง"
+                  }
+                }
+              }).then(function(response) {
+                ionic.Platform.exitApp();
+              });
+            });
+          } else {
+            $http({
+              url: myService.configAPI.webserviceURL + 'webservices/insertInfo.php',
+              method: 'POST',
+              data: {
+                var_name: "0",
+                var_age: $scope.basicInfo.age,
+                var_sex: $scope.basicInfo.sex,
+                var_education: $scope.basicInfo.education,
+                var_income: $scope.basicInfo.income,
+                var_questionsetid: myService.questionSetDetail.question_set_id,
+                var_staffid: "0"
+              }
+            }).then(function(response) {
+              myService.lastInfoID.info_id = response.data.results;
+              insertAns(myService.lastInfoID.info_id, function(status) {
+                if ($scope.sound == "1") {
+                  $cordovaNativeAudio.play('thankscut');
+                }
+                if ($scope.appLanguageID == "1") {
+                  $mdDialog.show({
+                    controller: 'DialogController',
+                    templateUrl: 'confirm-dialog.html',
+                    locals: {
+                      displayOption: {
+                        title: "ตอบแบบสอบถามเบื้องต้นสำเร็จ !",
+                        content: "คุณตอบแบบสอบถามเบื้องต้นสำเร็จ ระบบจะนำไปสู่หน้าประเมินความพึงพอใจ",
+                        ok: "ตกลง"
+                      }
+                    }
+                  }).then(function(response) {
+                    $state.go('menu2.score');
+                  });
+                } else {
+                  $mdDialog.show({
+                    controller: 'DialogController',
+                    templateUrl: 'confirm-dialog.html',
+                    locals: {
+                      displayOption: {
+                        title: "Answer Successfully !",
+                        content: "You answer a basic information successfully. System will direct to satisfaction rating.",
+                        ok: "Confirm"
+                      }
+                    }
+                  }).then(function(response) {
+                    $state.go('menu2.score');
+                  });
+                }
+              });
+            }, function(error) {
+              $mdDialog.show({
+                controller: 'DialogController',
+                templateUrl: 'confirm-dialog.html',
+                locals: {
+                  displayOption: {
+                    title: "เกิดข้อผิดพลาด !",
+                    content: "เกิดข้อผิดพลาด insertBasicInfo ใน basicInfoController ระบบจะปิดอัตโนมัติ",
+                    ok: "ตกลง"
+                  }
+                }
+              }).then(function(response) {
+                ionic.Platform.exitApp();
+              });
+            });
+          }
         } else {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "Invalid Answer !",
-                content: "Please fill answer all of question.",
-                ok: "Confirm"
+          if ($scope.appLanguageID == "1") {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "คำตอบไม่ถูกต้อง !",
+                  content: "กรุณากรอกคำตอบให้ครบทุกข้อ",
+                  ok: "ตกลง"
+                }
               }
-            }
-          });
+            });
+          } else {
+            $mdDialog.show({
+              controller: 'DialogController',
+              templateUrl: 'confirm-dialog.html',
+              locals: {
+                displayOption: {
+                  title: "Invalid Answer !",
+                  content: "Please fill answer all of question.",
+                  ok: "Confirm"
+                }
+              }
+            });
+          }
         }
       }
     } else {
@@ -732,5 +865,16 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
     } else {
       callback();
     }
+  }
+
+  $scope.inputFlag = false;
+
+  function findInputQuestion(callback) {
+    for (var i = 0; i < $scope.basicQuestionInSet.length; i++) {
+      if ($scope.basicQuestionInSet[i].bq_type == "1") {
+        $scope.inputFlag = true;
+      }
+    }
+    callback();
   }
 });
