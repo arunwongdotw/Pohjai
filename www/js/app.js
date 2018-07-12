@@ -48,7 +48,7 @@ window.globalVariable = {
 };// End Global variable
 
 
-angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial', 'ngMessages', 'ngCordova', 'chart.js', 'ionic-datepicker'])
+angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers', 'starter.services', 'ngMaterial', 'ngMessages', 'ngCordova', 'chart.js', 'ionic-datepicker', 'ionic-timepicker'])
     .run(function ($ionicPlatform, $cordovaSQLite, $rootScope, $ionicHistory, $state, $mdDialog, $mdBottomSheet, $ionicPopup) {
         $ionicPlatform.ready(function() {
           if (window.Connection) {
@@ -311,7 +311,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
     })
 
-    .config(function ($ionicConfigProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider, $mdColorPalette, $mdIconProvider, ionicDatePickerProvider) {
+    .config(function ($ionicConfigProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider, $mdColorPalette, $mdIconProvider, ionicDatePickerProvider, ionicTimePickerProvider) {
       var datePickerObj = {
           inputDate: new Date(),
           titleLabel: 'Select a Date',
@@ -330,6 +330,15 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
           disableWeekdays: []
       };
       ionicDatePickerProvider.configDatePicker(datePickerObj);
+
+      var timePickerObj = {
+          inputTime: (((new Date()).getHours() * 60 * 60) + ((new Date()).getMinutes() * 60)),
+          format: 12,
+          step: 15,
+          setLabel: 'Set',
+          closeLabel: 'Close'
+      };
+      ionicTimePickerProvider.configTimePicker(timePickerObj);
 
         // Use for change ionic spinner to android pattern.
         $ionicConfigProvider.spinner.icon("android");
