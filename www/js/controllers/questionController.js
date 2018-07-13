@@ -298,26 +298,49 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
   };
 
   function generateQRCode(callback) {
-    var qrCodeData = "http://1did.net/pohjai9/php/pohjai-qrcode.php?questionSetID=" + myService.questionSetDetail.question_set_id + "_" + $scope.appLanguageID;
-    $http.get('http://1did.net/pohjai9/php_qrcode/index.php?data=' + qrCodeData + '&level=high&size=10')
-      .then(function(response) {
-        myService.qrCodeName = response.data;
-        callback();
-      }, function(error) {
-        $mdDialog.show({
-          controller: 'DialogController',
-          templateUrl: 'confirm-dialog.html',
-          locals: {
-            displayOption: {
-              title: "เกิดข้อผิดพลาด !",
-              content: "เกิดข้อผิดพลาด generateQRCode ใน questionController ระบบจะปิดอัตโนมัติ",
-              ok: "ตกลง"
+    if (myService.questionSetDetail.question_set_info == "1") {
+      var qrCodeData = "http://1did.net/pohjai9/php/pohjai-qrcode.php?questionSetID=" + myService.questionSetDetail.question_set_id + "_" + $scope.appLanguageID;
+      $http.get('http://1did.net/pohjai9/php_qrcode/index.php?data=' + qrCodeData + '&level=high&size=10')
+        .then(function(response) {
+          myService.qrCodeName = response.data;
+          callback();
+        }, function(error) {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด generateQRCode ใน questionController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
             }
-          }
-        }).then(function(response) {
-          ionic.Platform.exitApp();
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
-      });
+    } else {
+      var qrCodeData = "http://1did.net/pohjai9/php/pohjai-qrcode-info.php?questionSetID=" + myService.questionSetDetail.question_set_id + "_" + $scope.appLanguageID;
+      $http.get('http://1did.net/pohjai9/php_qrcode/index.php?data=' + qrCodeData + '&level=high&size=10')
+        .then(function(response) {
+          myService.qrCodeName = response.data;
+          callback();
+        }, function(error) {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด generateQRCode ใน questionController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
+        });
+    }
   }
 
   $scope.btnReportSelection = function(questionSet) {

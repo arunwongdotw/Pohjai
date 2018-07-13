@@ -66,25 +66,48 @@ appControllers.controller('staffListQRCodeCtrl', function($scope, $timeout, $sta
   };
 
   function generateQRCode(callback) {
-    var qrCodeData = "http://1did.net/pohjai9/php/pohjai-qrcode-staff.php?questionSetID=" + myService.questionSetDetail.question_set_id + "_" + $scope.appLanguageID + "_" + myService.staffDetail.staff_id;
-    $http.get('http://1did.net/pohjai9/php_qrcode/index.php?data=' + qrCodeData + '&level=high&size=10')
-      .then(function(response) {
-        myService.qrCodeName = response.data;
-        callback();
-      }, function(error) {
-        $mdDialog.show({
-          controller: 'DialogController',
-          templateUrl: 'confirm-dialog.html',
-          locals: {
-            displayOption: {
-              title: "เกิดข้อผิดพลาด !",
-              content: "เกิดข้อผิดพลาด generateQRCode ใน staffListQRCodeController ระบบจะปิดอัตโนมัติ",
-              ok: "ตกลง"
+    if (myService.questionSetDetail.question_set_info == "1") {
+      var qrCodeData = "http://1did.net/pohjai9/php/pohjai-qrcode-staff.php?questionSetID=" + myService.questionSetDetail.question_set_id + "_" + $scope.appLanguageID + "_" + myService.staffDetail.staff_id;
+      $http.get('http://1did.net/pohjai9/php_qrcode/index.php?data=' + qrCodeData + '&level=high&size=10')
+        .then(function(response) {
+          myService.qrCodeName = response.data;
+          callback();
+        }, function(error) {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด generateQRCode ใน staffListQRCodeController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
             }
-          }
-        }).then(function(response) {
-          ionic.Platform.exitApp();
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
         });
-      });
+    } else {
+      var qrCodeData = "http://1did.net/pohjai9/php/pohjai-qrcode-info-staff.php?questionSetID=" + myService.questionSetDetail.question_set_id + "_" + $scope.appLanguageID + "_" + myService.staffDetail.staff_id;
+      $http.get('http://1did.net/pohjai9/php_qrcode/index.php?data=' + qrCodeData + '&level=high&size=10')
+        .then(function(response) {
+          myService.qrCodeName = response.data;
+          callback();
+        }, function(error) {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "เกิดข้อผิดพลาด !",
+                content: "เกิดข้อผิดพลาด generateQRCode ใน staffListQRCodeController ระบบจะปิดอัตโนมัติ",
+                ok: "ตกลง"
+              }
+            }
+          }).then(function(response) {
+            ionic.Platform.exitApp();
+          });
+        });
+    }
   }
 });
