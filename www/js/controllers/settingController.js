@@ -321,28 +321,32 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
 
   $scope.setSound = function(soundID) {
     window.localStorage.sound = soundID;
-    $state.go('menu2.question', {}, {
-      reload: 'menu2.question'
-    });
+    // $state.go('menu2.question', {}, {
+    //   reload: 'menu2.question'
+    // });
+    $state.go('menu2.question');
   };
 
   $scope.setPassword = function(passwordID) {
     window.localStorage.password = passwordID;
-    $state.go('menu2.question', {}, {
-      reload: 'menu2.question'
-    });
+    // $state.go('menu2.question', {}, {
+    //   reload: 'menu2.question'
+    // });
+    $state.go('menu2.question');
   };
 
   $scope.setLanguage = function(appLanguageID) {
     window.localStorage.appLanguageID = appLanguageID;
     if ($state.current.name == "menu1.setting") {
-      $state.go('menu1.home', {}, {
-        reload: 'menu1.home'
-      });
+      // $state.go('menu1.home', {}, {
+      //   reload: 'menu1.home'
+      // });
+      $state.go('menu1.question');
     } else {
-      $state.go('menu2.question', {}, {
-        reload: 'menu2.question'
-      });
+      // $state.go('menu2.question', {}, {
+      //   reload: 'menu2.question'
+      // });
+      $state.go('menu2.question');
     }
   };
 
@@ -355,9 +359,10 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         var_templateid: templateID
       }
     }).then(function(response) {
-      $state.go('menu2.question', {}, {
-        reload: 'menu2.question'
-      });
+      // $state.go('menu2.question', {}, {
+      //   reload: 'menu2.question'
+      // });
+      $state.go('menu2.question');
     }, function(error) {
       $mdDialog.show({
         controller: 'DialogController',
@@ -384,9 +389,10 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         var_orderid: orderID
       }
     }).then(function(response) {
-      $state.go('menu2.question', {}, {
-        reload: 'menu2.question'
-      });
+      // $state.go('menu2.question', {}, {
+      //   reload: 'menu2.question'
+      // });
+      $state.go('menu2.question');
     }, function(error) {
       $mdDialog.show({
         controller: 'DialogController',
@@ -413,9 +419,10 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
         var_colorid: colorID
       }
     }).then(function(response) {
-      $state.go('menu2.question', {}, {
-        reload: 'menu2.question'
-      });
+      // $state.go('menu2.question', {}, {
+      //   reload: 'menu2.question'
+      // });
+      $state.go('menu2.question');
     }, function(error) {
       $mdDialog.show({
         controller: 'DialogController',
