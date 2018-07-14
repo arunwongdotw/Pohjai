@@ -333,7 +333,7 @@ angular.module('starter', ['ionic','ngIOS9UIWebViewPatch', 'starter.controllers'
 
       var timePickerObj = {
           inputTime: (((new Date()).getHours() * 60 * 60) + ((new Date()).getMinutes() * 60)),
-          format: 12,
+          format: 24,
           step: 15,
           setLabel: 'Set',
           closeLabel: 'Close'
