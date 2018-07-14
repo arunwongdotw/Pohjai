@@ -98,20 +98,20 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
 
   if (myService.countEducationPerSet != null) {
     if ($scope.appLanguageID == "1") {
-      $scope.labelEducation = ['ต่ำกว่ามัธยม', 'มัธยมศึกษาหรือเทียบเท่า', 'อนุปริญญาหรือเทียบเท่า', 'ปริญญาตรี', 'สูงกว่าปริญญาตรี'];
+      $scope.labelEducation = ['ต่ำกว่ามัธยม', 'มัธยมศึกษาหรือเทียบเท่า', 'อนุปริญญาหรือเทียบเท่า', 'ปริญญาตรี', 'ปริญญาโท', 'ปริญญาเอก'];
       makeEducationChart();
     } else {
-      $scope.labelEducation = ['Lower Secondary School', 'Secondary School', 'Diploma', 'Bachelor Degree', 'Postgraduate'];
+      $scope.labelEducation = ['Lower Secondary School', 'Secondary School', 'Diploma', 'Bachelor Degree', 'Master Degree', 'Doctor Degree'];
       makeEducationChart();
     }
   }
 
   if (myService.countIncomePerSet != null) {
     if ($scope.appLanguageID == "1") {
-      $scope.labelIncome = ['ไม่มีรายได้', 'ต่ำกว่า 5,000', '5,001-10,000', '10,001-15,000', '15,001-20,000', 'มากกว่า 20,001'];
+      $scope.labelIncome = ['ไม่มีรายได้', 'ต่ำกว่า 5,000', '5,001-10,000', '10,001-15,000', '15,001-20,000', '20,001 - 30,000', '30,001 - 40,000', 'มากกว่า 40,001'];
       makeIncomeChart();
     } else {
-      $scope.labelIncome = ['No Income', 'Less Than 5,000', '5,001-10,000', '10,001-15,000', '15,001-20,000', 'More Than 20,001'];
+      $scope.labelIncome = ['No Income', 'Less Than 5,000', '5,001-10,000', '10,001-15,000', '15,001-20,000', '20,001 - 30,000', '30,001 - 40,000', 'More than 40,001'];
       makeIncomeChart();
     }
   }
@@ -157,7 +157,7 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
   }
 
   function makeEducationChart() {
-    $scope.dataEducation = [0, 0, 0, 0, 0];
+    $scope.dataEducation = [0, 0, 0, 0, 0, 0];
     for (var i = 0; i < myService.countEducationPerSet.length; i++) {
       if (myService.countEducationPerSet[i].info_education == "Lower Secondary School") {
         $scope.dataEducation[0] = parseInt(myService.countEducationPerSet[i].counteducation);
@@ -167,14 +167,16 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
         $scope.dataEducation[2] = parseInt(myService.countEducationPerSet[i].counteducation);
       } else if (myService.countEducationPerSet[i].info_education == "Bachelor Degree") {
         $scope.dataEducation[3] = parseInt(myService.countEducationPerSet[i].counteducation);
-      } else {
+      } else if (myService.countEducationPerSet[i].info_education == "Master Degree") {
         $scope.dataEducation[4] = parseInt(myService.countEducationPerSet[i].counteducation);
+      } else {
+        $scope.dataEducation[5] = parseInt(myService.countEducationPerSet[i].counteducation);
       }
     }
   }
 
   function makeIncomeChart() {
-    $scope.dataIncome = [0, 0, 0, 0, 0, 0];
+    $scope.dataIncome = [0, 0, 0, 0, 0, 0, 0, 0];
     for (var i = 0; i < myService.countIncomePerSet.length; i++) {
       if (myService.countIncomePerSet[i].info_income == "0") {
         $scope.dataIncome[0] = parseInt(myService.countIncomePerSet[i].countincome);
@@ -186,8 +188,12 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
         $scope.dataIncome[3] = parseInt(myService.countIncomePerSet[i].countincome);
       } else if (myService.countIncomePerSet[i].info_income == "15,001 - 20,000") {
         $scope.dataIncome[4] = parseInt(myService.countIncomePerSet[i].countincome);
-      } else {
+      } else if (myService.countIncomePerSet[i].info_income == "20,001 - 30,000") {
         $scope.dataIncome[5] = parseInt(myService.countIncomePerSet[i].countincome);
+      } else if (myService.countIncomePerSet[i].info_income == "30,001 - 40,000") {
+        $scope.dataIncome[6] = parseInt(myService.countIncomePerSet[i].countincome);
+      } else {
+        $scope.dataIncome[7] = parseInt(myService.countIncomePerSet[i].countincome);
       }
     }
   }
