@@ -95,10 +95,26 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
   }
 
   function setMdSelectValueInfo() {
-    $scope.basicInfo.age = "10-15";
-    $scope.basicInfo.sex = "Male";
-    $scope.basicInfo.education = "Lower Secondary School";
-    $scope.basicInfo.income = "0";
+    if ($scope.basicInfoInSet.bi_age == "0") {
+      $scope.basicInfo.age = "-";
+    } else {
+      $scope.basicInfo.age = "10-15";
+    }
+    if ($scope.basicInfoInSet.bi_sex == "0") {
+      $scope.basicInfo.sex = "-";
+    } else {
+      $scope.basicInfo.sex = "Male";
+    }
+    if ($scope.basicInfoInSet.bi_education == "0") {
+      $scope.basicInfo.education = "-";
+    } else {
+      $scope.basicInfo.education = "Lower Secondary School";
+    }
+    if ($scope.basicInfoInSet.bi_salary == "0") {
+      $scope.basicInfo.income = "-";
+    } else {
+      $scope.basicInfo.income = "0";
+    }
   }
 
   $scope.navigateTo = function(stateName) {
@@ -263,7 +279,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
               url: myService.configAPI.webserviceURL + 'webservices/insertInfo.php',
               method: 'POST',
               data: {
-                var_name: "0",
+                var_name: "-",
                 var_age: $scope.basicInfo.age,
                 var_sex: $scope.basicInfo.sex,
                 var_education: $scope.basicInfo.education,
@@ -327,7 +343,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
               url: myService.configAPI.webserviceURL + 'webservices/insertInfo.php',
               method: 'POST',
               data: {
-                var_name: "0",
+                var_name: "-",
                 var_age: $scope.basicInfo.age,
                 var_sex: $scope.basicInfo.sex,
                 var_education: $scope.basicInfo.education,
@@ -421,7 +437,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
               url: myService.configAPI.webserviceURL + 'webservices/insertInfo.php',
               method: 'POST',
               data: {
-                var_name: "0",
+                var_name: "-",
                 var_age: $scope.basicInfo.age,
                 var_sex: $scope.basicInfo.sex,
                 var_education: $scope.basicInfo.education,
@@ -485,7 +501,7 @@ appControllers.controller('basicInfoCtrl', function($scope, $timeout, $state, $s
               url: myService.configAPI.webserviceURL + 'webservices/insertInfo.php',
               method: 'POST',
               data: {
-                var_name: "0",
+                var_name: "-",
                 var_age: $scope.basicInfo.age,
                 var_sex: $scope.basicInfo.sex,
                 var_education: $scope.basicInfo.education,
