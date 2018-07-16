@@ -27,7 +27,7 @@
                 <md-option value="9" ng-click="setAge('51-55')">51-55</md-option>
                 <md-option value="10" ng-click="setAge('56-60')">56-60</md-option>
                 <md-option value="11" ng-click="setAge('61+')" ng-if="appLanguageID == 1">61 ขึ้นไป</md-option>
-                <md-option value="12" ng-click="setAge('61+')" ng-if="appLanguageID == 2">61 Years Old Up</md-option>
+                <md-option value="11" ng-click="setAge('61+')" ng-if="appLanguageID == 2">61 Years Old Up</md-option>
             </md-select>
             <div class="row" ng-if="basicInfoInSet.bi_sex != 0">
                 <div class="col-75" style="margin-left: 7px;">{{appLanguage.app_lang_basic_info_sex}}</div>
@@ -75,9 +75,9 @@
                 <md-option value="3" ng-click="setIncome('5,001 - 10,000')" ng-if="appLanguageID == 2">5,001 - 10,000 Baht/Month</md-option>
                 <md-option value="4" ng-click="setIncome('10,001 - 15,000')" ng-if="appLanguageID == 2">10,001 - 15,000 Baht/Month</md-option>
                 <md-option value="5" ng-click="setIncome('15,001 - 20,000')" ng-if="appLanguageID == 2">15,001 - 20,000 Baht/Month</md-option>
-                <md-option value="6" ng-click="setIncome('20,001 - 30,000')" ng-if="appLanguageID == 1">20,001 - 30,000 Baht/Month</md-option>
-                <md-option value="7" ng-click="setIncome('30,001 - 40,000')" ng-if="appLanguageID == 1">30,001 - 40,000 Baht/Month</md-option>
-                <md-option value="8" ng-click="setIncome('More than 40,001')" ng-if="appLanguageID == 1">40,001 Baht/Month Up</md-option>
+                <md-option value="6" ng-click="setIncome('20,001 - 30,000')" ng-if="appLanguageID == 2">20,001 - 30,000 Baht/Month</md-option>
+                <md-option value="7" ng-click="setIncome('30,001 - 40,000')" ng-if="appLanguageID == 2">30,001 - 40,000 Baht/Month</md-option>
+                <md-option value="8" ng-click="setIncome('More than 40,001')" ng-if="appLanguageID == 2">40,001 Baht/Month Up</md-option>
             </md-select>
             <div ng-repeat="question in basicQuestionInSet" ng-init="$qindex = $index">
                 <div class="row">
