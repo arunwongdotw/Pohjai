@@ -5,7 +5,7 @@
             <i class="ion-android-arrow-back"></i>
         </a>
     </ion-nav-buttons>
-    <ion-content id="try-app-content">
+    <ion-content id="try-app-content" overflow-scroll="false">
         <ion-slide-box id="user-interface-content" active-slide="0" ng-if="memberSetting.question_set_form == 1" ng-init="lockSlide()">
             <ion-slide class="slide-first" style="top: 1%;" ng-repeat="question in allQuestionInSet">
                 <img class="user-img" src="http://1did.net/pohjai9/img/img_profile/{{menu2.member_username}}.jpg?random={{randomNumber}}" style="width: 7%; margin-top: 10px; border-radius: 50%;">
