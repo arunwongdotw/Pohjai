@@ -124,7 +124,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
         var_memberid: $scope.memberID
       }
     }).then(function(response) {
-      if (response.data.results = 'countQuestionSet_lessThan') {
+      if (response.data.results == 'countQuestionSet_lessThan') {
         $state.go('menu2.createquestionset');
       } else {
         if ($scope.appLanguageID == "1") {
@@ -416,7 +416,7 @@ appControllers.controller('questionManagementCtrl', function($scope, $timeout, $
     if ((ads.advertise_url != "") && (ads.advertise_url != null)) {
       $cordovaInAppBrowser.open('http://' + ads.advertise_url, '_system', options);
     }
-  }
+  };
 
   $scope.closeCard = function() {
     var myEl = angular.element(document.querySelector('#advertise-card'));

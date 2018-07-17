@@ -392,7 +392,7 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
     if ((ads.advertise_url != "") && (ads.advertise_url != null)) {
       $cordovaInAppBrowser.open('http://' + ads.advertise_url, '_system', options);
     }
-  }
+  };
 
   $scope.closeCard = function() {
     var myEl = angular.element(document.querySelector('#advertise-card'));

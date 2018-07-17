@@ -120,7 +120,7 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
 
   $scope.lockSlide = function() {
     $ionicSlideBoxDelegate.enableSlide(false);
-  }
+  };
 
   $scope.navigateTo = function(stateName) {
     $timeout(function() {

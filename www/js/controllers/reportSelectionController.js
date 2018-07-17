@@ -1002,62 +1002,62 @@ appControllers.controller('reportSelectionCtrl', function($scope, $timeout, $mdU
     });
   }
 
-  function getCountIncome(callback) {
-    $http({
-      url: myService.configAPI.webserviceURL + 'webservices/countIncomePerSet.php',
-      method: 'POST',
-      data: {
-        var_questionsetid: myService.questionSetDetail.question_set_id,
-        var_startdate: $scope.reportSelection.startdatetime,
-        var_enddate: $scope.reportSelection.enddatetime
-      }
-    }).then(function(response) {
-      if (response.data.results != null) {
-        myService.countIncomePerSet = response.data.results;
-        callback();
-      } else {
-        if ($scope.appLanguageID == "1") {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "ไม่พบข้อมูล !",
-                content: "ไม่พบข้อมูลในช่วงวันเวลาที่คุณค้นหา กรุณาลองใหม่",
-                ok: "ตกลง"
-              }
-            }
-          });
-        } else {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "Not Found Data !",
-                content: "Not found data at time that your search, Please try again.",
-                ok: "Confirm"
-              }
-            }
-          });
-        }
-      }
-    }, function(error) {
-      $mdDialog.show({
-        controller: 'DialogController',
-        templateUrl: 'confirm-dialog.html',
-        locals: {
-          displayOption: {
-            title: "เกิดข้อผิดพลาด !",
-            content: "เกิดข้อผิดพลาด getCountIncome ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
-            ok: "ตกลง"
-          }
-        }
-      }).then(function(response) {
-        ionic.Platform.exitApp();
-      });
-    });
-  }
+  // function getCountIncome(callback) {
+  //   $http({
+  //     url: myService.configAPI.webserviceURL + 'webservices/countIncomePerSet.php',
+  //     method: 'POST',
+  //     data: {
+  //       var_questionsetid: myService.questionSetDetail.question_set_id,
+  //       var_startdate: $scope.reportSelection.startdatetime,
+  //       var_enddate: $scope.reportSelection.enddatetime
+  //     }
+  //   }).then(function(response) {
+  //     if (response.data.results != null) {
+  //       myService.countIncomePerSet = response.data.results;
+  //       callback();
+  //     } else {
+  //       if ($scope.appLanguageID == "1") {
+  //         $mdDialog.show({
+  //           controller: 'DialogController',
+  //           templateUrl: 'confirm-dialog.html',
+  //           locals: {
+  //             displayOption: {
+  //               title: "ไม่พบข้อมูล !",
+  //               content: "ไม่พบข้อมูลในช่วงวันเวลาที่คุณค้นหา กรุณาลองใหม่",
+  //               ok: "ตกลง"
+  //             }
+  //           }
+  //         });
+  //       } else {
+  //         $mdDialog.show({
+  //           controller: 'DialogController',
+  //           templateUrl: 'confirm-dialog.html',
+  //           locals: {
+  //             displayOption: {
+  //               title: "Not Found Data !",
+  //               content: "Not found data at time that your search, Please try again.",
+  //               ok: "Confirm"
+  //             }
+  //           }
+  //         });
+  //       }
+  //     }
+  //   }, function(error) {
+  //     $mdDialog.show({
+  //       controller: 'DialogController',
+  //       templateUrl: 'confirm-dialog.html',
+  //       locals: {
+  //         displayOption: {
+  //           title: "เกิดข้อผิดพลาด !",
+  //           content: "เกิดข้อผิดพลาด getCountIncome ใน reportSelectionController ระบบจะปิดอัตโนมัติ",
+  //           ok: "ตกลง"
+  //         }
+  //       }
+  //     }).then(function(response) {
+  //       ionic.Platform.exitApp();
+  //     });
+  //   });
+  // }
 
   function getAllName(callback) {
     // $http({
