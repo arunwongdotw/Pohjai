@@ -6,168 +6,168 @@
         </a>
     </ion-nav-buttons>
     <ion-content id="online-course-content">
-      <div class="course-list" style="margin-top: 0px;">
-          <div class="course-item">
-              <div class="title angular-course-background" style="background-color: {{color}} !important;">
-                  {{appLanguage.app_lang_basic_info_name}}
-              </div>
-              <div class="content">
-                  <p>
-                      <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important; margin-top: 15px;" ng-click="seeAllName(questionSetDetail.question_set_id)">
-                          <i class="far fa-smile"></i> {{appLanguage.app_lang_basic_chart_name_btn}}
-                      </a>
-                  </p>
-              </div>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 1">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_age}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="bar" class="chart chart-bar" chart-data="dataAge" chart-labels="labelAge" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 2">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_age}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="line" class="chart chart-line" chart-data="dataAge" chart-labels="labelAge" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 3">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_age}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="pie" class="chart chart-pie" chart-data="dataAge" chart-labels="labelAge" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 1">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_sex}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="bar" class="chart chart-bar" chart-data="dataSex" chart-labels="labelSex" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 2">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_sex}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="line" class="chart chart-line" chart-data="dataSex" chart-labels="labelSex" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 3">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_sex}}ุ
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="pie" class="chart chart-pie" chart-data="dataSex" chart-labels="labelSex" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 1">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_education}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="bar" class="chart chart-bar" chart-data="dataEducation" chart-labels="labelEducation" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 2">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_education}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="line" class="chart chart-line" chart-data="dataEducation" chart-labels="labelEducation" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 3">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_education}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="pie" class="chart chart-pie" chart-data="dataEducation" chart-labels="labelEducation" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 1">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_salary}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="bar" class="chart chart-bar" chart-data="dataIncome" chart-labels="labelIncome" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 2">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_salary}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="line" class="chart chart-line" chart-data="dataIncome" chart-labels="labelIncome" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="card" ng-if="chartType == 3">
-          <div class="item item-divider" style="font-size: 14px;">
-              {{appLanguage.app_lang_basic_info_salary}}
-          </div>
-          <div class="item item-text-wrap">
-              <canvas id="pie" class="chart chart-pie" chart-data="dataIncome" chart-labels="labelIncome" chart-series="series" chart-options="options"
-              chart-legend="true" chart-click="onClick"></canvas>
-          </div>
-      </div>
-      <div class="course-list" style="margin-top: 0px;" ng-repeat="aq in allQuestion">
-          <div class="course-item" ng-if="aq.bq_type == 1">
-              <div class="title angular-course-background" style="background-color: {{color}} !important;">
-                  {{appLanguage.app_lang_create_basic_info_question}} : {{aq.bq_question}}
-              </div>
-              <div class="content">
-                  <p>
-                      <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important; margin-top: 15px;" ng-click="seeAllAns(aq.bq_id)">
-                          <i class="far fa-smile"></i> {{appLanguage.app_lang_basic_chart_ans_btn}}
-                      </a>
-                  </p>
-              </div>
-          </div>
-          <div class="card" ng-if="chartType == 1 && aq.bq_type == 2" ng-init="labelSelect[aq.bq_id] = []; dataSelect[aq.bq_id] = [];">
-              <div class="item item-divider" style="font-size: 14px;">
-                  {{appLanguage.app_lang_create_basic_info_question}} : {{aq.bq_question}}
-              </div>
-              <div class="item item-text-wrap">
-                  <canvas id="bar" class="chart chart-bar" chart-data="dataSelect[aq.bq_id]" chart-labels="labelSelect[aq.bq_id]" chart-series="series" chart-options="options"
-                  chart-legend="true" chart-click="onClick"></canvas>
-              </div>
-          </div>
-          <div class="card" ng-if="chartType == 2 && aq.bq_type == 2" ng-init="labelSelect[aq.bq_id] = []; dataSelect[aq.bq_id] = [];">
-              <div class="item item-divider" style="font-size: 14px;">
-                  {{appLanguage.app_lang_create_basic_info_question}} : {{aq.bq_question}}
-              </div>
-              <div class="item item-text-wrap">
-                  <canvas id="line" class="chart chart-line" chart-data="dataSelect[aq.bq_id]" chart-labels="labelSelect[aq.bq_id]" chart-series="series" chart-options="options"
-                  chart-legend="true" chart-click="onClick"></canvas>
-              </div>
-          </div>
-          <div class="card" ng-if="chartType == 3 && aq.bq_type == 2" ng-init="labelSelect[aq.bq_id] = []; dataSelect[aq.bq_id] = [];">
-              <div class="item item-divider" style="font-size: 14px;">
-                  {{appLanguage.app_lang_create_basic_info_question}} : {{aq.bq_question}}
-              </div>
-              <div class="item item-text-wrap">
-                  <canvas id="pie" class="chart chart-pie" chart-data="dataSelect[aq.bq_id]" chart-labels="labelSelect[aq.bq_id]" chart-series="series" chart-options="options"
-                  chart-legend="true" chart-click="onClick"></canvas>
-              </div>
-          </div>
-      </div>
+        <div class="course-list" style="margin-top: 0px;">
+            <div class="course-item">
+                <div class="title angular-course-background" style="background-color: {{color}} !important;">
+                    {{appLanguage.app_lang_basic_info_name}}
+                </div>
+                <div class="content">
+                    <p>
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important; margin-top: 15px;" ng-click="seeAllName(questionSetDetail.question_set_id)">
+                            <i class="far fa-smile"></i> {{appLanguage.app_lang_basic_chart_name_btn}}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 1">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_age}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="bar" class="chart chart-bar" chart-data="dataAge" chart-labels="labelAge" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 2">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_age}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="line" class="chart chart-line" chart-data="dataAge" chart-labels="labelAge" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 3">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_age}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="pie" class="chart chart-pie" chart-data="dataAge" chart-labels="labelAge" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 1">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_sex}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="bar" class="chart chart-bar" chart-data="dataSex" chart-labels="labelSex" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 2">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_sex}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="line" class="chart chart-line" chart-data="dataSex" chart-labels="labelSex" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 3">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_sex}}ุ
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="pie" class="chart chart-pie" chart-data="dataSex" chart-labels="labelSex" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 1">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_education}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="bar" class="chart chart-bar" chart-data="dataEducation" chart-labels="labelEducation" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 2">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_education}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="line" class="chart chart-line" chart-data="dataEducation" chart-labels="labelEducation" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 3">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_education}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="pie" class="chart chart-pie" chart-data="dataEducation" chart-labels="labelEducation" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 1">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_salary}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="bar" class="chart chart-bar" chart-data="dataIncome" chart-labels="labelIncome" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 2">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_salary}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="line" class="chart chart-line" chart-data="dataIncome" chart-labels="labelIncome" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="card" ng-if="chartType == 3">
+            <div class="item item-divider" style="font-size: 14px;">
+                {{appLanguage.app_lang_basic_info_salary}}
+            </div>
+            <div class="item item-text-wrap">
+                <canvas id="pie" class="chart chart-pie" chart-data="dataIncome" chart-labels="labelIncome" chart-series="series" chart-options="options"
+                chart-legend="true" chart-click="onClick"></canvas>
+            </div>
+        </div>
+        <div class="course-list" style="margin-top: 0px;" ng-repeat="aq in allQuestion">
+            <div class="course-item" ng-if="aq.bq_type == 1">
+                <div class="title angular-course-background" style="background-color: {{color}} !important;">
+                    {{appLanguage.app_lang_create_basic_info_question}} : {{aq.bq_question}}
+                </div>
+                <div class="content">
+                    <p>
+                        <a href="" class="md-raised md-button md-default-theme angular-course-background" style="background-color: {{color}} !important; margin-top: 15px;" ng-click="seeAllAns(aq.bq_id)">
+                            <i class="far fa-smile"></i> {{appLanguage.app_lang_basic_chart_ans_btn}}
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="card" ng-if="chartType == 1 && aq.bq_type == 2" ng-init="labelSelect[aq.bq_id] = []; dataSelect[aq.bq_id] = [];">
+                <div class="item item-divider" style="font-size: 14px;">
+                    {{appLanguage.app_lang_create_basic_info_question}} : {{aq.bq_question}}
+                </div>
+                <div class="item item-text-wrap">
+                    <canvas id="bar" class="chart chart-bar" chart-data="dataSelect[aq.bq_id]" chart-labels="labelSelect[aq.bq_id]" chart-series="series" chart-options="options"
+                    chart-legend="true" chart-click="onClick"></canvas>
+                </div>
+            </div>
+            <div class="card" ng-if="chartType == 2 && aq.bq_type == 2" ng-init="labelSelect[aq.bq_id] = []; dataSelect[aq.bq_id] = [];">
+                <div class="item item-divider" style="font-size: 14px;">
+                    {{appLanguage.app_lang_create_basic_info_question}} : {{aq.bq_question}}
+                </div>
+                <div class="item item-text-wrap">
+                    <canvas id="line" class="chart chart-line" chart-data="dataSelect[aq.bq_id]" chart-labels="labelSelect[aq.bq_id]" chart-series="series" chart-options="options"
+                    chart-legend="true" chart-click="onClick"></canvas>
+                </div>
+            </div>
+            <div class="card" ng-if="chartType == 3 && aq.bq_type == 2" ng-init="labelSelect[aq.bq_id] = []; dataSelect[aq.bq_id] = [];">
+                <div class="item item-divider" style="font-size: 14px;">
+                    {{appLanguage.app_lang_create_basic_info_question}} : {{aq.bq_question}}
+                </div>
+                <div class="item item-text-wrap">
+                    <canvas id="pie" class="chart chart-pie" chart-data="dataSelect[aq.bq_id]" chart-labels="labelSelect[aq.bq_id]" chart-series="series" chart-options="options"
+                    chart-legend="true" chart-click="onClick"></canvas>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
