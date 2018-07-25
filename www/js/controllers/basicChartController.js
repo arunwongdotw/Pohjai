@@ -139,7 +139,7 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
         $scope.dataAge[8] = parseInt(myService.countAgePerSet[i].countage);
       } else if (myService.countAgePerSet[i].info_age == "56-60") {
         $scope.dataAge[9] = parseInt(myService.countAgePerSet[i].countage);
-      } else {
+      } else if (myService.countAgePerSet[i].info_age == "61+") {
         $scope.dataAge[10] = parseInt(myService.countAgePerSet[i].countage);
       }
     }
@@ -150,7 +150,7 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
     for (var i = 0; i < myService.countSexPerSet.length; i++) {
       if (myService.countSexPerSet[i].info_sex == "Male") {
         $scope.dataSex[0] = parseInt(myService.countSexPerSet[i].countsex);
-      } else {
+      } else if (myService.countSexPerSet[i].info_sex == "Female") {
         $scope.dataSex[1] = parseInt(myService.countSexPerSet[i].countsex);
       }
     }
@@ -169,7 +169,7 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
         $scope.dataEducation[3] = parseInt(myService.countEducationPerSet[i].counteducation);
       } else if (myService.countEducationPerSet[i].info_education == "Master Degree") {
         $scope.dataEducation[4] = parseInt(myService.countEducationPerSet[i].counteducation);
-      } else {
+      } else if (myService.countEducationPerSet[i].info_education == "Doctor Degree") {
         $scope.dataEducation[5] = parseInt(myService.countEducationPerSet[i].counteducation);
       }
     }
@@ -192,7 +192,7 @@ appControllers.controller('basicChartCtrl', function($scope, $timeout, $state, $
         $scope.dataIncome[5] = parseInt(myService.countIncomePerSet[i].countincome);
       } else if (myService.countIncomePerSet[i].info_income == "30,001 - 40,000") {
         $scope.dataIncome[6] = parseInt(myService.countIncomePerSet[i].countincome);
-      } else {
+      } else if (myService.countIncomePerSet[i].info_income == "More than 40,001") {
         $scope.dataIncome[7] = parseInt(myService.countIncomePerSet[i].countincome);
       }
     }
