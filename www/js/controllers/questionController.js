@@ -390,6 +390,9 @@ appControllers.controller('questionCtrl', function($scope, $timeout, $state, $st
       toolbar: 'no'
     };
     if ((ads.advertise_url != "") && (ads.advertise_url != null)) {
+      var click = parseInt(ads.advertise_click);
+      click = click + 1;
+      $http.get(myService.configAPI.webserviceURL + 'webservices/addAdClick.php?adID=' + ads.advertise_id + '&click=' + click);
       $cordovaInAppBrowser.open('http://' + ads.advertise_url, '_system', options);
     }
   };

@@ -542,7 +542,19 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
         }
       }
     } else {
-      if (($scope.comment.commentDetail != null) && ($scope.comment.commentDetail != "")) {
+      // if (($scope.comment.commentDetail != null) && ($scope.comment.commentDetail != "")) {
+      $mdDialog.show({
+        controller: 'DialogController',
+        templateUrl: 'confirm-dialog.html',
+        locals: {
+          displayOption: {
+            title: "ไม่ใส่ข้อเสนอแนะ ?",
+            content: "คุณแน่ใจที่จะไม่ใส่ข้อเสนอแนะ",
+            ok: "ตกลง",
+            cancel: "ยกเลิก"
+          }
+        }
+      }).then(function(response) {
         $http({
           url: myService.configAPI.webserviceURL + 'webservices/giveCommentInCaseStaff.php',
           method: 'POST',
@@ -600,33 +612,34 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
             ionic.Platform.exitApp();
           });
         });
-      } else {
-        if ($scope.appLanguageID == "1") {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "รายละเอียดข้อเสนอแนะไม่ถูกต้อง !",
-                content: "กรุณากรอกรายละเอียดข้อเสนอแนะ",
-                ok: "ตกลง"
-              }
-            }
-          });
-        } else {
-          $mdDialog.show({
-            controller: 'DialogController',
-            templateUrl: 'confirm-dialog.html',
-            locals: {
-              displayOption: {
-                title: "Invalid Comment Detail !",
-                content: "Please fill comment detail.",
-                ok: "Confirm"
-              }
-            }
-          });
-        }
-      }
+      });
+      // } else {
+      //   if ($scope.appLanguageID == "1") {
+      //     $mdDialog.show({
+      //       controller: 'DialogController',
+      //       templateUrl: 'confirm-dialog.html',
+      //       locals: {
+      //         displayOption: {
+      //           title: "รายละเอียดข้อเสนอแนะไม่ถูกต้อง !",
+      //           content: "กรุณากรอกรายละเอียดข้อเสนอแนะ",
+      //           ok: "ตกลง"
+      //         }
+      //       }
+      //     });
+      //   } else {
+      //     $mdDialog.show({
+      //       controller: 'DialogController',
+      //       templateUrl: 'confirm-dialog.html',
+      //       locals: {
+      //         displayOption: {
+      //           title: "Invalid Comment Detail !",
+      //           content: "Please fill comment detail.",
+      //           ok: "Confirm"
+      //         }
+      //       }
+      //     });
+      //   }
+      // }
     }
   };
 
@@ -634,7 +647,19 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
     checkCheckBoxSelected(function(status) {
       if ($scope.checkBoxFlagArray.length == $scope.allQuestionInSet.length) {
         if ($scope.memberSetting.question_set_comment == 1) {
-          if (($scope.comment.commentDetail != null) && ($scope.comment.commentDetail != "")) {
+          // if (($scope.comment.commentDetail != null) && ($scope.comment.commentDetail != "")) {
+          $mdDialog.show({
+            controller: 'DialogController',
+            templateUrl: 'confirm-dialog.html',
+            locals: {
+              displayOption: {
+                title: "ไม่ใส่ข้อเสนอแนะ ?",
+                content: "คุณแน่ใจที่จะไม่ใส่ข้อเสนอแนะ",
+                ok: "ตกลง",
+                cancel: "ยกเลิก"
+              }
+            }
+          }).then(function(response) {
             getRating(function(status) {});
             addScoreToDB(function(status) {});
             if (Object.keys($scope.staffDetail).length === 0) {
@@ -753,33 +778,34 @@ appControllers.controller('scoreCtrl', function($scope, $timeout, $state, $state
                 });
               });
             }
-          } else {
-            if ($scope.appLanguageID == "1") {
-              $mdDialog.show({
-                controller: 'DialogController',
-                templateUrl: 'confirm-dialog.html',
-                locals: {
-                  displayOption: {
-                    title: "รายละเอียดข้อเสนอแนะไม่ถูกต้อง !",
-                    content: "กรุณากรอกรายละเอียดข้อเสนอแนะ",
-                    ok: "ตกลง"
-                  }
-                }
-              });
-            } else {
-              $mdDialog.show({
-                controller: 'DialogController',
-                templateUrl: 'confirm-dialog.html',
-                locals: {
-                  displayOption: {
-                    title: "Invalid Comment Detail !",
-                    content: "Please fill comment detail.",
-                    ok: "Confirm"
-                  }
-                }
-              });
-            }
-          }
+          });
+          // } else {
+          //   if ($scope.appLanguageID == "1") {
+          //     $mdDialog.show({
+          //       controller: 'DialogController',
+          //       templateUrl: 'confirm-dialog.html',
+          //       locals: {
+          //         displayOption: {
+          //           title: "รายละเอียดข้อเสนอแนะไม่ถูกต้อง !",
+          //           content: "กรุณากรอกรายละเอียดข้อเสนอแนะ",
+          //           ok: "ตกลง"
+          //         }
+          //       }
+          //     });
+          //   } else {
+          //     $mdDialog.show({
+          //       controller: 'DialogController',
+          //       templateUrl: 'confirm-dialog.html',
+          //       locals: {
+          //         displayOption: {
+          //           title: "Invalid Comment Detail !",
+          //           content: "Please fill comment detail.",
+          //           ok: "Confirm"
+          //         }
+          //       }
+          //     });
+          //   }
+          // }
         } else {
           getRating(function(status) {});
           addScoreToDB(function(status) {});
