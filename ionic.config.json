@@ -1,6 +1,8 @@
 {
   "name": "IonicMaterialDesign",
-  "app_id": "",
+  "integrations": {
+    "cordova": {}
+  },
   "gulpStartupTasks": [
     "sass",
     "watch"
@@ -16,8 +18,5 @@
       "version": "12.41.296.5"
     }
   ],
-  "integrations": {
-    "cordova": {}
-  },
   "type": "ionic1"
 }
