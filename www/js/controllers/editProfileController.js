@@ -47,6 +47,16 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
     }, ($scope.isAnimated ? 300 : 0));
   };
 
+  function checkImageURI(imageURI) {
+    var str = imageURI;
+    var res = str.match(/1did/g);
+    if (res) {
+      return "found";
+    } else {
+      return "notfound";
+    }
+  }
+
   $scope.btnEditProfilePickPicture = function() {
     var options = {
       quality: 100,
@@ -64,20 +74,20 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
       .then(function(imageURI) {
         var image = document.getElementById('edit-profile-picture');
         image.src = imageURI;
-      }, function(error) {
-        $mdDialog.show({
-          controller: 'DialogController',
-          templateUrl: 'confirm-dialog.html',
-          locals: {
-            displayOption: {
-              title: "เกิดข้อผิดพลาด !",
-              content: "เกิดข้อผิดพลาด btnEditProfilePickPicture ใน editProfileController ระบบจะปิดอัตโนมัติ",
-              ok: "ตกลง"
-            }
-          }
-        }).then(function(response) {
-          ionic.Platform.exitApp();
-        });
+        // }, function(error) {
+        //   $mdDialog.show({
+        //     controller: 'DialogController',
+        //     templateUrl: 'confirm-dialog.html',
+        //     locals: {
+        //       displayOption: {
+        //         title: "เกิดข้อผิดพลาด !",
+        //         content: "เกิดข้อผิดพลาด btnEditProfilePickPicture ใน editProfileController ระบบจะปิดอัตโนมัติ",
+        //         ok: "ตกลง"
+        //       }
+        //     }
+        //   }).then(function(response) {
+        //     ionic.Platform.exitApp();
+        //   });
       });
   };
 
@@ -99,7 +109,10 @@ appControllers.controller('editProfileCtrl', function($scope, $timeout, $state, 
                 mimeType: "image/jpeg",
                 chunkedMode: false
               };
-              $cordovaFileTransfer.upload(server, imageURI, options2);
+              var check = checkImageURI(imageURI);
+              if (check == "notfound") {
+                $cordovaFileTransfer.upload(server, imageURI, options2);
+              }
               $http({
                 url: myService.configAPI.webserviceURL + 'webservices/updateMember.php',
                 method: 'POST',

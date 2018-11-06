@@ -61,20 +61,20 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
     $cordovaCamera.getPicture(options).then(function(imageURI) {
       var image = document.getElementById('sign-up-picture');
       image.src = imageURI;
-    }, function(error) {
-      $mdDialog.show({
-        controller: 'DialogController',
-        templateUrl: 'confirm-dialog.html',
-        locals: {
-          displayOption: {
-            title: "เกิดข้อผิดพลาด !",
-            content: "เกิดข้อผิดพลาด btnSignUpPickPicture ใน signUpController ระบบจะปิดอัตโนมัติ",
-            ok: "ตกลง"
-          }
-        }
-      }).then(function(response) {
-        ionic.Platform.exitApp();
-      });
+    // }, function(error) {
+    //   $mdDialog.show({
+    //     controller: 'DialogController',
+    //     templateUrl: 'confirm-dialog.html',
+    //     locals: {
+    //       displayOption: {
+    //         title: "เกิดข้อผิดพลาด !",
+    //         content: "เกิดข้อผิดพลาด btnSignUpPickPicture ใน signUpController ระบบจะปิดอัตโนมัติ",
+    //         ok: "ตกลง"
+    //       }
+    //     }
+    //   }).then(function(response) {
+    //     ionic.Platform.exitApp();
+    //   });
     });
   };
 
@@ -105,6 +105,7 @@ appControllers.controller('signUpCtrl', function($scope, $timeout, $state, $stat
                     var_password: $scope.signup.password,
                     var_company: $scope.signup.company,
                     var_template: "1",
+                    var_order: "1",
                     var_color: "1",
                     var_numberBtn: "5",
                     var_numberStaff: "5",
