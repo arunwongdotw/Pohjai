@@ -341,7 +341,7 @@ appControllers.controller('settingCtrl', function($scope, $timeout, $mdUtil, $md
       // $state.go('menu1.home', {}, {
       //   reload: 'menu1.home'
       // });
-      $state.go('menu1.question');
+      $state.go('menu1.home');
     } else {
       // $state.go('menu2.question', {}, {
       //   reload: 'menu2.question'
